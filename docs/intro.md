@@ -3,6 +3,235 @@ sidebar_position: 1
 ---
 
 
+```typ
+
+= Typst Prism
+
+== Distinguishing markup and code mode <section1>
+
+Distinguishing between *markup* and *code* mode (not 
+to forget _math_) is not as easy as one would think. 
+#[
+  Especially since they can be
+  #{
+    "nested"
+    [
+      _and nested_
+      #{
+        "and even more"
+        [
+          *nested*. 
+        ]
+      }
+    ]
+  }
+]
+Basically, Typst code consists of three languages. And 
+you can go from each language to each other language 
+by using all kinds of
+#let parentheses = ("()", "[]", "{}")
+In order to parse the code properly, we need to do 
+_balanced matching_ for these #parentheses. The problem
+is that #regex() is not good at doing recursive things. 
+
+This is why the recursion depth is _*limited*_. 
+
+
+== Code mode
+
+After we enter code mode, which is quite tricky as we
+saw in section @section1, syntax highlighting looks 
+quite different. 
+
+There are
+#{
+  let lengths = (1pt, 1fr, -2, 1em, 3deg, 0in, 9cm, 0rad, 100%, 1mm)
+  [and]
+  let floats = (1.2, 2e9, -3.0003e99)
+}
+
+
+When in markup mode, certain keywords change the 
+context to code mode for the entire line
+#import "@preview/conchord:0.2.0" as con
+#let x = range(0, 10)
+
+We can #emoji.wave and #data.rev()
+#if true [
+  *yes*
+] else [ // this is a bug and I don't know how to fix it
+  noe
+]
+
+#let my-func(a: 1pt, b, c) = {
+  2pt + 20pt
+  if true {
+    return false
+  }
+}
+
+#show heading: it => {
+  it * 2
+}
+#show math.equation.where(block: true): it => {}
+#show math.equation: it => {}
+#show: template
+#show  : template
+
+== Markup mode
+
+All escaped symbols, like \@, \{, \} etc. are noticed! 
+The same holds for line/equation breaks \
+
+#set text(2em, red)
+#show math.equation(numbering: "(1)")
+
+#hide[_hidden_]
+
+#table(
+  columns: (auto, auto, 1fr),
+  $A$, $B$, $C$,
+  ..range(20).map(i => str(2*(i+1))) // note: here lurks a recursion limit for () pairs
+)
+
+
+#(23+
+23)
+#let p = ("a", "k")
+#(21)
+#let p = ("a", "k")
+21
+#let pd = "a"
+12
+
+== Equations <equations>
+
+$ 
+  c^2 &= a^2 + b^2 \ 
+    c &= plus.minus sqrt(a^2 + b^2) 
+$
+
+#[
+  $ a + x + b $
+  $ a + #place([]) x + b $
+]
+
+
+Switching to content mode within equations is currently
+not supported: $#box[*2*]$
+
+
+== Modes and comments
+
+Due to matching rules, it is tricky to get comments and switched language modes to work. Let's check some cases
+#{
+  // We have entered code mode
+  let verification = "Is this parsed as code?"
+  table(
+    columns: 2, // we're still in code mode, the "2" is an int
+  )
+  let /*really bad practice*/ x = 2pt
+  [
+    // Back in markup mode
+    #hide()
+    let // <- not a keyword
+  ]
+  [/**/ #hide[]]
+}
+#table(
+  columns: 2, // we're now in code mode, the "2" is an int
+)
+
+#let url = "https://another.edge/case" // sometimes "tricky"
+
+
+This is not simplified
+
+#{
+  [$ a + c $ *heaing*]
+}
+let asd #var #emoji.face let
+#lc.asd.diagram(
+  lc.plot(x, x.map(x => calc.sin((x+(2+2))*2)))
+)
+#d.iagram(
+  lc.plot(x, x.map(x => calc.sin(x)))
+)
+
+#asd()
+
+<script> 
+   let 
+</script>
+```
+```markup
+# asd
+<div>
+/*a*/
+</div>
+```
+```typ
+if true {
+} else {
+}
+
+#{
+  if true {
+    [*markup*]
+  } else {
+
+  }
+}
+
+if true {
+} else {
+}
+```
+```typ
+34
+#table(auto)
+
+/* asd as */
+= heading <label\> \<label> <label\> <label>
+<asd> <lilac0-.asasd> < asd >
+
+*intro* _italic_
+@asd \@notasd \| \a a
+#{
+  let k = auto
+  if a = {
+
+  }
+  let k = auto
+}
+#let a 
+let j
+
+
+#{
+  [
+    #let a 
+  ]
+}
+as34
+#[
+  #let a 
+  <asd>
+  *asd*
+  #x
+  #{
+    let k 
+    [*bold font* +34 *+* _italic_ _*boltalic*_ *_also boltalic_*]
+  }
+  let 
+]
+```
+
+
+```typ
+
+```
+
 ```typ example width=auto title=bsd_asd
 #table(
   columns: (auto, auto, auto),
@@ -12,7 +241,7 @@ sidebar_position: 1
     [], [Area], [*Parameters*],
   ),
   [aCylindar],
-  $ pi h (D^2 - d^2) / 4 $,
+  $ pi ha (D^2 - d^2) / 4 $,
   [
     $h$: height \
     $D$: outer radius \
