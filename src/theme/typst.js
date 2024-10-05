@@ -35,9 +35,40 @@ export const light = {
       }
     },
     {
-      types: ["interpolate"],
+      types: ["symbol"],
       style: {
         color: "#8b41b1"
+      }
+    },
+    {
+      types: ["label", "reference"],
+      style: {
+        color: "#880000"
+      }
+    },
+    {
+      types: ["label", "reference", "escaped", "operator"],
+      style: {
+        color: "#1d6c76"
+      }
+    },
+    {
+      types: ["bold", "heading"],
+      style: {
+        "fontWeight": "bold"
+      }
+    },
+    {
+      types: ["italic"],
+      style: {
+        "fontStyle": "italic"
+      }
+    },
+    {
+      types: ["boltalic"],
+      style: {
+        "fontWeight": "bold",
+        "fontStyle": "italic"
       }
     }
   ]
