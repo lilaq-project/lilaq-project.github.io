@@ -6,63 +6,43 @@ export const light = {
   styles: [
     {
       types: ["comment"],
-      style: {
-        color: "#8a8a8a"
-      }
+      style: { color: "#8a8a8a" }
     },
     {
       types: ["keyword", "boolean"],
-      style: {
-        color: "#d73a49"
-      }
+      style: { color: "#d73a49" }
     },
     {
       types: ["function"],
-      style: {
-        color: "#4b69c6"
-      }
+      style: { color: "#4b69c6" }
     },
     {
       types: ["number"],
-      style: {
-        color: "#b60157"
-      }
+      style: { color: "#b60157" }
     },
     {
       types: ["string"],
-      style: {
-        color: "#298e0d"
-      }
+      style: { color: "#298e0d" }
     },
     {
       types: ["symbol"],
-      style: {
-        color: "#8b41b1"
-      }
-    },
-    {
-      types: ["label", "reference"],
-      style: {
-        color: "#880000"
-      }
+      style: { color: "#8b41b1" }
     },
     {
       types: ["label", "reference", "escaped", "operator"],
-      style: {
-        color: "#1d6c76"
-      }
+      style: { color: "#1d6c76" }
+    },
+    {
+      types: ["raw"],
+      style: { color: "#818181" }
     },
     {
       types: ["bold", "heading"],
-      style: {
-        "fontWeight": "bold"
-      }
+      style: { "fontWeight": "bold" }
     },
     {
       types: ["italic"],
-      style: {
-        "fontStyle": "italic"
-      }
+      style: { "fontStyle": "italic" }
     },
     {
       types: ["boltalic"],
@@ -82,38 +62,49 @@ export const dark = {
   styles: [
     {
       types: ["comment"],
-      style: {
-        color: "#b0b3c2"
-      }
+      style: { color: "#b0b3c2" }
     },
     {
       types: ["keyword", "boolean"],
-      style: {
-        color: "#FFA49D"
-      }
+      style: { color: "#ffa49d" }
     },
     {
       types: ["function"],
-      style: {
-        color: "#7CD5FF"
-      }
+      style: { color: "#7cd5ff" }
     },
     {
       types: ["number"],
-      style: {
-        color: "#ff7d79"
-      }
+      style: { color: "#ff7d79" }
     },
     {
       types: ["string"],
-      style: {
-        color: "#80F4B6"
-      }
+      style: { color: "#80f4b6" }
     },
     {
-      types: ["interpolate"],
+      types: ["symbol"],
+      style: { color: "#caa8ff" }
+    },
+    {
+      types: ["label", "reference", "escaped", "operator"],
+      style: { color: "#d9f8f4" }
+    },
+    {
+      types: ["raw"],
+      style: { color: "#caccd6" }
+    },
+    {
+      types: ["bold", "heading"],
+      style: { "fontWeight": "bold" }
+    },
+    {
+      types: ["italic"],
+      style: { "fontStyle": "italic" }
+    },
+    {
+      types: ["boltalic"],
       style: {
-        color: "#CAA8FF"
+        "fontWeight": "bold",
+        "fontStyle": "italic"
       }
     }
   ]

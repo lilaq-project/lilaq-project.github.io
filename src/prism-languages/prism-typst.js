@@ -10,17 +10,44 @@ const comment = [
   },
 ];
 
+const raw = [
+  {
+    pattern: /`[\s\S]*?`/,
+    greedy: true,
+  },
+  {
+    pattern: /^```[\s\S]*?^```$/m,
+    greedy: true,
+  }
+];
 
+const label = {
+  pattern: /<[\w\-.]*>/, // starting with ([^\\]) not necessary anymore when matching "escaped" before
+};
+
+const general_escapes = [
+  /\\u{[\da-fA-F]+?\}/,
+  /\\\S/,
+  /\\\s/,
+]
 
 Prism.languages["typst-math"] = {
   comment: comment,
-  escaped: /\\\S/,
+  raw: raw,
+  escaped: general_escapes,
   operator: [
-    /[_\\\^\+\-\*\/&]/,
+    /<=>|<==>|<-->|\[\||\|\]|\|\||:=|::=|\.\.\.|=:|!=|>>>|>=|<<<|<==|<=|\|->|=>|\|=>|==>|-->|~~>|~>|>->|->>|<--|<~~|<~|<-<|<<-|<->|->|<-|<<|>>/,
+    /[_\\\^\+\-\*\/&']/, 
   ],
-  string: /\$/,
+  string: [  
+    /"(?:\\.|[^\\"])*"/,
+    /\$/
+  ],
   function: /\b[a-zA-Z][\w-]*(?=\[|\()/,
-  symbol: /[a-zA-Z][\w]+/
+  symbol: [
+    /[a-zA-Z][\w]+/,
+    /#[a-zA-Z][\w]*/,
+  ]
 }
 
 const math = [
@@ -34,43 +61,51 @@ const math = [
 
 Prism.languages["typst-code"] = {
   typst: {
-    pattern: /\[[\s\S]*\]/,
+    // pattern: /\[[\s\S]*\]/,
+    pattern: /\[(?:[^\]\[]|\[(?:[^\]\[]|\[(?:[^\]\[]|\[[^\]\[]*\])*\])*\])*\]/,
     inside: Prism.languages["typst"],
     greedy: true
   },
   comment: comment,
   math: math,
   function: [
-    /#?[a-zA-Z][\w-]*(?=\[|\()/,
-    /(?<=#show [\w.]*)[a-zA-Z][\w-]*\s*:/,
-    /(?<=#show\s*:\s*)[a-zA-Z][\w-]*/,
+    /#?[a-zA-Z][\w\-]*?(?=\[|\()/,
+    /(?<=show [\w.]*)[a-zA-Z][\w-]*\s*:/,
+    /(?<=show\s*:\s*)[a-zA-Z][\w-]*/,
   ],
-  keyword: /(?:#|\b)(?:true|false|none|auto|let|return|if|else|set|show|context|for|while|not|in|continue|break|include|import|as)\b/,
+  keyword: /(?:#|\b)(?:none|auto|let|return|if|else|set|show|context|for|while|not|in|continue|break|include|import|as)\b/,
   boolean: /(?:#|\b)(?:true|false)\b/,
   string: {
-    pattern: /#?"(?:\\.|[^\\"])*"/,
+    pattern: /"(?:\\.|[^\\"])*"/,
     greedy: true,
   },
-  number: /[\d]+\.?[\d]*(e\d+)?(?:in|mm|cm|pt|em|deg|rad|fr|%)?/,
-  symbol: /#[\w-.]+\./,
+  label: label,
+  number: [
+    /0b[01]+/,
+    /0o[0-7]+/,
+    /0x[\da-fA-F]+/,
+    /[\d]+\.?[\d]*(e\d+)?(?:in|mm|cm|pt|em|deg|rad|fr|%)?/,
+  ],
+  symbol: /#[\w\-.]+\./,
 };
 
 
 Prism.languages.typst = {
   comment: comment,
+  raw: raw,
   math: math,
   "code-mode": [
     {
       // enter code mode via #my-func() or #()
-      pattern: /(?<=#[a-zA-Z][\w-.]*\()(?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\)/,
-      pattern: /(?<=#([a-zA-Z][\w-.]*)?\()(?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)/,
+      // pattern: /(?<=#[a-zA-Z][\w-.]*\()(?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\)/,
+      // pattern: /(?<=#([a-zA-Z][\w-.]*)?\()(?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)/,
       // between # and ( either
       // - nothing: #(
       // - Declaration: #let ... (
       // - Function call: #my-func2(
       // # 
-      // pattern: /#.*?\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)(?!\s*=)/,
-      pattern: /(?:#(?:(?:let.*?)|(?:[\w-.]+)|(?:)))\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)(?!\s*=)/,
+      pattern: /#.*?\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)(?!\s*=)/,
+      // pattern: /(?:#(?:(?:let.*?)|(?:[\w\-.]+?)|(?:)))\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)(?!\s*=)/,
       // lookbehind: true,
       inside: Prism.languages["typst-code"],
       greedy: true,
@@ -85,29 +120,26 @@ Prism.languages.typst = {
       greedy: true,
     },
     {
-      pattern: /#(?:import|let|if|context|set|show).*/,
+      pattern: /#(?:import|let|if|context|set|show|include).*/,
       inside: Prism.languages["typst-code"],
       greedy: true,
     },
   ],
   function: [
     {
-      pattern: /#\b[a-zA-Z][\w-]*(?=\[|\()/,
+      pattern: /#[a-zA-Z][\w-]*(?=\[|\()/,
       greedy: true,
     },
     /(?<=#[\w.]+)[a-zA-Z][\w-]*(?=\[|\()/,
   ],
-  escaped: [
-    /\\\S/,
-    /\\\s/,
-  ],
-  string: math,
-  label: {
-    pattern: /<[\w-\.]*>/, // starting with ([^\\]) not necessary anymore when matching "escaped" before
-    lookbehind: true,
+  string: {
+    pattern: /#"(?:\\.|[^\\"])*"/,
+    greedy: true,
   },
+  escaped: general_escapes.concat([/~|---|--|-\?|\.\.\.|-/]),
+  label: label,
   reference: {
-    pattern: /@[\w-\.]*/,
+    pattern: /@[\w\-.]*/,
     lookbehind: true,
   },
   boltalic: [
@@ -116,17 +148,16 @@ Prism.languages.typst = {
   ],
   bold: /\*.*?\*/,
   italic: /_.*?_/,
-  backslash: /\\/,
   heading: /^\s*=+ .*/m,
-  symbol: /#[\w-.]*[\w-]+/,
+  symbol: /#[\w\-.]*[\w-]+/,
 };
 
 
 Prism.languages["typst-code"].typst = {
-  pattern: /\[[\s\S]*\]/,
+  pattern: /\[(?:[^\]\[]|\[(?:[^\]\[]|\[(?:[^\]\[]|\[[^\]\[]*\])*\])*\])*\]/,
   inside: Prism.languages["typst"],
-}
-
+  greedy: true
+},
 
 Prism.languages.typ = Prism.languages.typst;
 Prism.languages.typc = Prism.languages["typst-code"];
