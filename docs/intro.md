@@ -2,8 +2,232 @@
 sidebar_position: 1
 ---
 
-
 ```typ
+#let make-title(
+  info, locale,
+) = {
+  
+  set align(center)
+
+  v(1cm)
+  
+  text(2em, info.university)
+  v(1cm)
+  image(info.logo, width: 25%)
+
+  v(2cm)
+
+  [A thesis submitted in partial fulfillment of the requirements for the degree of]
+
+  v(0.8cm)
+
+  text(1.3em)[
+    #info.degree \
+    #info.course 
+  ]
+
+  v(1cm)
+
+  text(2.2em, weight: "bold", font: "New Computer Modern Sans", info.title)
+  
+  v(1cm)
+
+  [
+    #locale.author: \
+    #text(1.2em, info.author)
+    
+    #info.date
+  ]
+
+  v(2cm)
+
+  [
+    #locale.supervisors: \
+    #for (name, department) in info.supervisors [
+      #text(1.2em, name) \
+      #department
+      
+    ]
+  ]
+  
+
+}
+```
+```typ
+#import "title-page.typ": make-title
+#import "locale.typ" as locale
+
+#let normal-fontsize = 11pt
+#let footnotesize = 11pt * 0.85
+
+#let thesis(
+  title: "",
+  author: "",
+  university: "Technische Universität Berlin",
+  logo: "/template/tu-logo.svg",
+  course: "Physics",
+  degree: "",
+  abstract: [],
+  place: none,
+  date: none,
+  acknowledgements: [],
+  authorship: [],
+  supervisors: (),
+  lang: "en",
+  locale-names: (:),
+  body,
+  ) = {
+  set document(author: author, title: title)
+  
+  if locale-names == auto and lang not in locale.names {
+    assert(false, message: "Language `" + lang + "` not available with this template. You can provide translations via the parameter `locale-names`")
+  }
+  let locale = locale.names.at(lang, default: locale.names.en)
+  if locale-names != auto {
+    locale += locale-names
+  }
+  let info = (
+    title: title, 
+    logo: logo, 
+    author: author, 
+    date: date,
+    supervisors: supervisors,
+    university: university,
+    course: course,
+    degree: degree, 
+  )
+
+
+  
+  // Text and paragraphs
+  let sans-font = "New Computer Modern Sans"
+  set text(font: "New Computer Modern", lang: lang, size: 11pt)
+  set par(justify: true)
+
+
+  
+  // Heading style
+  set heading(numbering: "1.1. ")
+  show heading: set text(font: sans-font, size: 13pt)
+  show heading.where(level: 2): set text(size: 12pt)
+  show heading: set block(below: 1em)
+  show heading: it => {
+    if it.level > 2 {
+      parbreak()
+      text(11pt, style: "italic", weight: "regular", it.body + ".")
+    } else {
+      it
+    }
+  }
+  show heading.where(level: 1): it => it + counter(math.equation).update(0)
+
+
+  
+  // Math style
+  show math.equation: set text(weight: 400)
+  set math.equation(numbering: nums => numbering("(1.1)", counter(heading).get().first(), nums))
+
+
+  
+  // Figures
+  show figure.caption: it => {
+    set text(size: footnotesize)
+    grid(columns: 2, column-gutter: 1em/3,
+      it.supplement + " " + it.counter.display(it.numbering) + it.separator,
+      align(left, it.body)
+    )
+  }
+  show figure.where(kind: table): set figure.caption(position: top)
+
+
+  
+  // Miscellaneous
+  show footnote.entry: set text(size: footnotesize)
+  set bibliography(title: locale.references)
+
+
+
+  //
+  // The document
+  //
+
+
+  
+
+  // Title page
+  make-title(info, locale)
+  pagebreak()
+  set page(numbering: "i", number-align: center)
+  counter(page).update(1)
+
+
+  
+  // Abstract page
+  v(2cm)
+  pad(x: 8%)[
+    #align(center, heading(
+      outlined: false,
+      numbering: none,
+      text(1em, locale.abstract),
+    ))
+    #abstract
+  ]
+  pagebreak()
+
+  
+
+  /// Acknowlegdements
+  heading(outlined: false, bookmarked: false, numbering: none, locale.acknowledgements)
+  acknowledgements
+  pagebreak()
+
+
+  
+
+  /// Statement of authorship
+  heading(outlined: false, bookmarked: false, numbering: none, locale.statement-of-authorship)
+  [
+    #authorship
+
+    #place, #date
+  ]
+  pagebreak()
+
+
+  
+
+  // Table of contents
+  set outline(fill: repeat([.#h(.4em)]))
+  show outline.entry: it => {
+    if it.level == 1 {
+      set text(weight: "bold", font: sans-font)
+      v(.2em)
+      it.body + h(1fr) + it.page
+    } else { it }
+  }
+  outline(depth: 2, indent: true)
+  pagebreak()
+
+  
+
+
+  set page(numbering: "1", number-align: center)
+  counter(page).update(1)
+
+
+  body
+}
+
+
+#let appendix(body) = {
+  set heading(numbering: "A. ", supplement: [Appendix])
+  counter(heading).update(0)
+  body
+}
+
+```
+
+`````typ
 
 = Typst Prism
 
@@ -47,7 +271,7 @@ There are
 #{
   let lengths = (1pt, 1fr, -2, 1em, 3deg, 0in, 9cm, 0rad, 100%, 1mm)
   [and]
-  let floats = (1.2, 2e9, -3.0003e99)
+  let numbers = (1.2, 2e9, -3.0003e99, 0xFF, 0b100201, 0o337, )
 }
 
 
@@ -59,15 +283,18 @@ context to code mode for the entire line
 We can #emoji.wave and #data.rev()
 #if true [
   *yes*
-] else [ // this is a bug and I don't know how to fix it
+] else [ // this is a bug it's tough to fix
   noe
 ]
 
 #let my-func(a: 1pt, b, c) = {
   2pt + 20pt
+  b.at(1)
   if true {
     return false
   }
+  
+  return $ a + b $
 }
 
 #show heading: it => {
@@ -77,7 +304,9 @@ We can #emoji.wave and #data.rev()
 #show math.equation: it => {}
 #show: template
 #show  : template
+#set text(..) if a == b
 
+if k==l
 == Markup mode
 
 All escaped symbols, like \@, \{, \} etc. are noticed! 
@@ -93,6 +322,46 @@ The same holds for line/equation breaks \
   $A$, $B$, $C$,
   ..range(20).map(i => str(2*(i+1))) // note: here lurks a recursion limit for () pairs
 )
+
+$ A = pi r^2 $
+$ "area" = pi dot "radius"^2 $
+$ cal(A) :=
+    { x in RR | x "is natural" } $
+#let x = 5
+$ #x < 17 qt.eq gt.e $
+
+- a
+- b ~ a --- as \u{1f600} \$1.50! \u{1f600}
+
+`asd`
+
+```typ
+raw text // asd ) #{asd + 3}
+```
+#context locate(<back>).position()
+#dictionary(sys).at("version")
+#import emoji: face
+
+$
+[| |] || := ::= ... =: != >> >= >>> << <= <<< -> |-> => |=> ==> --> ~~> ~> >-> ->> <- <== <-- <~~ <~ <-< <<- <-> <=> <==> <-->/
+$
+#"text"
+
+#while n < 10 {
+  n = (n * 2) - 1
+  (n,)
+}
+#{
+  #k[]
+}
+#let func() ={
+  v(2cm)
+  pad(x: 8%)[
+    #abstract
+  ]
+  pagebreak[2pt]
+}
+  
 
 
 #(23+
@@ -113,7 +382,7 @@ $
 
 #[
   $ a + x + b $
-  $ a + #place([]) x + b $
+  $ a + #place([]) x + #b $
 ]
 
 
@@ -146,7 +415,7 @@ Due to matching rules, it is tricky to get comments and switched language modes 
 
 
 This is not simplified
-
+\#show heading: 
 #{
   [$ a + c $ *heaing*]
 }
@@ -163,7 +432,7 @@ let asd #var #emoji.face let
 <script> 
    let 
 </script>
-```
+`````
 ```markup
 # asd
 <div>
@@ -241,7 +510,7 @@ as34
     [], [Area], [*Parameters*],
   ),
   [aCylindar],
-  $ pi ha (D^2 - d^2) / 4 $,
+  $ pi h a (D^2 - d^2) / 4 $,
   [
     $h$: height \
     $D$: outer radius \

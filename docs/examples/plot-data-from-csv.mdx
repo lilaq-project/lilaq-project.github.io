@@ -1,0 +1,33 @@
+---
+title: Plot data from CSV file
+description: Plot data from CSV file
+sidebar_custom_props:
+  tags: [plot]
+  image: plot-example.svg
+---
+import CodeBlock from '@theme/CodeBlock';
+
+# Plot data from a CSV file
+
+It is quite easy to load a csv file and plot its contents. 
+
+import DataCSVSource from '!!raw-loader!./data.csv';
+
+<CodeBlock title="data.csv">{DataCSVSource}</CodeBlock>
+
+We now load this file. 
+
+```typ example preamble="#let csv = p => csv(\"docs/examples/\"+p)"
+#import lilac
+
+#let load_csv_data(filename) = {
+  let cols = array.zip(..csv(filename)) 
+  return cols.map(col => col.map(float))
+}
+
+#let (x, y) = load_csv_data("data.csv")
+
+#lc.diagram(
+  lc.plot(x, y)
+)
+```

@@ -69,7 +69,10 @@ Prism.languages["typst-code"] = {
   comment: comment,
   math: math,
   function: [
-    /#?[a-zA-Z][\w\-]*?(?=\[|\()/,
+    {
+      pattern: /#?[a-zA-Z][\w\-]*?(?=\[|\()/,
+      greedy: true
+    },
     /(?<=show [\w.]*)[a-zA-Z][\w-]*\s*:/,
     /(?<=show\s*:\s*)[a-zA-Z][\w-]*/,
   ],
@@ -104,23 +107,33 @@ Prism.languages.typst = {
       // - Declaration: #let ... (
       // - Function call: #my-func2(
       // # 
-      pattern: /#.*?\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)(?!\s*=)/,
+      pattern: /(?<!\\)#.*?\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)(?!\s*=)/,
       // pattern: /(?:#(?:(?:let.*?)|(?:[\w\-.]+?)|(?:)))\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\)(?!\s*=)/,
       // lookbehind: true,
       inside: Prism.languages["typst-code"],
       greedy: true,
     },
+    // {
+    //   // enter code mode via #{}
+    //   // pattern: /(?<=#)\{[\s\S]*\}/,
+    //   // pattern: /#.*\{(?:[^}{]|\{(?:[^}{]|\{(?:[^}{]|\{[^}{]*\})*\})*\})*\}/,
+    //   // pattern: /(?<=#).*\{(?:[^}{]|\{(?:[^}{]|\{(?:[^}{]|\{[^}{]*\})*\})*\})*\}/,
+    //   pattern: /#.*\{(?:[^}{]|\{(?:[^}{]|\{(?:[^}{]|\{[^}{]*\})*\})*\})*\}/,
+    //   inside: Prism.languages["typst-code"],
+    //   greedy: true,
+    // },
     {
-      // enter code mode via #{}
-      // pattern: /(?<=#)\{[\s\S]*\}/,
-      // pattern: /#.*\{(?:[^}{]|\{(?:[^}{]|\{(?:[^}{]|\{[^}{]*\})*\})*\})*\}/,
-      // pattern: /(?<=#).*\{(?:[^}{]|\{(?:[^}{]|\{(?:[^}{]|\{[^}{]*\})*\})*\})*\}/,
-      pattern: /#.*\{(?:[^}{]|\{(?:[^}{]|\{(?:[^}{]|\{[^}{]*\})*\})*\})*\}/,
+      pattern: /(?<!\\)#.*?(?:\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\((?:[^)(]|\([^)(]*\))*\))*\))*\))*\))*\))?.*?\{(?:[^}{]|\{(?:[^}{]|\{(?:[^}{]|\{[^}{]*\})*\})*\})*\}/,
       inside: Prism.languages["typst-code"],
       greedy: true,
     },
     {
-      pattern: /#(?:import|let|if|context|set|show|include).*/,
+      pattern: /(?<=set .*?) if/,
+      inside: Prism.languages["typst-code"],
+      greedy: true,
+    },
+    {
+      pattern: /(?<!\\)#(?:import|let|if|context|set|show|include).*/,
       inside: Prism.languages["typst-code"],
       greedy: true,
     },

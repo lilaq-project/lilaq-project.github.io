@@ -5,16 +5,16 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import { themes as prismThemes } from 'prism-react-renderer';
-import { light as typstLight, dark as typstDark } from "./src/theme/typst";
+// import { themes as prismThemes } from 'prism-react-renderer';
+import { light as typstLight, dark as typstDark } from "./src/theme/typst.js";
 
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import remarkTypst from './src/remark/remark-typst'
+import remarkTypst from './src/remark/remark-typst.js'
 
 
 
-/** @type {import('@docusaurus/types').Config} */
+/** @type {import('@docusaurus/types').Config} */ 
 const config = {
   title: 'Lilac',
   tagline: 'Data visualization in Typst',
