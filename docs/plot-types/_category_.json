@@ -1,9 +1,6 @@
 {
     "label": "Plot Types",
-    "position": 1,
-    "link": {
-      "type": "generated-index",
-      "description": "Available basic plot types"
-    }
+    "position": 3,
+    "link": {"type": "doc", "id": "plot-types"}
   }
   

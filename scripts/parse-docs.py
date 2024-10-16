@@ -9,10 +9,7 @@ def process_description(description: str) -> str:
     def replace_cross_ref(match):
         name = match.group()[1:].replace(":", "#")
         target = name
-        if "#" in name:
-            func, param = name.split("#")
-            name = f"<span>{func}</span>#{param}"
-        return f'<Crossref target="{target}">{name}</Crossref>'
+        return f'<Crossref target="{target}" />'
     md = re.sub(R"(?<!\\)(@\w[\w\d\-\._:]*[\w\d\-]+)", replace_cross_ref, md)
     return md
 

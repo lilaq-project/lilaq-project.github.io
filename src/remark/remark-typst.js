@@ -5,6 +5,7 @@ import { existsSync, mkdirSync } from "node:fs";
 
 const typTemplate = `
 #set page(width: eval(sys.inputs.width), height: eval(sys.inputs.height), margin: .5cm, fill: white)
+#import "lilac/lilac.typ" as lc
 `;
 
 const typcTemplate = [

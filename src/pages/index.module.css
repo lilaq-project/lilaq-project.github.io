@@ -24,6 +24,18 @@
   max-width: 100%;
 }
 
+main {
+  width: 800pt;
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+h2 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
 @media screen and (max-width: 1180px) {
   .heroBanner {
     padding: 4rem 4rem;

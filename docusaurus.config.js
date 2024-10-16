@@ -20,6 +20,7 @@ const config = {
   tagline: 'Data visualization in Typst',
   favicon: 'img/favicon.ico',
 
+  staticDirectories: ['static', 'typst_renders'],
   // Set the production url of your site here
   url: 'https://lilac-plot.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served

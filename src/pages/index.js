@@ -3,7 +3,8 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-
+import PlotTypes from '@site/src/components/PlotTypes';
+import Anatomy from '@site/src/components/Anatomy';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
@@ -39,7 +40,11 @@ export default function Home() {
       description={`${siteConfig.tagline}`}>
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+        {/* <HomepageFeatures /> */}
+        <h2>Plot types</h2>
+        <PlotTypes />
+        <h2>Anatomy of a diagram</h2>
+        <Anatomy />
       </main>
     </Layout>
   );

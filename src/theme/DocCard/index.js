@@ -84,14 +84,14 @@ function CardLink({item}) {
   const doc = useDocById(item.docId ?? undefined);
   let image_file = item.customProps?.image
   let image = undefined
-  if (item.image) {
-    console.log(item.image)
+  if (image_file) {
     image_file = "" + image_file
     // image = <img src="/assets/images/plotimage-19a6a5edcbca9aa080bd639a3801e641.svg" height="100" width="100"></img>
     // image = <img src={require("@site/static/img/scatter-plot.png").default} height="100"></img>
-    image = <img src={item.image} height="100"></img>
+    image = <img src={image_file} height="100"></img>
     // image = <img src={require('@site/typst_renders/plot-example.svg').default} height="100"></img>
   }
+  console.log(item.customProps?.image)
   return (
     <CardLayout
       href={item.href}

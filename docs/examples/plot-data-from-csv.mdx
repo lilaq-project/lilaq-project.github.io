@@ -3,7 +3,7 @@ title: Plot data from CSV file
 description: Plot data from CSV file
 sidebar_custom_props:
   tags: [plot]
-  image: plot-example.svg
+  image: /plot-example.svg
 ---
 import CodeBlock from '@theme/CodeBlock';
 
@@ -17,7 +17,7 @@ import DataCSVSource from '!!raw-loader!./data.csv';
 
 We now load this file. 
 
-```typ example preamble="#let csv = p => csv(\"docs/examples/\"+p)"
+```typ example preamble="#let csv = p => csv(\"docs/examples/\"+p)" title=plot-example
 #import lilac
 
 #let load_csv_data(filename) = {
