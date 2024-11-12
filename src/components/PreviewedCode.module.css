@@ -34,6 +34,12 @@
 
 
 
+.wrapper>div:nth-child(1)>div:nth-child(1) pre{
+  height: 100%;
+}
+
+
+
 [data-theme='dark'] .wrapper img {
   filter: invert(88%) hue-rotate(180deg);
 }

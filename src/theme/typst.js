@@ -1,7 +1,7 @@
 export const light = {
   plain: {
-    color: "#19181F",
-    backgroundColor: "#fdfdfd",
+    // color: "#19181F",
+    // backgroundColor: "#fdfdfd",
   },
   styles: [
     {
@@ -56,8 +56,8 @@ export const light = {
 
 export const dark = {
   plain: {
-    color: "#fdfdfd",
-    backgroundColor: "#19181F",
+    // color: "#fdfdfd",
+    // backgroundColor: "#19181F",
   },
   styles: [
     {

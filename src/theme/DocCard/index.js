@@ -91,7 +91,6 @@ function CardLink({item}) {
     image = <img src={image_file} height="100"></img>
     // image = <img src={require('@site/typst_renders/plot-example.svg').default} height="100"></img>
   }
-  console.log(item.customProps?.image)
   return (
     <CardLayout
       href={item.href}

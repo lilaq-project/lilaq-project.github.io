@@ -23,7 +23,6 @@ export const ExampleCards2 = ({ props, tags }) => {
     if (tags) {
         items = items.filter(item => {
             let doc_tags = item.customProps?.tags
-            console.log(item, doc_tags)
             if (doc_tags == undefined) return false;
             return tags.some(tag => doc_tags.includes(tag))
         })

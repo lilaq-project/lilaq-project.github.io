@@ -42,6 +42,7 @@ const PlotList = [
   },
   {
     title: 'scatter',
+    href: "/docs/plot-types/scatter",
     description: (
       <>
       </>

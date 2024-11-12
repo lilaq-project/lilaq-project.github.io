@@ -18,6 +18,7 @@
   --ifm-code-preview-background: #e4e5ea;
   --ifm-color-shadow: #dddddd;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-heading-font-weight: normal;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -30,11 +31,22 @@
   --ifm-color-primary-lighter: #f8f8fe;
   --ifm-color-primary-lightest: #ffffff;
   --ifm-color-primary-faint: #8c81a7;
+  /* --ifm-code-background: #252525 !important; */
   --ifm-code-preview-background: #343434;
   --ifm-color-shadow: #1b1b1b23;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+
+
+pre {
+  background-color: var(--ifm-code-background);
+}
+
+
+.menu {
+  font-weight: normal;
+}
 
 
 .navbar--github-link {
@@ -80,6 +92,8 @@ h3 {
   display: block;
   padding: 1em;
   color: #959595;
+  padding-left: 3em;
+  text-indent: -2em;
 }
 .docs-signature-name {
   color: var(--ifm-color-primary-darkest);
