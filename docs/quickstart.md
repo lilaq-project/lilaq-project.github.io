@@ -37,6 +37,12 @@ Note, that a legend automatically appears when the plots are labelled. Only labe
 
 ## Anatomy of a diagram
 
+A diagram consists of plots, axes, ticks, labels, legends and more. Click on any annotation to find out more about configuration and customization. 
+
+import Anatomy from '@site/src/components/Anatomy';
+
+<Anatomy />
+
 ## Ticks
 
 Lilac tries to automatically find a good distance and distribution for axis ticks. However, in some cases the algorithm might produce suboptimal results or a specific configuration is required. 
@@ -48,6 +54,6 @@ There are different level of tick customization, ascending both in power and com
 
 ### Tick-distance
 ### Manual tick positions
-### CUstom tick locators
+### Custom tick locators
 
-Lilac comes with a few automatic tick locators, dedicated to finding appropriate tick locations e.g. for linear or logarithmic plotting. Depending on the setting of `diagram.xscale` and <Crossref target="diagram#yscale" />. However, it is also possible to write a tick locator
+Lilac comes with a few automatic tick locators, dedicated to finding appropriate tick locations e.g. for linear or logarithmic plotting. Depending on the setting of <Crossref target="diagram#xscale" /> and <Crossref target="diagram#yscale" />. However, it is also possible to write a tick locator

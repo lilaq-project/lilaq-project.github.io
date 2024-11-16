@@ -1,0 +1,35 @@
+.signature {
+  margin: 1em;
+}
+
+.signature code {
+  display: block;
+  padding: 1em;
+  color: #959595;
+  padding-left: 3em;
+  text-indent: -2em;
+}
+
+.signatureName {
+  color: var(--ifm-color-primary-darkest);
+  font-weight: bold;
+}
+
+.parameters {
+  padding: 0 2em;
+}
+
+.param {
+  padding: 0 0 0 1em;
+}
+
+
+.default {
+  color: gray;
+  float: right;
+}
+
+
+.crossRef > span {
+  color: var(--ifm-color-primary-faint);
+}

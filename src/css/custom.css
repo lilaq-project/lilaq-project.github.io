@@ -84,22 +84,3 @@ h3 {
   font-size: 1rem;
 }
 
-
-.docs-signature {
-  margin: 1em;
-}
-.docs-signature code {
-  display: block;
-  padding: 1em;
-  color: #959595;
-  padding-left: 3em;
-  text-indent: -2em;
-}
-.docs-signature-name {
-  color: var(--ifm-color-primary-darkest);
-  font-weight: bold;
-}
-
-.cross-ref > span {
-  color: var(--ifm-color-primary-faint);
-}

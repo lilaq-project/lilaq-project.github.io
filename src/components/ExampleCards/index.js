@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
-import styles from './plot-types.module.css';
+import styles from './example-cards.module.css';
 import ImagePlot from '@site/static/img/plot.svg'
 import ImageErrorbars from '@site/static/img/errorbars.svg'
 import ImageStep from '@site/static/img/step.svg'

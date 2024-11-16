@@ -18,6 +18,7 @@ def load_available_examples():
     filenames = os.listdir(path)
     examples = []
     for filename in filenames:
+        if filename == "index.mdx": continue
         name = os.path.splitext(os.path.basename(filename))[0]
         with open(os.path.join(path, filename), "r") as file:
             content = file.read()
@@ -56,7 +57,7 @@ def param2doc(param: dict) -> str:
         types = [f"`{t}`" for t in param["types"]]
         string += f" : {' | '.join(types)}"
     if "default" in param:
-        string += f", _default:_ `{param['default']}`"
+        string += f" <Default>`{param['default']}`</Default>"
     string += f" {{#{name}}}"
     string += f"\n<Param>\n  {process_description(description)}\n</Param>"
     return string
@@ -64,7 +65,7 @@ def param2doc(param: dict) -> str:
 def generate_signature(definition):
     name = definition["name"]
     string = f"<Signature>\n  <code>lilac."
-    string += f"<span className='docs-signature-name'>{name}</span>"
+    string += f"<SignatureName>{name}</SignatureName>"
     def display_param(param):
         name = param["name"]
         result = f"[{name}](#{name})"
@@ -92,6 +93,8 @@ def generate_mdx(docs, examples=[]):
         content += "\n\n\n</Parameters>"
 
         tags = [name]
+        concerned_examples = []
+        print(examples)
         concerned_examples = list(filter(lambda example: any([tag in example["tags"] for tag in tags]), examples))
         if len(concerned_examples) != 0:
             content += "\n\nimport DocCard from '@theme/DocCard';\n"

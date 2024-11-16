@@ -9,25 +9,29 @@ import CodeBlock from '@theme/CodeBlock';
 
 # Plot data from a CSV file
 
-It is quite easy to load a csv file and plot its contents. 
+It is quite easy to load a csv file and plot its contents. Let us assume we have some data given as two columns of a CSV file. 
 
 import DataCSVSource from '!!raw-loader!./data.csv';
 
 <CodeBlock title="data.csv">{DataCSVSource}</CodeBlock>
 
-We now load this file. 
+We now load this file via the built-in [`csv`](https://typst.app/docs/reference/data-loading/csv/) function. We need to deal with two problems:
+- The `csv` function returns the data as an array of rows (being arrays themselves). However, we want to plot the columns − therefore the data needs to be transposed. 
+- The individual numeric values are parsed as strings. We need to convert them to `float` before plotting. 
+
+Both points are addressed in a little helper function `load-csv-data()`. 
 
 ```typ example preamble="#let csv = p => csv(\"docs/examples/\"+p)" title=plot-example
 #import lilac
 
-#let load_csv_data(filename) = {
+#let load-csv-data(filename) = {
   let cols = array.zip(..csv(filename)) 
   return cols.map(col => col.map(float))
 }
 
-#let (x, y) = load_csv_data("data.csv")
+#let (x, y) = load-csv-data("data.csv")
 
 #lc.diagram(
-  lc.plot(x, y)
+  lc.plot(x, y, label:"asd"),
 )
 ```
