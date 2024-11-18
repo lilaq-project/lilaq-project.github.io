@@ -21,4 +21,7 @@ yarn-error.log*
 
 /lilac
 /typst_renders
+/docs/plot-types
+/docs/tutorial-basics/
+/docs/tutorial-extras/
 __pycache__
