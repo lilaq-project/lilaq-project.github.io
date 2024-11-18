@@ -34,7 +34,7 @@ function generate_typst_inputs(options) {
 }
 
 function update_options(options, argstring) {
-  let other_options = {title: null, preamble: ""}
+  let other_options = {title: null}
   let args = argstring.replaceAll("\\\"", "$$$$$$$$").split(" ");
   let connected = false;
   for (let i = 0; i < args.length; i++) {
@@ -62,7 +62,6 @@ function update_options(options, argstring) {
           value = value.replace(/^\"+|\"+$/g, '').replaceAll("$$$$", "\\\"")
           if (name in options) { options[name] = value; }
           else if (name == "title") { other_options.title = value; }
-          else if (name == "preamble") { other_options.preamble = value; }
       }
   }
   return other_options;
@@ -99,11 +98,9 @@ const plugin = () => {
     visit(ast, { type: "code" }, (node, index, parent) => {
       let options = { width: "auto", height: "auto" };
       let title = null;
-      let preamble = ""
       if (node.meta != null) {
         let other_options = update_options(options, node.meta)
         title = other_options.title;
-        preamble = other_options.preamble + "\n";
       }
       const input_options = generate_typst_inputs(options)
       if (
@@ -130,7 +127,9 @@ const plugin = () => {
       let code = node.value
       for (const [value, raw_replacement, code_replacement] of replacements){
         node.value = node.value.replace(value, raw_replacement)
+        node.value = node.value.split("\n").filter((line) => !line.trimStart().startsWith(">>>")).join("\n")
         code = code.replace(value, code_replacement)
+        code = code.replace(">>>", "")
       }
       if (!existsSync(path)) {
         children.push(
@@ -143,9 +142,9 @@ const plugin = () => {
             child.stdout.pipe(process.stdout);
             child.stderr.pipe(process.stderr);
             if (node.lang === "typ") {
-              child.stdin.write(typTemplate + preamble + code);
+              child.stdin.write(typTemplate + code);
             } else {
-              child.stdin.write(typcTemplate[0] + preamble + code + typcTemplate[1]);
+              child.stdin.write(typcTemplate[0] + code + typcTemplate[1]);
             }
             child.stdin.end();
             child.on("exit", () => resolve());

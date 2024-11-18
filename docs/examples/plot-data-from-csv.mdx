@@ -21,7 +21,8 @@ We now load this file via the built-in [`csv`](https://typst.app/docs/reference/
 
 Both points are addressed in a little helper function `load-csv-data()`. 
 
-```typ example preamble="#let csv = p => csv(\"docs/examples/\"+p)" title=plot-example
+```typ example title=plot-example
+>>> #let csv = p => csv("docs/examples/" + p)
 #import lilac
 
 #let load-csv-data(filename) = {
