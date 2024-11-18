@@ -4,13 +4,13 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync } from "node:fs";
 
 const typTemplate = `
-#set page(width: eval(sys.inputs.width), height: eval(sys.inputs.height), margin: .5cm, fill: white)
+#set page(width: auto, height: auto, margin: .5cm, fill: white)
 #import "lilac/lilac.typ" as lc
 `;
 
 const typcTemplate = [
   `
-    #set page(width: sys.inputs.width, height: sys.inputs.height, fill: white, margin: .5cm)
+    #set page(width: auto, height: auto, margin: .5cm, fill: white)
     `,
   "",
 ];
@@ -22,49 +22,44 @@ const replacements = [
 function split_once(content, separator) {
   let i = content.indexOf(separator);
   if (i == -1) { return [content]; }
-  return [content.slice(0,i), content.slice(i+1)];
+  return [content.slice(0, i), content.slice(i + 1)];
 }
 
-function generate_typst_inputs(options) {
-  let inputs = []
-  for (const key in options) {
-    inputs.push("--input " + key + "=" + options[key])
-  }
-  return inputs.join(" ")
-}
-
-function update_options(options, argstring) {
-  let other_options = {title: null}
+function parse_options(argstring) {
+  let options = { title: null }
   let args = argstring.replaceAll("\\\"", "$$$$$$$$").split(" ");
   let connected = false;
   for (let i = 0; i < args.length; i++) {
-      let arg = args[i];
-      if (connected && !arg.includes("\"") && i != args.length - 1){
-          // args[i + 1] = arg + " " + args[i + 1];
-          args[i] = args[i - 1] + " " + args[i];
+    let arg = args[i];
+    if (connected && !arg.includes("\"") && i != args.length - 1) {
+      // args[i + 1] = arg + " " + args[i + 1];
+      args[i] = args[i - 1] + " " + args[i];
+      continue;
+    }
+    if (arg.includes("\"")) {
+      if (!connected) {
+        if (!arg.endsWith("\"")) {
+          connected = true;
           continue;
-      }
-      if (arg.includes("\"")) { 
-          if (!connected) {
-            if (!arg.endsWith("\"")){
-              connected = true;
-              continue;
-            }
-          } else {
-              arg = args[i - 1] + " " + arg;
-              connected = false;
-          }
-      } 
-      let parts = split_once(arg, "=");
-      if (parts.length == 1) {
+        }
       } else {
-          let [name, value] = parts;
-          value = value.replace(/^\"+|\"+$/g, '').replaceAll("$$$$", "\\\"")
-          if (name in options) { options[name] = value; }
-          else if (name == "title") { other_options.title = value; }
+        arg = args[i - 1] + " " + arg;
+        connected = false;
       }
+    }
+    let parts = split_once(arg, "=");
+    if (parts.length == 1) {
+    } else {
+      let [name, value] = parts;
+      value = value.replace(/^\"+|\"+$/g, '').replaceAll("$$$$", "\\\"")
+      if (name == "title") {
+        options.title = value
+      } else {
+        options[name] = value;
+      }
+    }
   }
-  return other_options;
+  return options;
 }
 
 const plugin = () => {
@@ -96,13 +91,12 @@ const plugin = () => {
       mkdirSync(folder, { recursive: true });
     }
     visit(ast, { type: "code" }, (node, index, parent) => {
-      let options = { width: "auto", height: "auto" };
       let title = null;
       if (node.meta != null) {
-        let other_options = update_options(options, node.meta)
-        title = other_options.title;
+        let options = parse_options(node.meta)
+        title = options.title;
+        console.log(options)
       }
-      const input_options = generate_typst_inputs(options)
       if (
         !(
           (node.lang === "typ" || node.lang === "typc") &&
@@ -125,7 +119,7 @@ const plugin = () => {
       }
       const path = folder + title + ".svg";
       let code = node.value
-      for (const [value, raw_replacement, code_replacement] of replacements){
+      for (const [value, raw_replacement, code_replacement] of replacements) {
         node.value = node.value.replace(value, raw_replacement)
         node.value = node.value.split("\n").filter((line) => !line.trimStart().startsWith(">>>")).join("\n")
         code = code.replace(value, code_replacement)
@@ -134,7 +128,7 @@ const plugin = () => {
       if (!existsSync(path)) {
         children.push(
           new Promise((resolve) => {
-            const child = exec(`typst c - ${path} ${input_options} --root .`);
+            const child = exec(`typst c - ${path} --root .`);
 
             if (!child.stdout || !child.stderr || !child.stdin)
               throw new Error(`Failed to spawn typst process`);
@@ -171,7 +165,6 @@ const plugin = () => {
           children: [
             node,
             {
-              // @ts-expect-error This will be transformed into an <img> by the image transformer
               type: "image",
               url: "@site/" + path,
             },

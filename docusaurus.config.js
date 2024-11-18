@@ -75,7 +75,7 @@ const config = {
           customCss: './src/css/custom.css',
         },
         pages: {
-          remarkPlugins : [remarkTypst],
+          beforeDefaultRemarkPlugins : [remarkTypst],
           // remarkPlugins: [remarkMath],
           // rehypePlugins: [rehypeKatex],
         }
