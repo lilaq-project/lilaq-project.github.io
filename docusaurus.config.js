@@ -74,6 +74,11 @@ const config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        pages: {
+          remarkPlugins : [remarkTypst],
+          // remarkPlugins: [remarkMath],
+          // rehypePlugins: [rehypeKatex],
+        }
       }),
     ],
   ],
@@ -155,6 +160,7 @@ const config = {
         // darkTheme: prismThemes.dracula,
         theme: typstLight,
         darkTheme: typstDark,
+        // defaultLanguage: "typ"
       },
     }),
 

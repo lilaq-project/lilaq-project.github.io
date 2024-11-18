@@ -2,11 +2,13 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import PlotTypes from '@site/src/components/PlotTypes';
 import Anatomy from '@site/src/components/Anatomy';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
+import Description from './_home/description.mdx';
+import Showoff from './_home/showoff.mdx';
+import Showoff1 from './_home/showoff1.mdx';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -25,8 +27,9 @@ function HomepageHeader() {
           </Link>
         </div>
       </div>
-      <div>
-        <img src={require('@site/static/img/scatter-plot.png').default} />
+      <div style={{zoom: 1.2}}>
+        <Showoff1 />
+        {/* <img src={require('@site/static/img/scatter-plot.png').default} /> */}
       </div>
     </header>
   );
@@ -40,9 +43,12 @@ export default function Home() {
       description={`${siteConfig.tagline}`}>
       <HomepageHeader />
       <main>
-        {/* <HomepageFeatures /> */}
+        
+        <Description />
+
         <h2>Plot types</h2>
         <PlotTypes />
+        
         <h2>Anatomy of a diagram</h2>
         <Anatomy />
       </main>

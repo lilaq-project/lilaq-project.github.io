@@ -1,0 +1,31 @@
+```typ render title=showoff
+#import "@preview/suiji:0.3.0"
+#let colorbar(plot) = {
+  let cinfo = plot.cinfo
+  lc.diagram(
+    width: .3cm, 
+    xaxis: (ticks: none), 
+    yaxis: (position: right, mirror: (:)),
+    grid: none,
+    // ylabel: "color",
+    ylim: (cinfo.min, cinfo.max),
+    yscale: cinfo.norm,
+    lc.rect(0%, 0%, width: 100%, height: 100%, fill: gradient.linear(..cinfo.colormap.stops(), angle: -90deg))
+  )
+}
+
+
+#let rng = suiji.gen-rng(33)
+#let (rng, x) = suiji.uniform(rng, low: 0, high: 10, size: 20)
+#let (rng, y) = suiji.uniform(rng, low: 0, high: 10, size: 20)
+#let (rng, colors) = suiji.uniform(rng, size: 20)
+#let (rng, sizes) = suiji.uniform(rng, low: 10, high: 100, size: 20)
+
+#let data = lc.scatter(x, y, color: colors, size: sizes, colormap: (luma(20%), color.mix((purple, 40%), (blue, 60%)), luma(240)).rev(), vmin: 0, vmax: 1)
+#lc.diagram(
+  xlim: (0, 10), ylim: (0, 10),
+  data, 
+)
+#h(2mm)
+#colorbar(data)
+```
