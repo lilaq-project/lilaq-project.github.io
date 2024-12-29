@@ -16,21 +16,21 @@ import remarkTypst from './src/remark/remark-typst.js'
 
 /** @type {import('@docusaurus/types').Config} */ 
 const config = {
-  title: 'Lilac',
+  title: 'Lilaq',
   tagline: 'Data visualization in Typst',
   favicon: 'img/favicon.ico',
 
   staticDirectories: ['static', 'typst_renders'],
   // Set the production url of your site here
-  url: 'https://lilac-plot.github.io',
+  url: 'https://lilaq-plot.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'lilac-plot', // Usually your GitHub org/user name.
-  projectName: 'lilac', // Usually your repo name.
+  organizationName: 'lilaq-project', // Usually your GitHub org/user name.
+  projectName: 'lilaq', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -50,9 +50,8 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/lilac-plot/lilac/tree/main/',
+          editUrl: 'https://github.com/lilaq-plot/lilaq-project.github.io/tree/main/',
           beforeDefaultRemarkPlugins: [remarkTypst],
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
@@ -63,9 +62,8 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/lilac-plot/lilac/tree/main/',
+          editUrl: 'https://github.com/lilaq-plot/lilaq-project.github.io/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -88,9 +86,9 @@ const config = {
     ({
       image: 'img/social-card.jpg',
       navbar: {
-        title: 'Lilac',
+        title: 'Lilaq',
         logo: {
-          alt: 'Lilac Logo',
+          alt: 'Lilaq Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -112,7 +110,7 @@ const config = {
           },
           {
             "aria-label": "GitHub repository",
-            href: 'https://github.com/lilac-plot/lilac',
+            href: 'https://github.com/lilaq-plot/lilaq',
             position: 'right',
             className: "navbar--github-link",
           },
@@ -148,12 +146,12 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/lilac-plot/lilac',
+                href: 'https://github.com/lilaq-plot/lilaq',
               },
             ],
           },
         ],
-        copyright: `© ${new Date().getFullYear()} Lilac`,
+        copyright: `© ${new Date().getFullYear()} Lilaq`,
       },
       prism: {
         // theme: prismThemes.github,

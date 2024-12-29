@@ -1,6 +1,6 @@
 ---
 slug: first-blog-post
-title: "Release: Lilac 0.1.0"
+title: "Release: Lilaq 0.1.0"
 authors: [Mc-Zen]
 tags: [release]
 date: 2025-01-01

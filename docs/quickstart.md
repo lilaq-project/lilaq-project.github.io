@@ -3,11 +3,17 @@ title: Quick-start guide
 sidebar_position: 2
 ---
 
-In this tutorial you will learn how to use Lilac for creating basic diagrams and plots. 
+In this tutorial you will learn how to use Lilaq for creating basic diagrams and plots. 
 
-We will start by importing Lilac. 
+We will start by importing Lilaq. 
 ```typ
-#import "@preview/lilac:0.1.0" as lc
+#import "@preview/lilaq:0.1.0" as lc
+```
+```typ example  
+#import lilaq
+```
+```typ
+#import lilaq
 ```
 
 ## Getting started
@@ -45,7 +51,7 @@ import Anatomy from '@site/src/components/Anatomy';
 
 ## Ticks
 
-Lilac tries to automatically find a good distance and distribution for axis ticks. However, in some cases the algorithm might produce suboptimal results or a specific configuration is required. 
+Lilaq tries to automatically find a good distance and distribution for axis ticks. However, in some cases the algorithm might produce suboptimal results or a specific configuration is required. 
 
 There are different level of tick customization, ascending both in power and complexity
 - [options like `tick-distance`](#tick-distance)
@@ -56,4 +62,4 @@ There are different level of tick customization, ascending both in power and com
 ### Manual tick positions
 ### Custom tick locators
 
-Lilac comes with a few automatic tick locators, dedicated to finding appropriate tick locations e.g. for linear or logarithmic plotting. Depending on the setting of <Crossref target="diagram#xscale" /> and <Crossref target="diagram#yscale" />. However, it is also possible to write a tick locator
+Lilaq comes with a few automatic tick locators, dedicated to finding appropriate tick locations e.g. for linear or logarithmic plotting. Depending on the setting of <Crossref target="diagram#xscale" /> and <Crossref target="diagram#yscale" />. However, it is also possible to write a tick locator

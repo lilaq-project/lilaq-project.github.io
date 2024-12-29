@@ -1,12 +1,12 @@
-# Lilac
+# Lilaq
 
-This repository hosts the documentation of Lilac
+This repository hosts the documentation of [Lilaq](https://github.com/lilaq-project/lilaq). 
 
 ## Dependencies
 
 - Node.js
 - Python >= 3.8
-- Typst >= 0.11.1
+- Typst >= 0.12
 
 
 ### Local Development

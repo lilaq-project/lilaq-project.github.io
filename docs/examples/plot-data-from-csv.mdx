@@ -23,7 +23,7 @@ Both points are addressed in a little helper function `load-csv-data()`.
 
 ```typ example title=plot-example
 >>> #let csv = p => csv("docs/examples/" + p)
-#import lilac
+#import lilaq
 
 #let load-csv-data(filename) = {
   let cols = array.zip(..csv(filename)) 

@@ -64,7 +64,7 @@ def param2doc(param: dict) -> str:
 
 def generate_signature(definition):
     name = definition["name"]
-    string = f"<Signature>\n  <code>lilac."
+    string = f"<Signature>\n  <code>lilaq."
     string += f"<SignatureName>{name}</SignatureName>"
     def display_param(param):
         name = param["name"]
@@ -111,7 +111,7 @@ def generate_mdx(docs, examples=[]):
 
 def main():
     examples = load_available_examples()
-    path = "lilac/plot-types"
+    path = "lilaq/plot-types"
     outpath = "docs/plot-types"
     filenames = os.listdir(path)
 
