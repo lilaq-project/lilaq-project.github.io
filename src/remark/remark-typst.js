@@ -5,16 +5,12 @@ import { existsSync, mkdirSync } from "node:fs";
 
 const typTemplate = `
 #set page(width: auto, height: auto, margin: .5cm, fill: white)
-#import "lilaq/lilaq.typ" as lc
+#import lilaq
 `;
 
-const typcTemplate = `
-  set page(width: auto, height: auto, margin: .5cm, fill: white)
-  import "lilaq/lilaq.typ" as lc
-`
 
 const replacements = [
-  ["#import lilaq", "#import \"@preview/lilaq:0.1.0\" as lc", "#import \"lilaq/lilaq.typ\" as lc"]
+  ["#import lilaq", "#import \"@preview/lilaq:0.1.0\" as lq", "#import \"lilaq/lilaq.typ\" as lq"]
 ]
 
 function split_once(content, separator) {
@@ -102,12 +98,12 @@ const plugin = () => {
 
 
       if (node.lang === "example") {
-        node.lang = "typ"
-        node.meta = "example"
+        node.lang = "typ";
+        node.meta = "example";
       }
       if (node.lang === "examplec") {
-        node.lang = "typc"
-        node.meta = "example"
+        node.lang = "typc";
+        node.meta = "example";
       }
 
       if(!["typ", "typc"].includes(node.lang)) { return; }
@@ -117,15 +113,17 @@ const plugin = () => {
       }
 
       
-      let code = node.value
-      if (node.lang == "typ") {
-        for (const [value, raw_replacement, code_replacement] of replacements) {
-          node.value = node.value.replace(value, raw_replacement)
-          code = code.replace(value, code_replacement)
-        }
+      let code = node.value;
+      if (node.lang == "typc") {
+        code = "\n#{\n" + code + "\n}";
       }
-      node.value = node.value.split("\n").filter((line) => !line.trimStart().startsWith(">>>")).join("\n")
-      code = code.replace(">>>", "")
+      code = typTemplate + code
+      for (const [value, raw_replacement, code_replacement] of replacements) {
+        node.value = node.value.replaceAll(value, raw_replacement);
+        code = code.replaceAll(value, code_replacement);
+      }
+      node.value = node.value.split("\n").filter((line) => !line.trimStart().startsWith(">>>")).join("\n");
+      code = code.replace(">>>", "");
 
       if(!(node.meta?.includes("render") || node.meta?.includes("example"))) { return; }
 
@@ -134,7 +132,7 @@ const plugin = () => {
           .update(node.meta + node.value)
           .digest("hex")
           .slice(0, 6);
-        title = hash
+        title = hash;
       }
 
       const path = folder + title + ".svg";
@@ -148,11 +146,7 @@ const plugin = () => {
 
             child.stdout.pipe(process.stdout);
             child.stderr.pipe(process.stderr);
-            if (node.lang === "typ") {
-              child.stdin.write(typTemplate + code);
-            } else {
-              child.stdin.write(typcTemplate + code);
-            }
+            child.stdin.write(code);
             child.stdin.end();
             child.on("exit", () => resolve());
           }),

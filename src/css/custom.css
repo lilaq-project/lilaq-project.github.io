@@ -84,3 +84,7 @@ h3 {
   font-size: 1rem;
 }
 
+
+[data-theme='dark'] img {
+  filter: invert(88%) hue-rotate(180deg);
+}

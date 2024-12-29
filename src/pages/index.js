@@ -9,6 +9,7 @@ import styles from './index.module.css';
 import Description from './_home/description.mdx';
 import Showoff from './_home/showoff.mdx';
 import Showoff1 from './_home/showoff1.mdx';
+import Anatomy1 from './_home/anatomy.mdx';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();

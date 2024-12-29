@@ -1,0 +1,37 @@
+```typ render
+
+#import "@preview/suiji:0.3.0"
+
+#let x = lq.linspace(.3, 3.7, num: 7)
+#let y = x.map(x => x*x*.8 + 2)
+#let rng = suiji.gen-rng(22)
+#let (rng, dx) = suiji.uniform(rng, low: -.2, high: .2, size: x.len())
+#let (rng, dy) = suiji.uniform(rng, low: -2, high: 2, size: x.len())
+#let (rng, color) = suiji.uniform(rng, low: 1, high: 10, size: x.len())
+#let (rng, size) = suiji.uniform(rng, low: 1, high: 20, size: x.len())
+
+
+#scale(
+  150%, 
+  reflow: true, 
+  lq.diagram(
+    title: [Anatomy],
+    xlabel:  [$x$],
+    ylabel:  [$y$],
+    width: 220pt,
+    height: 180pt,
+    xaxis: (tick-distance: 1),
+    yaxis: (tick-distance: 5),
+    xlim: (0, 4),
+    ylim: (0, 15),
+    legend: (pos: right + bottom),
+    lq.scatter(
+        x.zip(dx).map(array.sum),
+        y.zip(dy).map(array.sum),
+        size: size,
+        label: [Data]
+    ),
+    lq.plot(x, y, marker: none, line: green, label: [Fit]),
+  )
+)
+```

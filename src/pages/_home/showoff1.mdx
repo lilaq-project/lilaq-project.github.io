@@ -9,19 +9,19 @@
 
 //#{
 //  coords = coords.map(((p, a, b)) => {
-//    (p, lc.vec.add(a, (40,0)), lc.vec.add(b, (40,0)))
+//    (p, lq.vec.add(a, (40,0)), lq.vec.add(b, (40,0)))
 //  })
 //  coords2 = coords2.map(((p, a, b)) => {
-//    (p, lc.vec.add(a, (40,0)), lc.vec.add(b, (40,0)))
+//    (p, lq.vec.add(a, (40,0)), lq.vec.add(b, (40,0)))
 //  })
 //}
 
-#lc.diagram(
+#lq.diagram(
   width: 7cm, height: 5cm,
   ylim: (250,0),
   xlim: (0-40, 250+40),
-  lc.path(..coords, stroke: .4pt, closed: true, fill: rgb("#d5d4fc")),
-  lc.path(..coords2, stroke: .4pt, closed: true, fill: gradient.radial(rgb("#9291f7"), rgb("#d8d8f9"))),
+  lq.path(..coords, stroke: .4pt, closed: true, fill: rgb("#d5d4fc")),
+  lq.path(..coords2, stroke: .4pt, closed: true, fill: gradient.radial(rgb("#9291f7"), rgb("#d8d8f9"))),
 )
 
 ]
