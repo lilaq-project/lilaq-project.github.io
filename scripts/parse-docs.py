@@ -7,7 +7,7 @@ import re
 def process_description(description: str) -> str:
     md = typ2md.typ_to_md(description)
     def replace_cross_ref(match):
-        name = match.group()[1:].replace(":", "#")
+        name = match.group()[1:].replace(".", "#")
         target = name
         return f'<Crossref target="{target}" />'
     md = re.sub(R"(?<!\\)(@\w[\w\d\-\._:]*[\w\d\-]+)", replace_cross_ref, md)

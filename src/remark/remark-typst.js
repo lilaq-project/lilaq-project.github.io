@@ -97,9 +97,20 @@ const plugin = () => {
         title = options.title;
         console.log(options)
       }
+
+
+
+      if (node.lang === "example") {
+        node.lang = "typ"
+        node.meta = "example"
+      }
+      if (node.lang === "examplec") {
+        node.lang = "typc"
+        node.meta = "example"
+      }
       if (
         !(
-          (node.lang === "typ" || node.lang === "typc") &&
+          (node.lang === "typ" || node.lang === "typc" || node.lang === "example" || node.lang === "examplec") &&
           (node.meta?.includes("render") || node.meta?.includes("example"))
         )
       ) {
