@@ -21,7 +21,7 @@
 #let (rng, colors) = suiji.uniform(rng, size: 20)
 #let (rng, sizes) = suiji.uniform(rng, low: 10, high: 100, size: 20)
 
-#let data = lq.scatter(x, y, color: colors, size: sizes, colormap: (luma(20%), color.mix((purple, 40%), (blue, 60%)), luma(240)).rev(), vmin: 0, vmax: 1)
+#let data = lq.scatter(x, y, color: colors, size: sizes, map: (luma(20%), color.mix((purple, 40%), (blue, 60%)), luma(240)).rev(), vmin: 0, vmax: 1)
 #lq.diagram(
   xlim: (0, 10), ylim: (0, 10),
   data, 

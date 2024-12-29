@@ -1,5 +1,7 @@
 ```typ render
 
+#set page(margin: 1cm)
+
 #import "@preview/suiji:0.3.0"
 
 #let x = lq.linspace(.3, 3.7, num: 7)
@@ -12,14 +14,14 @@
 
 
 #scale(
-  150%, 
+  200%, 
   reflow: true, 
   lq.diagram(
     title: [Anatomy],
     xlabel:  [$x$],
     ylabel:  [$y$],
-    width: 220pt,
-    height: 180pt,
+    width: 180pt,
+    height: 120pt,
     xaxis: (tick-distance: 1),
     yaxis: (tick-distance: 5),
     xlim: (0, 4),
@@ -31,7 +33,7 @@
         size: size,
         label: [Data]
     ),
-    lq.plot(x, y, marker: none, line: green, label: [Fit]),
+    lq.plot(x, y, mark: none, stroke: green, label: [Fit]),
   )
 )
 ```

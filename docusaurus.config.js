@@ -12,7 +12,22 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkTypst from './src/remark/remark-typst.js'
 
+function addSidebarItems(items) {
+  const result = items.map((item) => {
+    if (item.label === 'Plot types') {
+      var fs = require('fs');
+      var plot_types = fs.readdirSync('lilaq/src/plot-types').map((name) => name.split(".")[0]);
+      item.items = plot_types.map((name) => ({ type: "doc", id: "reference/" + name }))
+    }
+    return item;
+  });
+  return result;
+}
 
+async function customSidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
+  const sidebarItems = await defaultSidebarItemsGenerator(args);
+  return addSidebarItems(sidebarItems);
+}
 
 /** @type {import('@docusaurus/types').Config} */ 
 const config = {
@@ -22,7 +37,7 @@ const config = {
 
   staticDirectories: ['static', 'typst_renders'],
   // Set the production url of your site here
-  url: 'https://lilaq-plot.github.io',
+  url: 'https://lilaq-project.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -51,10 +66,11 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/lilaq-plot/lilaq-project.github.io/tree/main/',
+          editUrl: 'https://github.com/lilaq-project/lilaq-project.github.io/tree/main/',
           beforeDefaultRemarkPlugins: [remarkTypst],
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
+          sidebarItemsGenerator: customSidebarItemsGenerator
         },
         blog: {
           showReadingTime: true,
@@ -63,7 +79,7 @@ const config = {
             xslt: true,
           },
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/lilaq-plot/lilaq-project.github.io/tree/main/',
+          editUrl: 'https://github.com/lilaq-project/lilaq-project.github.io/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -110,7 +126,7 @@ const config = {
           },
           {
             "aria-label": "GitHub repository",
-            href: 'https://github.com/lilaq-plot/lilaq',
+            href: 'https://github.com/lilaq-project/lilaq',
             position: 'right',
             className: "navbar--github-link",
           },
@@ -146,7 +162,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/lilaq-plot/lilaq',
+                href: 'https://github.com/lilaq-project/lilaq',
               },
             ],
           },
@@ -195,6 +211,7 @@ const config = {
       crossorigin: 'anonymous',
     },
   ],
+
 };
 
 export default config;

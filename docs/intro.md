@@ -12,7 +12,7 @@ Lilaq can be imported via
 #import "@preview/lilaq:0.1.0" as lc
 ```
 This way, the Typst compiler automatically downloads and installs the package. 
-You can also download Lilaq manually from the [repository](https://github.com/lilaq-plot/lilaq) and import a local version. 
+You can also download Lilaq manually from the [repository](https://github.com/lilaq-project/lilaq) and import a local version. 
 
 
 ## Study

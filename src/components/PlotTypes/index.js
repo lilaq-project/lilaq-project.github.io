@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import Heading from '@theme/Heading';
 import styles from './plot-types.module.css';
 import ImagePlot from '@site/static/img/plot.svg'
 import ImageErrorbars from '@site/static/img/errorbars.svg'
@@ -51,6 +50,7 @@ const PlotList = [
   },
   {
     title: 'fill-between',
+    href: "/docs/plot-types/fill-between",
     description: (
       <>
       </>
@@ -117,7 +117,7 @@ const PlotList = [
 
 function Feature({Svg, title, description, href}) {
   return (
-    <a href={href} className={styles.plotTypeLink}>
+    <a href={"/docs/reference/" + title} className={styles.plotTypeLink}>
       <div className="text--center">
         <Svg className={styles.featureSvg} role="img" />
       </div>

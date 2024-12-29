@@ -10,7 +10,7 @@ const typTemplate = `
 
 
 const replacements = [
-  ["#import lilaq", "#import \"@preview/lilaq:0.1.0\" as lq", "#import \"lilaq/lilaq.typ\" as lq"]
+  ["#import lilaq", "#import \"@preview/lilaq:0.1.0\" as lq", "#import \"lilaq/src/lilaq.typ\" as lq"]
 ]
 
 function split_once(content, separator) {

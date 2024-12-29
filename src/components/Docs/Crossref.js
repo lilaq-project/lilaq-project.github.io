@@ -7,7 +7,7 @@ export const Crossref = ({ target }) => {
         display = [(<span key="1">{components[0]}</span>), "#" + components[1]]
     }
     return (
-        <code><a href={"./" + target} className={styles.crossRef}>
+        <code><a href={"/docs/reference/" + target} className={styles.crossRef}>
             {display}
         </a></code>
     )

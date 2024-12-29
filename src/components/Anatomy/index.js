@@ -1,12 +1,10 @@
 import clsx from 'clsx';
 import styles from './anatomy.module.css';
-import Anatomy1 from '@site/src/pages/_home/anatomy.mdx';
-// import Anatomy1 from '@site/src/components/Anatomy/anatomy.mdx';
-// import Anatomy1 from './anatomy.mdx';
+import Anatomy from '@site/src/pages/_home/anatomy.mdx';
 
-function Label({ title, href }) {
+function Label({ title }) {
   return (
-    <div className={clsx(styles.annotation, styles[title.replace(".", "-")])}><a href={href}><code><span>lq.</span>{title}</code></a></div>
+    <div className={clsx(styles.annotation, styles[title.replace(".", "-")])}><a href={"/docs/reference/" + title}><code><span>lq.</span>{title}</code></a></div>
   );
 }
 
@@ -15,7 +13,7 @@ export default function Annotations() {
     <div className={styles.anatomyWrapper}>
       <div className={styles.anatomy}>
 
-        <Anatomy1 />
+        <Anatomy />
         {/* <img src={require("@site/static/img/anatomy.png").default} /> */}
         <Label title="title" />
         <Label title="ylabel" />
@@ -26,8 +24,8 @@ export default function Annotations() {
         <Label title="ticklabel" />
         <Label title="tick.major" />
         <Label title="tick.minor" />
-        <Label title="scatter" href="/docs/plot-types/scatter" />
-        <Label title="plot" href="/docs/plot-types/plot" />
+        <Label title="scatter" />
+        <Label title="plot" />
       </div>
     </div>
   );

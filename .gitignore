@@ -21,7 +21,7 @@ yarn-error.log*
 
 /lilaq
 /typst_renders
-/docs/plot-types
+/docs/reference/*.mdx
 /docs/tutorial-basics/
 /docs/tutorial-extras/
 __pycache__
