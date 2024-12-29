@@ -5,18 +5,16 @@ import { existsSync, mkdirSync } from "node:fs";
 
 const typTemplate = `
 #set page(width: auto, height: auto, margin: .5cm, fill: white)
-#import "lilac/lilac.typ" as lc
+#import "lilaq/lilaq.typ" as lc
 `;
 
-const typcTemplate = [
-  `
-    #set page(width: auto, height: auto, margin: .5cm, fill: white)
-    `,
-  "",
-];
+const typcTemplate = `
+  set page(width: auto, height: auto, margin: .5cm, fill: white)
+  import "lilaq/lilaq.typ" as lc
+`
 
 const replacements = [
-  ["#import lilac", "#import \"@preview/lilac:0.1.0\" as lc", "#import \"lilac/lilac.typ\" as lc"]
+  ["#import lilaq", "#import \"@preview/lilaq:0.1.0\" as lc", "#import \"lilaq/lilaq.typ\" as lc"]
 ]
 
 function split_once(content, separator) {
@@ -64,38 +62,41 @@ function parse_options(argstring) {
 
 const plugin = () => {
   /**
-   * This transformer renders code blocks of type "typ" (Typst file)
-   * and "typc" (Typst code).
-   * If the code should be shown, "example" must be inside the metadata,
-   * otherwise "render" (i.e. only output the rendered code).
-   *
-   *
-   * The code is cached inside the `typst_renders/` folder.
-   *
-   * @example
-   *
-   * ````markdown
-   * ```typc example
-   * 12 + 3
-   * ```
-   *
-   * ```typc example
-   * 12 + 3
-   * ```
-   * ````
+   * Transforms code blocks with language typ/typc or
+   * example/examplec. 
+   * 
+   * - The code `#import lilaq` is transformed to a proper import
+   *  statement using the latest package version. 
+   * 
+   * - When the language is example/examplec, it is transformed to
+   *   typ/typc, respectively and the code is automatically executed
+   *   and shown along with the code text with the PreviewedCode element. 
+   * 
+   *   This is then equivalent to 
+   *      ```markdown
+   *      <PreviewedCode>
+   *      
+   *      ```typ
+   *      ...
+   *      ```
+   *      
+   *      <img src="@site/..." />
+   *      </PreviedCode>
+   *      ```
+   * 
+   * - Lines starting with `>>>` are hidden but executed in examples.
+   * 
    */
   const transformer = async (ast) => {
     let children = [];
-    let folder = "typst_renders/";
+    const folder = "typst_renders/";
     if (!existsSync(folder)) {
       mkdirSync(folder, { recursive: true });
     }
     visit(ast, { type: "code" }, (node, index, parent) => {
       let title = null;
       if (node.meta != null) {
-        let options = parse_options(node.meta)
-        title = options.title;
-        console.log(options)
+        title = parse_options(node.meta).title;
       }
 
 
@@ -108,18 +109,25 @@ const plugin = () => {
         node.lang = "typc"
         node.meta = "example"
       }
-      if (
-        !(
-          (node.lang === "typ" || node.lang === "typc" || node.lang === "example" || node.lang === "examplec") &&
-          (node.meta?.includes("render") || node.meta?.includes("example"))
-        )
-      ) {
-        return;
-      }
 
+      if(!["typ", "typc"].includes(node.lang)) { return; }
+      
       if (index === undefined || parent === undefined) {
         throw new Error("Invalid location for typst code example");
       }
+
+      
+      let code = node.value
+      if (node.lang == "typ") {
+        for (const [value, raw_replacement, code_replacement] of replacements) {
+          node.value = node.value.replace(value, raw_replacement)
+          code = code.replace(value, code_replacement)
+        }
+      }
+      node.value = node.value.split("\n").filter((line) => !line.trimStart().startsWith(">>>")).join("\n")
+      code = code.replace(">>>", "")
+
+      if(!(node.meta?.includes("render") || node.meta?.includes("example"))) { return; }
 
       if (title === null) {
         const hash = createHash("md5")
@@ -128,14 +136,8 @@ const plugin = () => {
           .slice(0, 6);
         title = hash
       }
+
       const path = folder + title + ".svg";
-      let code = node.value
-      for (const [value, raw_replacement, code_replacement] of replacements) {
-        node.value = node.value.replace(value, raw_replacement)
-        node.value = node.value.split("\n").filter((line) => !line.trimStart().startsWith(">>>")).join("\n")
-        code = code.replace(value, code_replacement)
-        code = code.replace(">>>", "")
-      }
       if (!existsSync(path)) {
         children.push(
           new Promise((resolve) => {
@@ -149,7 +151,7 @@ const plugin = () => {
             if (node.lang === "typ") {
               child.stdin.write(typTemplate + code);
             } else {
-              child.stdin.write(typcTemplate[0] + code + typcTemplate[1]);
+              child.stdin.write(typcTemplate + code);
             }
             child.stdin.end();
             child.on("exit", () => resolve());
@@ -157,19 +159,12 @@ const plugin = () => {
         );
       }
 
-      if (node.meta.includes("render")) {
+      if (node.meta?.includes("render")) {
         parent.children[index] = {
           type: "image",
           url: "@site/" + path,
         };
       } else {
-        // Wrap the code and rendered image in the `PreviewedCode` component.
-        // This is equivalent to the following JSX:
-        //
-        // <PreviewedCode>
-        //   {code}
-        //   <img src="@site/..." />
-        // </PreviewedCode>
         parent.children[index] = {
           type: "mdxJsxFlowElement",
           name: "PreviewedCode",
