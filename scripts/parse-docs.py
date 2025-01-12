@@ -10,7 +10,7 @@ def process_description(description: str) -> str:
         name = match.group()[1:].replace(".", "#")
         target = name
         return f'<Crossref target="{target}" />'
-    md = re.sub(R"(?<!\\)(@\w[\w\d\-\._:]*[\w\d\-]+)", replace_cross_ref, md)
+    md = re.sub(R"(?<![\\\"])(@\w[\w\d\-\._:]*[\w\d\-]+)", replace_cross_ref, md)
     return md
 
 def load_available_examples():
@@ -37,7 +37,6 @@ def load_available_examples():
             tags = get_value("  tags")
             if tags is not None:
                 tags = list(map(str.strip, tags.strip("[]").split(",")))
-            print(image, tags)
 
 
             examples.append({
@@ -79,22 +78,21 @@ def generate_signature(definition):
 
 
 def generate_mdx(docs, examples=[]):
-    content = ""
-
-    for definition in docs["definitions"]:
+    def generate_definition(definition):
+        content = ""
         name = definition['name']
         params = definition["params"]
-        content += f"# {name}\n"
+        content += f"## {name}\n"
         content += generate_signature(definition) + "\n\n"
 
         content += process_description(definition["description"]) + "\n\n"
-        content += "## Parameters\n<Parameters>\n"
+        # content += "## Parameters\n"
+        content += "<Parameters>\n"
         content += "\n\n\n".join(map(param2doc, params))
-        content += "\n\n\n</Parameters>"
+        content += "\n\n\n</Parameters>\n\n"
 
         tags = [name]
         concerned_examples = []
-        print(examples)
         concerned_examples = list(filter(lambda example: any([tag in example["tags"] for tag in tags]), examples))
         if len(concerned_examples) != 0:
             content += "\n\nimport DocCard from '@theme/DocCard';\n"
@@ -107,22 +105,32 @@ def generate_mdx(docs, examples=[]):
                 description = f"description: '{concerned_example['description']}', "
                 content += "  <DocCard item={{type: 'link', "+href+image+description + " }} />"
             content += "\n\n</ExampleCards>"
-    return content
+        return content
+
+    return "\n<hr />\n".join(map(generate_definition, docs["definitions"]))
 
 def main():
     examples = load_available_examples()
-    path = "lilaq/src/plot-types"
-    outpath = "docs/plot-types"
-    filenames = os.listdir(path)
+    paths = [
+        "lilaq/src"
+    ]
+    outpath = "docs/reference"
+    filenames = os.listdir(paths[0])
+    for root, subdirs, filenames in os.walk(paths[0]):
+        for filename in filenames:
+            if not filename.endswith(".typ"):
+                continue
+            with open(os.path.join(root, filename), "r", encoding="utf-8") as file:
+                content = file.read()
+            docs = tidy.TypDocParser().parse(content)
+            if len(docs["definitions"]) == 0:
+                continue
+            print(os.path.join(root, filename))
+            mdx = generate_mdx(docs, examples=examples)
+            # continue
 
-    for filename in filenames:
-        with open(os.path.join(path, filename), "r") as file:
-            content = file.read()
-        docs = tidy.TypDocParser().parse(content)
-        mdx = generate_mdx(docs, examples=examples)
-
-        with open(os.path.join(outpath, filename.replace(".typ", ".mdx")), "w") as file:
-            file.write(mdx)
+            with open(os.path.join(outpath, filename.replace(".typ", ".mdx")), "w", encoding="utf-8") as file:
+                file.write(mdx)
 
 
 

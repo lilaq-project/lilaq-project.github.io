@@ -6,14 +6,12 @@ def replace_header(line: str):
     trimmed_line = line.lstrip()
     tr = trimmed_line.lstrip("=")
     count_eq = len(trimmed_line) - len(tr)
-    print(trimmed_line, tr)
     if tr.startswith(" ") and count_eq > 0:
         return line[:len(line) - len(trimmed_line)] + "#" * count_eq + tr
     return line
 
 
 def match_parentheses(string, paren="()"):
-    print(string)
     assert len(paren) == 2
     bl, br = paren
     assert string[0] == bl
