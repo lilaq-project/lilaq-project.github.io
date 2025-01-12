@@ -13,8 +13,13 @@ export const SignatureName = ({ children }) => (
 );
 
 export const Parameters = ({ children }) => (
-	<div className={styles.parameters}>
-		{children}
+	<div>
+		<div className={styles.parametersHeader}>
+			Parameters
+		</div>
+		<div className={styles.parameters}>
+			{children}
+		</div>
 	</div>
 );
 

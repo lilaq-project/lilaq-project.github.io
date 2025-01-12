@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import styles from './anatomy.module.css';
-import Anatomy from '@site/src/pages/_home/anatomy.mdx';
+import Anatomy from '@site/src/pages/_graphics/anatomy.mdx';
 
 function Label({ title }) {
   return (

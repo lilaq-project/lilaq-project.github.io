@@ -7,9 +7,7 @@ import Anatomy from '@site/src/components/Anatomy';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 import Description from './_home/description.mdx';
-import Showoff from './_home/showoff.mdx';
-import Showoff1 from './_home/showoff1.mdx';
-import Anatomy1 from './_home/anatomy.mdx';
+import Logo from './_graphics/logo.mdx';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -29,7 +27,7 @@ function HomepageHeader() {
         </div>
       </div>
       <div style={{zoom: 1.2}}>
-        <Showoff1 />
+        <Logo />
         {/* <img src={require('@site/static/img/scatter-plot.png').default} /> */}
       </div>
     </header>
