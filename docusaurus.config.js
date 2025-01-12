@@ -12,22 +12,6 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkTypst from './src/remark/remark-typst.js'
 
-function addSidebarItems(items) {
-  const result = items.map((item) => {
-    if (item.label === 'Plot types') {
-      var fs = require('fs');
-      var plot_types = fs.readdirSync('lilaq/src/plot-types').map((name) => name.split(".")[0]);
-      item.items = plot_types.map((name) => ({ type: "doc", id: "reference/" + name }))
-    }
-    return item;
-  });
-  return result;
-}
-
-async function customSidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
-  const sidebarItems = await defaultSidebarItemsGenerator(args);
-  return addSidebarItems(sidebarItems);
-}
 
 /** @type {import('@docusaurus/types').Config} */ 
 const config = {
@@ -48,7 +32,8 @@ const config = {
   projectName: 'lilaq', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenAnchors: 'throw',
+  onBrokenMarkdownLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -70,7 +55,6 @@ const config = {
           beforeDefaultRemarkPlugins: [remarkTypst],
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
-          sidebarItemsGenerator: customSidebarItemsGenerator
         },
         blog: {
           showReadingTime: true,
@@ -175,6 +159,10 @@ const config = {
         theme: typstLight,
         darkTheme: typstDark,
         // defaultLanguage: "typ"
+      },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 3,
       },
     }),
 
