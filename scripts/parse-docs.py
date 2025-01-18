@@ -51,7 +51,7 @@ def load_available_examples():
 
 def param2doc(param: dict) -> str:
     name, description = param["name"], param["description"].replace("\n", "\n  ")
-    string = f"### {name}"
+    string = f"### <ParamName>{name}</ParamName>"
     if "types" in param:
         types = [f"`{t}`" for t in param["types"]]
         string += f" : {' | '.join(types)}"

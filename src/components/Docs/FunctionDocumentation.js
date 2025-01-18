@@ -29,6 +29,12 @@ export const Param = ({ children }) => (
 	</div>
 );
 
+export const ParamName = ({ children }) => (
+	<span className={styles.paramName}>
+		{children}
+	</span>
+);
+
 export const Default = ({ children }) => (
 	<span className={styles.default}>
 		&nbsp;&nbsp;&nbsp;<i>default:</i> {children}
