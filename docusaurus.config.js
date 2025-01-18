@@ -16,7 +16,7 @@ import remarkTypst from './src/remark/remark-typst.js'
 /** @type {import('@docusaurus/types').Config} */ 
 const config = {
   title: 'Lilaq',
-  tagline: 'Data visualization in Typst',
+  tagline: 'Advanced data visualization in Typst',
   favicon: 'img/favicon.ico',
 
   staticDirectories: ['static', 'typst_renders'],
