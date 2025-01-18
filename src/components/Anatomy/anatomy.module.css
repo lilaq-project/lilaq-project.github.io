@@ -155,25 +155,25 @@
 }
 
 
-.tick-major {
+.tick {
   left: 90.6%;
   top: 32%;
   width: 5%;
   height: 5%;
 }
 
-.tick-major a {
+.tick a {
   top: -1.9em;
 }
 
-.tick-minor {
+.subtick {
   left: 90.6%;
   top: 45%;
   width: 5%;
   height: 5%;
 }
 
-.tick-minor a {
+.subtick a {
   top: -1.9em;
 }
 
