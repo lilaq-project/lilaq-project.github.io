@@ -114,8 +114,9 @@ def generate_mdx(docs, examples=[]):
             content += "\n\n</ExampleCards>"
         return content
 
+    module_description = f"{process_description(docs['description'])}\n\n"
 
-    return "\n<hr />\n".join(map(generate_definition, docs["definitions"]))
+    return module_description + "\n<hr />\n".join(map(generate_definition, docs["definitions"]))
 
 def main():
     examples = load_available_examples()
