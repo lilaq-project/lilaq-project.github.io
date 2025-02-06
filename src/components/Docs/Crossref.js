@@ -6,6 +6,9 @@ export const Crossref = ({ target }) => {
         const components = target.split("#")
         display = [(<span key="1">{components[0]}</span>), "#" + components[1]]
     }
+    if (target.startsWith("lq.")) {
+        target = target.substring(3)
+    }
     return (
         <code><a href={"/docs/reference/" + target} className={styles.crossRef}>
             {display}

@@ -53,7 +53,13 @@ def param2doc(param: dict) -> str:
     name, description = param["name"], param["description"].replace("\n", "\n  ")
     string = f"### <ParamName>{name}</ParamName>"
     if "types" in param:
-        types = [f"`{t}`" for t in param["types"]]
+        def ref_type(type: str):
+            if type.startswith("lq."):
+                return f'<Crossref target="{type}" />'
+            else:
+                return f"`{type}`"
+            
+        types = [f"{ref_type(t)}" for t in param["types"]]
         string += f" : {' | '.join(types)}"
     if "default" in param:
         string += f" <Default>`{param['default']}`</Default>"
@@ -78,6 +84,7 @@ def generate_signature(definition):
 
 
 def generate_mdx(docs, examples=[]):
+
     def generate_definition(definition):
         content = ""
         name = definition['name']
@@ -103,9 +110,10 @@ def generate_mdx(docs, examples=[]):
                 href = f"href: '/docs/examples/{concerned_example['name']}', "
                 image = f"image: require('@site/typst_renders/{concerned_example['image']}'), "
                 description = f"description: '{concerned_example['description']}', "
-                content += "  <DocCard item={{type: 'link', "+href+image+description + " }} />"
+                content += "  <DocCard item={{type: 'link', " + href + image + description + " }} />"
             content += "\n\n</ExampleCards>"
         return content
+
 
     return "\n<hr />\n".join(map(generate_definition, docs["definitions"]))
 
