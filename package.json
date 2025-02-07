@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "parse-docs": "python scripts/parse-docs.py",
+    "compile-typst-images": "python scripts/compile-typst-images.py",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",

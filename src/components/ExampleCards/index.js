@@ -1,18 +1,15 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './example-cards.module.css';
-import ImagePlot from '@site/static/img/plot.svg'
-import ImageErrorbars from '@site/static/img/errorbars.svg'
-import ImageStep from '@site/static/img/step.svg'
-import ImageScatter from '@site/static/img/scatter.svg'
-import ImageFillbetween from '@site/static/img/fill-between.svg'
-import ImageBar from '@site/static/img/bar.svg'
-import ImageStem from '@site/static/img/stem.svg'
-import ImageBoxplot from '@site/static/img/boxplot.svg'
-import ImageColormesh from '@site/static/img/colormesh.svg'
-import ImageContour from '@site/static/img/contour.svg'
-import ImageFilledContour from '@site/static/img/filled-contour.svg'
-import ImageQuiver from '@site/static/img/quiver.svg'
+import ImagePlot from '@site/static/img/typst/plot-types/plot.svg'
+import ImageScatter from '@site/static/img/typst/plot-types/scatter.svg'
+import ImageFillbetween from '@site/static/img/typst/plot-types/fill-between.svg'
+import ImageBar from '@site/static/img/typst/plot-types/bar.svg'
+import ImageStem from '@site/static/img/typst/plot-types/stem.svg'
+import ImageBoxplot from '@site/static/img/typst/plot-types/boxplot.svg'
+import ImageColormesh from '@site/static/img/typst/plot-types/colormesh.svg'
+import ImageContour from '@site/static/img/typst/plot-types/contour.svg'
+import ImageQuiver from '@site/static/img/typst/plot-types/quiver.svg'
 
 const PlotList = [
   {
@@ -23,22 +20,6 @@ const PlotList = [
       </>
     ),
     Svg: ImagePlot,
-  },
-  {
-    title: 'errorbars',
-    description: (
-      <>
-      </>
-    ),
-    Svg: ImageErrorbars,
-  },
-  {
-    title: 'step',
-    description: (
-      <>
-      </>
-    ),
-    Svg: ImageStep,
   },
   {
     title: 'scatter',
@@ -96,14 +77,6 @@ const PlotList = [
       </>
     ),
     Svg: ImageContour,
-  },
-  {
-    title: 'filled-contour',
-    description: (
-      <>
-      </>
-    ),
-    Svg: ImageFilledContour,
   },
   {
     title: 'quiver',
