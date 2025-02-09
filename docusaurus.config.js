@@ -35,6 +35,9 @@ const config = {
   onBrokenAnchors: 'throw',
   onBrokenMarkdownLinks: 'throw',
 
+
+  trailingSlash: false,
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -84,6 +87,9 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {name: 'keywords', content: 'plotting, diagram, typst, lilaq'},
+      ],
       image: 'img/social-card.jpg',
       navbar: {
         title: 'Lilaq',
