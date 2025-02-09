@@ -11,7 +11,8 @@
 }
 
 .anatomy img {
-  width: 400pt;
+  width: auto;
+  height: auto;
   background: white;
 }
 
