@@ -5,6 +5,7 @@ import ImageScatter from '@site/static/img/typst/plot-types/scatter.svg'
 import ImageFillbetween from '@site/static/img/typst/plot-types/fill-between.svg'
 import ImageBar from '@site/static/img/typst/plot-types/bar.svg'
 import ImageStem from '@site/static/img/typst/plot-types/stem.svg'
+import ImageHStem from '@site/static/img/typst/plot-types/hstem.svg'
 import ImageBoxplot from '@site/static/img/typst/plot-types/boxplot.svg'
 import ImageColormesh from '@site/static/img/typst/plot-types/colormesh.svg'
 import ImageContour from '@site/static/img/typst/plot-types/contour.svg'
@@ -60,7 +61,7 @@ const PlotList = [
       <>
       </>
     ),
-    Svg: ImageStem,
+    Svg: ImageHStem,
   },
   {
     title: 'boxplot',
