@@ -89,7 +89,7 @@ const config = {
         title: 'Lilaq',
         logo: {
           alt: 'Lilaq Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo2.svg',
         },
         items: [
           {
