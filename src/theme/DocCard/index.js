@@ -38,12 +38,13 @@ function CardContainer({href, children}) {
   );
 }
 function CardLayout({href, icon, title, description, image}) {
+  console.log(title)
   const heading = (
     <Heading
-      as="h2"
+      as="h3"
       className={clsx('text--truncate', styles.cardTitle)}
       title={title}>
-      {/*icon*/} {title}
+      {title}
     </Heading>
   )
   const desc = description && (
@@ -55,7 +56,6 @@ function CardLayout({href, icon, title, description, image}) {
   )
   return (
     <CardContainer href={href}>
-      {image == undefined ? <span>bs</span> : image}
       <div style={{minWidth: "0"}}>
         {heading}
         {desc}
@@ -98,7 +98,7 @@ function CardLink({item}) {
   return (
     <CardLayout
       href={item.href}
-      icon={icon}
+      // icon={icon}
       title={item.label}
       image={image}
       description={item.description ?? doc?.description}
@@ -106,6 +106,7 @@ function CardLink({item}) {
   );
 }
 export default function DocCard({item}) {
+  console.log(item)
   switch (item.type) {
     case 'link':
       return <CardLink item={item} />;
