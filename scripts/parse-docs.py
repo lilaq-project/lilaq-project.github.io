@@ -115,6 +115,10 @@ def generate_mdx(docs, examples=[]):
         return content
 
     module_description = f"{process_description(docs['description'])}\n\n"
+    if docs["description"] != "":
+        if len(docs["definitions"]) > 1:
+            module_description += "import TOCInline from '@theme/TOCInline';\n\n<TOCInline toc={toc} maxHeadingLevel={2} />\n\n"
+        module_description += "<hr />\n\n"
 
     return module_description + "\n<hr />\n".join(map(generate_definition, docs["definitions"]))
 
