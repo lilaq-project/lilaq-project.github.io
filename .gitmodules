@@ -1,0 +1,3 @@
+[submodule "lilaq"]
+	path = lilaq
+	url = https://github.com/lilaq-project/lilaq

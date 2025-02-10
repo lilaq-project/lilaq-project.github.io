@@ -19,7 +19,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/lilaq
 /typst_renders
 /docs/reference/*.mdx
 /docs/tutorial-basics/
