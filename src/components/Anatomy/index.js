@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import styles from './anatomy.module.css';
-import Anatomy from '@site/src/pages/_graphics/anatomy.mdx';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 function Label({ title, href }) {
   if (href == undefined) {
@@ -16,8 +16,10 @@ export default function Annotations() {
     <div className={styles.anatomyWrapper}>
       <div className={styles.anatomy}>
 
-        <Anatomy />
-        {/* <img src={require("@site/static/img/anatomy.png").default} /> */}
+        {/* <Anatomy /> */}
+
+        <img src={useBaseUrl('/img/typst-generated/anatomy.svg')} alt="bsg" />
+
         <Label title="title" />
         <Label title="ylabel" href="/docs/reference/axis-label" />
         <Label title="xlabel" href="/docs/reference/axis-label" />

@@ -7,7 +7,7 @@ import Anatomy from '@site/src/components/Anatomy';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 import Description from './_home/description.mdx';
-import Logo from './_graphics/logo.mdx';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -26,10 +26,7 @@ function HomepageHeader() {
           </Link>
         </div>
       </div>
-      <div style={{zoom: 1.2}}>
-        <Logo />
-        {/* <img src={require('@site/static/img/scatter-plot.png').default} /> */}
-      </div>
+      <img src={useBaseUrl('/img/typst-generated/flower.svg')} alt="lilaq flower" />
     </header>
   );
 }

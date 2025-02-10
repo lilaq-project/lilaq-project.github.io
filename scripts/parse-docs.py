@@ -130,7 +130,9 @@ def main():
     outpath = "docs/reference"
     os.makedirs(outpath, exist_ok=True)
     filenames = os.listdir(paths[0])
-    for root, subdirs, filenames in os.walk(paths[0]):
+    for root, subdirs, filenames in os.walk(paths[0], topdown=True):
+        if "libs" in subdirs:
+            subdirs.remove("libs")
         for filename in filenames:
             if not filename.endswith(".typ"):
                 continue

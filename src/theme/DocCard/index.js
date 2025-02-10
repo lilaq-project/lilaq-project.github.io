@@ -38,7 +38,6 @@ function CardContainer({href, children}) {
   );
 }
 function CardLayout({href, icon, title, description, image}) {
-  console.log(title)
   const heading = (
     <Heading
       as="h3"
@@ -106,7 +105,6 @@ function CardLink({item}) {
   );
 }
 export default function DocCard({item}) {
-  console.log(item)
   switch (item.type) {
     case 'link':
       return <CardLink item={item} />;

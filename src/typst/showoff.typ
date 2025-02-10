@@ -1,5 +1,9 @@
-```typ render title=showoff
+#import "/lilaq/src/lilaq.typ" as lq
 #import "@preview/suiji:0.3.0"
+
+#set page(margin: .5cm, width: auto, height: auto)
+
+
 #let colorbar(plot) = {
   let cinfo = plot.cinfo
   lq.diagram(
@@ -28,4 +32,3 @@
 )
 #h(2mm)
 #colorbar(data)
-```
