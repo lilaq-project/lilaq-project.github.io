@@ -89,3 +89,8 @@ h3 {
 [data-theme='dark'] img {
   filter: invert(88%) hue-rotate(180deg);
 }
+
+.logo {
+  border-radius: 12%;
+  filter: none !important;
+}
