@@ -108,7 +108,7 @@ def generate_mdx(docs, examples=[]):
             for concerned_example in concerned_examples:
                 name = f"name: '{concerned_example['name']}', "
                 href = f"href: '/docs/examples/{concerned_example['name']}', "
-                image = f"image: require('@site/typst_renders/{concerned_example['image']}'), "
+                image = f"image: require('@site/static/img/typst-generated/{concerned_example['image']}'), "
                 description = f"description: '{concerned_example['description']}', "
                 content += "  <DocCard item={{type: 'link', " + href + image + description + " }} />"
             content += "\n\n</ExampleCards>"
@@ -128,6 +128,7 @@ def main():
         "lilaq/src"
     ]
     outpath = "docs/reference"
+    os.makedirs(outpath, exist_ok=True)
     filenames = os.listdir(paths[0])
     for root, subdirs, filenames in os.walk(paths[0]):
         for filename in filenames:

@@ -1,15 +1,15 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './example-cards.module.css';
-import ImagePlot from '@site/static/img/typst/plot-types/plot.svg'
-import ImageScatter from '@site/static/img/typst/plot-types/scatter.svg'
-import ImageFillbetween from '@site/static/img/typst/plot-types/fill-between.svg'
-import ImageBar from '@site/static/img/typst/plot-types/bar.svg'
-import ImageStem from '@site/static/img/typst/plot-types/stem.svg'
-import ImageBoxplot from '@site/static/img/typst/plot-types/boxplot.svg'
-import ImageColormesh from '@site/static/img/typst/plot-types/colormesh.svg'
-import ImageContour from '@site/static/img/typst/plot-types/contour.svg'
-import ImageQuiver from '@site/static/img/typst/plot-types/quiver.svg'
+import ImagePlot from '@site/static/img/typst-generated/plot-types/plot.svg'
+import ImageScatter from '@site/static/img/typst-generated/plot-types/scatter.svg'
+import ImageFillbetween from '@site/static/img/typst-generated/plot-types/fill-between.svg'
+import ImageBar from '@site/static/img/typst-generated/plot-types/bar.svg'
+import ImageStem from '@site/static/img/typst-generated/plot-types/stem.svg'
+import ImageBoxplot from '@site/static/img/typst-generated/plot-types/boxplot.svg'
+import ImageColormesh from '@site/static/img/typst-generated/plot-types/colormesh.svg'
+import ImageContour from '@site/static/img/typst-generated/plot-types/contour.svg'
+import ImageQuiver from '@site/static/img/typst-generated/plot-types/quiver.svg'
 
 const PlotList = [
   {

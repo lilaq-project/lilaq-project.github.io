@@ -7,7 +7,7 @@ import subprocess
 
 if __name__ == "__main__":
     path = "src/typst"
-    destination = "static/img/typst"
+    destination = "static/img/typst-generated"
     for root, subdirs, filenames in os.walk(path):
         for filename in filenames:
             if filename.endswith(".typ") and not "template" in filename:

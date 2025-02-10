@@ -19,24 +19,22 @@ const config = {
   tagline: 'Advanced data visualization in Typst',
   favicon: 'img/favicon.ico',
 
-  staticDirectories: ['static', 'typst_renders'],
+  staticDirectories: ['static'],
   // Set the production url of your site here
   url: 'https://lilaq-project.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'lilaq-project', // Usually your GitHub org/user name.
-  projectName: 'lilaq', // Usually your repo name.
+  organizationName: 'lilaq-project', 
+  projectName: 'lilaq-project.github.io', 
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
   onBrokenMarkdownLinks: 'throw',
 
 
-  trailingSlash: false,
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you

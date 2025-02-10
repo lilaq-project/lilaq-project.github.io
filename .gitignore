@@ -19,8 +19,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/typst_renders
 /docs/reference/*.mdx
-/docs/tutorial-basics/
-/docs/tutorial-extras/
+/static/img/typst-generated/*
 __pycache__

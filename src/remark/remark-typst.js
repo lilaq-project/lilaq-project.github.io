@@ -85,7 +85,7 @@ const plugin = () => {
    */
   const transformer = async (ast) => {
     let children = [];
-    const folder = "typst_renders/";
+    const folder = "static/img/typst-generated/";
     if (!existsSync(folder)) {
       mkdirSync(folder, { recursive: true });
     }
