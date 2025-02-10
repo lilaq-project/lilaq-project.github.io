@@ -1,28 +1,3 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-}
-
-.featureSvg {
-  height: 100px;
-  width: 100px;
-  /* background-color: white; */
-  box-shadow: 0pt 0pt 5pt 0pt rgba(0, 0, 0, 0.313);
-  box-shadow: 0pt 0pt 5pt 0pt var(--ifm-color-shadow);
-}
-
-.plotTypeLink {
-  padding: 1em;
-  /* animation: 1.6s ease-in-out; */
-  color: var(--ifm-color-content-secondary);
-}
-.plotTypeLink:hover {
-  background-color: rgba(161, 161, 161, 0.11);
-  text-decoration: none;
-}
-
 .container {
   width: 800pt;
   max-width: 100%;
@@ -31,4 +6,28 @@
   column-gap: 1em;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.plotTypeImage {
+  height: 100px;
+  width: 100px;
+  box-shadow: 0pt 0pt 5pt 0pt rgba(0, 0, 0, 0.313);
+  box-shadow: 0pt 0pt 5pt 0pt var(--ifm-color-shadow);
+}
+
+
+[data-theme='dark'] .plotTypeImage {
+  filter: invert(88%) hue-rotate(180deg);
+  background-color: rgba(0, 0, 0, 0.071);
+}
+
+
+.plotTypeLink {
+  padding: 1em;
+  color: var(--ifm-color-content-secondary);
+}
+
+.plotTypeLink:hover {
+  background-color: rgba(161, 161, 161, 0.11);
+  text-decoration: none;
 }

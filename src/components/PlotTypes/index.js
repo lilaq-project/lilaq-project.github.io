@@ -101,7 +101,7 @@ function Feature({Svg, title, description, href}) {
   return (
     <a href={"/docs/reference/" + title} className={styles.plotTypeLink}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <Svg className={styles.plotTypeImage} role="img" />
       </div>
       <div className="text--center">
         <code>{title}</code>
