@@ -113,13 +113,23 @@ def generate_mdx(docs, examples=[]):
                 content += "  <DocCard item={{type: 'link', " + href + image + description + " }} />"
             content += "\n\n</ExampleCards>"
         return content
+    
+    definitions = docs["definitions"]
 
-    module_description = f"{process_description(docs['description'])}\n\n"
-    if docs["description"] != "":
-        if len(docs["definitions"]) > 1:
+    desc = docs["description"]
+    module_description = f"{process_description(desc)}\n\n"
+    if desc != "":
+        if len(definitions) > 1:
             module_description += "import TOCInline from '@theme/TOCInline';\n\n<TOCInline toc={toc} maxHeadingLevel={2} />\n\n"
         module_description += "<hr />\n\n"
+    elif len(definitions) == 1:
+        desc = definitions[0]["description"].split(".")[0] + "."
 
+        module_description = f"""---
+description: "{process_description(desc)}"
+---
+
+"""
     return module_description + "\n<hr />\n".join(map(generate_definition, docs["definitions"]))
 
 def main():
