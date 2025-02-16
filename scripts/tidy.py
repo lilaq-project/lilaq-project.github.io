@@ -76,10 +76,12 @@ class TypDocParser:
         self.args = []
         self.arg_parser = ArgumentParser()
 
-    def parse(self, source: str):
+    def parse(self, source: str, ignore_private_definitions=True):
         lines = map(str.strip, (source.split("\n") + [""]))
         for line in lines:
             self._parse_line(line)
+        if ignore_private_definitions:
+            self.definitions = list(filter(lambda x: not x["name"].startswith("_"), self.definitions))
         return {
             "name": self.name,
             "description": self.description,

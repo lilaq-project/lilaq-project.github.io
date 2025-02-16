@@ -4,13 +4,14 @@ import tidy
 import typ2md
 import re
 
-def process_description(description: str) -> str:
+def process_description(description: str, replace_crossrefs=True) -> str:
     md = typ2md.typ_to_md(description)
     def replace_cross_ref(match):
         name = match.group()[1:].replace(".", "#")
         target = name
         return f'<Crossref target="{target}" />'
-    md = re.sub(R"(?<![\\\"])(@\w[\w\d\-\._:]*[\w\d\-]+)", replace_cross_ref, md)
+    if replace_crossrefs:
+        md = re.sub(R"(?<![\\\"])(@\w[\w\d\-\._:]*[\w\d\-]+)", replace_cross_ref, md)
     return md
 
 def load_available_examples():
@@ -126,37 +127,61 @@ def generate_mdx(docs, examples=[]):
         desc = definitions[0]["description"].split(".")[0] + "."
 
         module_description = f"""---
-description: "{process_description(desc)}"
+description: "{process_description(desc, replace_crossrefs=False)}"
 ---
 
 """
     return module_description + "\n<hr />\n".join(map(generate_definition, docs["definitions"]))
 
+
+def process_file(
+    root: str, 
+    filename: str,
+    root_out: str,
+    examples=[]
+):
+    with open(os.path.join(root, filename), "r", encoding="utf-8") as file:
+        content = file.read()
+        docs = tidy.TypDocParser().parse(content)
+        if len(docs["definitions"]) == 0:
+            return
+        print(os.path.join(root, filename))
+        mdx = generate_mdx(docs, examples=examples)
+        # continue
+
+        with open(os.path.join(root_out, filename.replace(".typ", ".mdx")), "w", encoding="utf-8") as file:
+            file.write(mdx)
+
 def main():
     examples = load_available_examples()
+    root = "lilaq/src"
+    
     paths = [
-        "lilaq/src"
+        "components/",
+        "plot-types/",
+        "diagram.typ",
+        "load-txt.typ",
+        "math.typ",
+        "vec.typ",
+        "scale.typ",
+        # "ticking.typ",
     ]
+
     outpath = "docs/reference"
     os.makedirs(outpath, exist_ok=True)
-    filenames = os.listdir(paths[0])
-    for root, subdirs, filenames in os.walk(paths[0], topdown=True):
-        if "libs" in subdirs:
-            subdirs.remove("libs")
-        for filename in filenames:
-            if not filename.endswith(".typ"):
-                continue
-            with open(os.path.join(root, filename), "r", encoding="utf-8") as file:
-                content = file.read()
-            docs = tidy.TypDocParser().parse(content)
-            if len(docs["definitions"]) == 0:
-                continue
-            print(os.path.join(root, filename))
-            mdx = generate_mdx(docs, examples=examples)
-            # continue
+    
+    for path in paths:
+        if path.endswith(".typ"):
+            process_file(root, path, outpath, examples=examples)
+            continue
+        
+        path = os.path.join(root, path)
 
-            with open(os.path.join(outpath, filename.replace(".typ", ".mdx")), "w", encoding="utf-8") as file:
-                file.write(mdx)
+        for dirpath, subdirs, filenames in os.walk(path, topdown=True):
+            for filename in filenames:
+                if filename.endswith(".typ"):
+                    process_file(dirpath, filename, outpath, examples=examples)
+
 
 
 
