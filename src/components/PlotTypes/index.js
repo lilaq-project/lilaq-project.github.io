@@ -4,6 +4,7 @@ import ImagePlot from '@site/static/img/typst-generated/plot-types/plot.svg'
 import ImageScatter from '@site/static/img/typst-generated/plot-types/scatter.svg'
 import ImageFillbetween from '@site/static/img/typst-generated/plot-types/fill-between.svg'
 import ImageBar from '@site/static/img/typst-generated/plot-types/bar.svg'
+import ImageHBar from '@site/static/img/typst-generated/plot-types/hbar.svg'
 import ImageStem from '@site/static/img/typst-generated/plot-types/stem.svg'
 import ImageHStem from '@site/static/img/typst-generated/plot-types/hstem.svg'
 import ImageBoxplot from '@site/static/img/typst-generated/plot-types/boxplot.svg'
@@ -43,6 +44,14 @@ const PlotList = [
       </>
     ),
     Svg: ImageBar,
+  },
+  {
+    title: 'hbar',
+    description: (
+      <>
+      </>
+    ),
+    Svg: ImageHBar,
   },
   {
     title: 'stem',

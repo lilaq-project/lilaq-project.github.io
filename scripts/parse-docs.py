@@ -102,17 +102,17 @@ def generate_mdx(docs, examples=[]):
         tags = [name]
         concerned_examples = []
         concerned_examples = list(filter(lambda example: any([tag in example["tags"] for tag in tags]), examples))
-        if len(concerned_examples) != 0:
-            content += "\n\nimport DocCard from '@theme/DocCard';\n"
-            content += "\n\n## Examples\n\n<ExampleCards>\n"
+        # if len(concerned_examples) != 0:
+            # content += "\n\nimport DocCard from '@theme/DocCard';\n"
+            # content += "\n\n## Examples\n\n<ExampleCards>\n"
 
-            for concerned_example in concerned_examples:
-                name = f"name: '{concerned_example['name']}', "
-                href = f"href: '/docs/examples/{concerned_example['name']}', "
-                image = f"image: require('@site/static/img/typst-generated/{concerned_example['image']}'), "
-                description = f"description: '{concerned_example['description']}', "
-                content += "  <DocCard item={{type: 'link', " + href + image + description + " }} />"
-            content += "\n\n</ExampleCards>"
+            # for concerned_example in concerned_examples:
+            #     name = f"name: '{concerned_example['name']}', "
+            #     href = f"href: '/docs/examples/{concerned_example['name']}', "
+            #     image = f"image: require('@site/static/img/typst-generated/{concerned_example['image']}'), "
+            #     description = f"description: '{concerned_example['description']}', "
+            #     content += "  <DocCard item={{type: 'link', " + href + image + description + " }} />"
+            # content += "\n\n</ExampleCards>"
         return content
     
     definitions = docs["definitions"]
