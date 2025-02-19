@@ -123,7 +123,7 @@ const plugin = () => {
         code = code.replaceAll(value, code_replacement);
       }
       node.value = node.value.split("\n").filter((line) => !line.trimStart().startsWith(">>>")).join("\n");
-      code = code.replace(">>>", "");
+      code = code.replaceAll(">>>", "");
 
       if(!(node.meta?.includes("render") || node.meta?.includes("example"))) { return; }
 
