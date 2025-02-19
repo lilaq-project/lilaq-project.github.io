@@ -18,6 +18,7 @@ const config = {
   title: 'Lilaq',
   tagline: 'Advanced data visualization in Typst',
   favicon: 'img/favicon.ico',
+  titleDelimiter: "−",
 
   staticDirectories: ['static'],
   // Set the production url of your site here
