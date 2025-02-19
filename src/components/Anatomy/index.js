@@ -7,7 +7,7 @@ function Label({ title, href }) {
     href = "/docs/reference/" + title
   }
   return (
-    <div className={clsx(styles.annotation, styles[title.replace(".", "-")])}><a href={href}><code><span>lq.</span>{title}</code></a></div>
+    <div className={clsx(styles.annotation, styles[title.replaceAll(".", "-")])}><a href={href}><code><span>lq.</span>{title}</code></a></div>
   );
 }
 
@@ -21,8 +21,8 @@ export default function Annotations() {
         <img src={useBaseUrl('/img/typst-generated/anatomy.svg')} alt="bsg" />
 
         <Label title="title" />
-        <Label title="ylabel" href="/docs/reference/axis-label" />
-        <Label title="xlabel" href="/docs/reference/axis-label" />
+        <Label title="ylabel" href="/docs/reference/label" />
+        <Label title="xlabel" href="/docs/reference/label" />
         <Label title="yaxis" href="/docs/reference/axis" />
         <Label title="xaxis" href="/docs/reference/axis" />
         <Label title="legend" />
