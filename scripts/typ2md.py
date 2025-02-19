@@ -54,7 +54,14 @@ def replace_functions(source: str, lookup: dict = {}) -> str:
         index = function_end
         if name not in lookup:
             continue
-        result += lookup[name](args)
+        if brace == "(" and source[function_end] == "[":
+            more_args = match_parentheses(source[function_end:], "[]")
+            index = function_end + len(more_args) + 2
+            print(more_args)
+            result += lookup[name](args, more_args)
+        else:
+            result += lookup[name](args)
+
 
     result += source[index:]
     result = "".join(itertools.chain(*zip(result.split("`"), raws)))
@@ -66,6 +73,11 @@ assert replace_functions("234#asd(asdasd)56#klp(--)78", lookup={
                          "klp": lambda x: f"<details>{x}</details>"}) == "23456<details>--</details>78"
 
 replace_functions("```jojo#asd()```#asd()`#e()`")
+print(replace_functions(
+    "#link(\"https:/\")[name]",
+    lookup={"link": lambda x, y: f"[{y}]({x})"}
+))
+# == "[abc]"
 # assert replace_header("= Heading") == "# Heading"
 # assert replace_header("== Heading") == "## Heading"
 # assert replace_header("    === Heading") == "    ### Heading"
@@ -76,8 +88,14 @@ def typ_to_md(source: str) -> str:
     lines = source.split("\n")
     lines = map(replace_header, lines)
     source = "\n".join(lines)
+
+    def trim_quotes(x):
+        return x.strip("\"")
+    
     source = replace_functions(source, {
         "details": lambda it: f"<details>{it}</details>",
         "summary": lambda it: f"<summary>{it}</summary>",
+        "link": lambda x, y: f"[{y}]({trim_quotes(x)})"
+
         })
     return source

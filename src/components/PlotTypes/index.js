@@ -14,7 +14,6 @@ import ImageQuiver from '@site/static/img/typst-generated/plot-types/quiver.svg'
 const PlotList = [
   {
     title: 'plot',
-    href: "/docs/plot-types/plot",
     description: (
       <>
       </>
@@ -23,7 +22,6 @@ const PlotList = [
   },
   {
     title: 'scatter',
-    href: "/docs/plot-types/scatter",
     description: (
       <>
       </>
@@ -32,7 +30,6 @@ const PlotList = [
   },
   {
     title: 'fill-between',
-    href: "/docs/plot-types/fill-between",
     description: (
       <>
       </>
