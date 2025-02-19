@@ -135,19 +135,20 @@ description: "{process_description(desc, replace_crossrefs=False)}"
 
 
 def process_file(
-    root: str, 
     filename: str,
     root_out: str,
     examples=[]
 ):
-    with open(os.path.join(root, filename), "r", encoding="utf-8") as file:
+    with open(filename, "r", encoding="utf-8") as file:
         content = file.read()
         docs = tidy.TypDocParser().parse(content)
         if len(docs["definitions"]) == 0:
             return
-        print(os.path.join(root, filename))
+        print(filename)
         mdx = generate_mdx(docs, examples=examples)
         # continue
+
+        filename = os.path.basename(filename)
 
         with open(os.path.join(root_out, filename.replace(".typ", ".mdx")), "w", encoding="utf-8") as file:
             file.write(mdx)
@@ -157,13 +158,12 @@ def main():
     root = "lilaq/src"
     
     paths = [
-        "components/",
-        "plot-types/",
-        "diagram.typ",
-        "load-txt.typ",
+        "model/",
+        "plot/",
+        "loading/txt.typ",
+        "logic/scale.typ",
         "math.typ",
         "vec.typ",
-        "scale.typ",
         # "ticking.typ",
     ]
 
@@ -172,7 +172,7 @@ def main():
     
     for path in paths:
         if path.endswith(".typ"):
-            process_file(root, path, outpath, examples=examples)
+            process_file(os.path.join(root, path), outpath, examples=examples)
             continue
         
         path = os.path.join(root, path)
@@ -180,7 +180,7 @@ def main():
         for dirpath, subdirs, filenames in os.walk(path, topdown=True):
             for filename in filenames:
                 if filename.endswith(".typ"):
-                    process_file(dirpath, filename, outpath, examples=examples)
+                    process_file(os.path.join(dirpath, filename), outpath, examples=examples)
 
 
 

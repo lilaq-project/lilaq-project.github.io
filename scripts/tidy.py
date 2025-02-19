@@ -99,6 +99,7 @@ class TypDocParser:
         pos = description.rfind("->")
         types = None
         if pos != -1:
+            assert not "," in description[pos + 2:], f"types should be separated by '|', see {lines}"
             types = map(str.strip, description[pos + 2:].replace(",", "|").split("|"))
             description = description[:pos]
         result = { "description": description.strip() }
