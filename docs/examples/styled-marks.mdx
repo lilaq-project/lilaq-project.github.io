@@ -1,0 +1,51 @@
+---
+title: Colored Marks
+sidebar_custom_props:
+  tags: [plot]
+---
+
+Using scatter plots to create colored and marks
+
+
+We start by generating some "ideal" data. 
+```typ
+#let xs = lq.linspace(0, 4 * calc.pi)
+#let ys = xs.map(calc.sin)
+```
+and adding pseudo-random noise to the $x$-values. 
+```typ
+#import "@preview/suiji:0.3.0"
+#let rng = suiji.gen-rng(33)
+
+#let (rng, dx) = suiji.normal(
+  scale: 0.1, size: xs.len(), rng
+)
+
+#let xs-noisy = lq.vec.add(xs, dx)
+``` 
+For this we use the Typst package [suiji](https://typst.app/universe/package/suiji/). Now we create a uniform distribution for coloring the marks. 
+```typ
+#let (rng, colors) = suiji.uniform(
+  size: xs.len(), rng
+)
+```
+First we plot the "ideal" sine wave, then we use <Crossref target="scatter" /> to plot the "noisy" data with varying colors. 
+```example
+>>> #import "@preview/suiji:0.3.0"
+>>> #let rng = suiji.gen-rng(33)
+>>> #let xs = lq.linspace(0, 4 * calc.pi)
+>>> #let ys = xs.map(calc.sin)
+>>> #let (rng, dx) = suiji.normal(scale: 0.1, size: xs.len(), rng)
+>>> #let xs-noisy = lq.vec.add(xs, dx)
+>>> #let (rng, colors) = suiji.uniform(size: xs.len(), rng)
+#lq.diagram(
+  lq.plot(xs, ys, mark: none), 
+  lq.scatter(
+    xs-noisy, ys,
+    mark: "s",
+    color: colors,
+    map: color.map.turbo,
+    stroke: .5pt + black
+  )
+)
+```

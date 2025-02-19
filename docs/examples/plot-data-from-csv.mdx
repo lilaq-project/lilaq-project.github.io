@@ -1,6 +1,6 @@
 ---
 title: Plot data from CSV file
-description: Plot data from CSV file
+description: Using load-txt to make loading data from a file easier. 
 sidebar_custom_props:
   tags: [plot]
   image: /plot-example.svg
@@ -15,24 +15,19 @@ import DataCSVSource from '!!raw-loader!./data.csv';
 
 <CodeBlock title="data.csv">{DataCSVSource}</CodeBlock>
 
-We now load this file via the built-in [`csv`](https://typst.app/docs/reference/data-loading/csv/) function. We need to deal with two problems:
+We could load this file via the built-in [`csv`](https://typst.app/docs/reference/data-loading/csv/) function. However, wes need to deal with two problems:
 - The `csv` function returns the data as an array of rows (being arrays themselves). However, we want to plot the columns − therefore the data needs to be transposed. 
 - The individual numeric values are parsed as strings. We need to convert them to `float` before plotting. 
 
-Both points are addressed in a little helper function `load-csv-data()`. 
+Both points are addressed with the function `lq.load-txt` provided by Lilaq. 
 
-```typ example title=plot-example
->>> #let csv = p => csv("docs/examples/" + p)
+```example
+>>> #let read = p => read("docs/examples/" + p)
 #import lilaq
 
-#let load-csv-data(filename) = {
-  let cols = array.zip(..csv(filename)) 
-  return cols.map(col => col.map(float))
-}
-
-#let (x, y) = load-csv-data("data.csv")
+#let (x, y) = lq.load-txt(read("data.csv"))
 
 #lq.diagram(
-  lq.plot(x, y, label:"asd"),
+  lq.plot(x, y),
 )
 ```

@@ -1,0 +1,44 @@
+---
+title: Plot within a plot
+description: Adding a miniature plot to show more details of a graph. 
+sidebar_custom_props:
+  tags: [plot]
+---
+
+With <Crossref target="lq.place" />, it is possible to place a plot inside another one. Here we demonstrate this feature by plotting the well-known [Weierstrass function](https://en.wikipedia.org/wiki/Weierstrass_function) with parameters $a=1/2$ and $b=5$ for the interval $[-1/2, 1/2]$. 
+
+Inside the diagram, we use <Crossref target="lq.place" /> to plot a small subsection of the function with more detail. 
+
+```example
+#let weierstrass(x, k: 8) = {
+  range(k).map(k => calc.pow(0.5, k) * calc.cos(calc.pow(5, k) * x)).sum()
+}
+
+#let xs = lq.linspace(-.5, .5, num: 1000)
+#let xs2 = lq.linspace(-.05, 0, num: 1000)
+
+#show: lq.set-grid(stroke: none)
+
+#lq.diagram(
+  width: 14cm, 
+  height: 7cm,
+  ylim: (0, 2),
+  margin: (x: 2%),
+
+  lq.plot(xs, mark: none, xs.map(weierstrass)),
+
+  lq.rect(-.05, 1.5, width: .05, height: .3),
+
+  lq.place(
+    60%, 100% - 1.2em, 
+    align: bottom,
+    lq.diagram(
+      width: 5.4cm, height: 2cm, 
+      margin: 0%,
+      ylim: (1.5, 1.8),
+      fill: white,
+      lq.plot(xs2, mark: none, xs2.map(weierstrass)),
+    )
+  )
+)
+```
