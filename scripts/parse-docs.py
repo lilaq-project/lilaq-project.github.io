@@ -84,38 +84,42 @@ def generate_signature(definition):
     return string
 
 
-def generate_mdx(docs, examples=[]):
+def definition_to_mdx(definition):
+    content = ""
+    name = definition['name']
+    params = definition["params"]
+    content += f"## {name}\n"
+    content += generate_signature(definition) + "\n\n"
 
-    def generate_definition(definition):
-        content = ""
-        name = definition['name']
-        params = definition["params"]
-        content += f"## {name}\n"
-        content += generate_signature(definition) + "\n\n"
+    content += process_description(definition["description"]) + "\n\n"
+    # content += "## Parameters\n"
+    content += "<Parameters>\n"
+    content += "\n\n\n".join(map(param2doc, params))
+    content += "\n\n\n</Parameters>\n\n"
 
-        content += process_description(definition["description"]) + "\n\n"
-        # content += "## Parameters\n"
-        content += "<Parameters>\n"
-        content += "\n\n\n".join(map(param2doc, params))
-        content += "\n\n\n</Parameters>\n\n"
+    tags = [name]
+    # concerned_examples = []
+    # concerned_examples = list(filter(lambda example: any([tag in example["tags"] for tag in tags]), examples))
+    # if len(concerned_examples) != 0:
+        # content += "\n\nimport DocCard from '@theme/DocCard';\n"
+        # content += "\n\n## Examples\n\n<ExampleCards>\n"
 
-        tags = [name]
-        concerned_examples = []
-        concerned_examples = list(filter(lambda example: any([tag in example["tags"] for tag in tags]), examples))
-        # if len(concerned_examples) != 0:
-            # content += "\n\nimport DocCard from '@theme/DocCard';\n"
-            # content += "\n\n## Examples\n\n<ExampleCards>\n"
+        # for concerned_example in concerned_examples:
+        #     name = f"name: '{concerned_example['name']}', "
+        #     href = f"href: '/docs/examples/{concerned_example['name']}', "
+        #     image = f"image: require('@site/static/img/typst-generated/{concerned_example['image']}'), "
+        #     description = f"description: '{concerned_example['description']}', "
+        #     content += "  <DocCard item={{type: 'link', " + href + image + description + " }} />"
+        # content += "\n\n</ExampleCards>"
+    return content
 
-            # for concerned_example in concerned_examples:
-            #     name = f"name: '{concerned_example['name']}', "
-            #     href = f"href: '/docs/examples/{concerned_example['name']}', "
-            #     image = f"image: require('@site/static/img/typst-generated/{concerned_example['image']}'), "
-            #     description = f"description: '{concerned_example['description']}', "
-            #     content += "  <DocCard item={{type: 'link', " + href + image + description + " }} />"
-            # content += "\n\n</ExampleCards>"
-        return content
-    
+
+def generate_mdx(docs, filename, examples=[]):
     definitions = docs["definitions"]
+
+    metadata = ""
+
+    metadata += f"slug: /reference/{filename}\n"
 
     desc = docs["description"]
     module_description = f"{process_description(desc)}\n\n"
@@ -125,15 +129,33 @@ def generate_mdx(docs, examples=[]):
         module_description += "<hr />\n\n"
     elif len(definitions) == 1:
         desc = definitions[0]["description"].split(".")[0] + "."
-
-        module_description = f"""---
-description: "{process_description(desc, replace_crossrefs=False)}"
----
-
-"""
-    return module_description + "\n<hr />\n".join(map(generate_definition, docs["definitions"]))
+        metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
 
 
+    return "---\n" + metadata + "---\n\n" + module_description + "\n<hr />\n".join(map(definition_to_mdx, docs["definitions"]))
+
+def generate_mdx_files(
+    name: str,
+    dir: str,
+    docs
+):
+    definitions = docs["definitions"]
+    desc = docs["description"]
+    
+    if len(definitions) != 1 and desc != "":
+        # write a master file
+        with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
+            file.write(f"{process_description(desc)}")
+
+    for definition in definitions:
+        name = definition["name"]
+        metadata = f"slug: /reference/{name}\n"
+        content = "---\n" + metadata + "---\n\n" + definition_to_mdx(definition)
+            
+        with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
+            file.write(content)
+
+    
 def process_file(
     filename: str,
     root_out: str,
@@ -145,34 +167,38 @@ def process_file(
         if len(docs["definitions"]) == 0:
             return
         print(filename)
-        mdx = generate_mdx(docs, examples=examples)
-        # continue
 
-        filename = os.path.basename(filename)
+        generate_mdx_files(name=os.path.basename(root_out), dir=root_out, docs=docs)
 
-        with open(os.path.join(root_out, filename.replace(".typ", ".mdx")), "w", encoding="utf-8") as file:
-            file.write(mdx)
+        # filename_without_ext = os.path.basename(filename).split(".")[0]
+        # mdx = generate_mdx(docs, filename_without_ext, examples=examples)
+        # with open(os.path.join(root_out, filename_without_ext + ".mdx"), "w", encoding="utf-8") as file:
+        #     file.write(mdx)
 
 def main():
     examples = load_available_examples()
     root = "lilaq/src"
     
     paths = [
-        "model/",
-        "plot/",
-        "loading/txt.typ",
-        "logic/scale.typ",
-        "math.typ",
-        "vec.typ",
+        ("model/", "Diagram Elements"),
+        ("plot/", "Plotting"),
+        ("loading/txt.typ", ""),
+        ("logic/scale.typ", "Scale"),
+        ("math.typ", "Math"),
+        ("vec.typ", "Vec"),
         # "ticking.typ",
     ]
 
     outpath = "docs/reference"
     os.makedirs(outpath, exist_ok=True)
     
-    for path in paths:
+    for (path, destination) in paths:
+
+        destination_path = os.path.join(outpath, destination)
+        os.makedirs(destination_path, exist_ok=True)
+        
         if path.endswith(".typ"):
-            process_file(os.path.join(root, path), outpath, examples=examples)
+            process_file(os.path.join(root, path), destination_path, examples=examples)
             continue
         
         path = os.path.join(root, path)
@@ -180,7 +206,7 @@ def main():
         for dirpath, subdirs, filenames in os.walk(path, topdown=True):
             for filename in filenames:
                 if filename.endswith(".typ"):
-                    process_file(os.path.join(dirpath, filename), outpath, examples=examples)
+                    process_file(os.path.join(dirpath, filename), destination_path, examples=examples)
 
 
 
