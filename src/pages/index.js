@@ -26,7 +26,7 @@ function HomepageHeader() {
           </Link>
         </div>
       </div>
-      <img src={useBaseUrl('/img/typst-generated/flower.svg')} alt="lilaq flower" />
+      <img src={useBaseUrl('/img/typst-generated/flower.svg')} alt="Lilaq flower plot" />
     </header>
   );
 }

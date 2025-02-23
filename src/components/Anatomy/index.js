@@ -18,7 +18,7 @@ export default function Annotations() {
 
         {/* <Anatomy /> */}
 
-        <img src={useBaseUrl('/img/typst-generated/anatomy.svg')} alt="bsg" />
+        <img src={useBaseUrl('/img/typst-generated/anatomy.svg')} alt="Anatomy of a Lilaq plot" />
 
         <Label title="title" />
         <Label title="ylabel" href="/docs/reference/label" />

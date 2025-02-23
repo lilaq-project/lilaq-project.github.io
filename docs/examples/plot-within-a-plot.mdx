@@ -14,8 +14,8 @@ Inside the diagram, we use <Crossref target="lq.place" /> to plot a small subsec
   range(k).map(k => calc.pow(0.5, k) * calc.cos(calc.pow(5, k) * x)).sum()
 }
 
-#let xs = lq.linspace(-.5, .5, num: 1000)
-#let xs2 = lq.linspace(-.05, 0, num: 1000)
+#let xs = lq.linspace(-0.5, .5, num: 1000)
+#let xs2 = lq.linspace(-0.05, 0, num: 1000)
 
 #show: lq.set-grid(stroke: none)
 
@@ -27,7 +27,7 @@ Inside the diagram, we use <Crossref target="lq.place" /> to plot a small subsec
 
   lq.plot(xs, mark: none, xs.map(weierstrass)),
 
-  lq.rect(-.05, 1.5, width: .05, height: .3),
+  lq.rect(-0.05, 1.5, width: .05, height: .3),
 
   lq.place(
     60%, 100% - 1.2em, 
