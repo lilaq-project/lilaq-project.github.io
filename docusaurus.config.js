@@ -21,14 +21,14 @@ const config = {
   titleDelimiter: "−",
 
   staticDirectories: ['static'],
-  // Set the production url of your site here
-  url: 'https://lilaq-project.github.io',
+  url: 'https://lilaq.org', // production url
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   organizationName: 'lilaq-project', 
   projectName: 'lilaq-project.github.io', 
+  deploymentBranch: "gh-pages",
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
@@ -121,6 +121,13 @@ const config = {
             className: "navbar--github-link",
           },
         ],
+      },
+      docs: {
+
+        sidebar: {
+          // hideable: true,
+          autoCollapseCategories: true,
+        }
       },
       footer: {
         style: 'dark',
