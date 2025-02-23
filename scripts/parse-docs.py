@@ -8,6 +8,8 @@ def process_description(description: str, replace_crossrefs=True) -> str:
     md = typ2md.typ_to_md(description)
     def replace_cross_ref(match):
         name = match.group()[1:].replace(".", "#")
+        # if name.startswith("std."):
+        #     return f"[]()"
         target = name
         return f'<Crossref target="{target}" />'
     if replace_crossrefs:
@@ -62,6 +64,8 @@ def param2doc(param: dict) -> str:
             
         types = [f"{ref_type(t)}" for t in param["types"]]
         string += f" : {' | '.join(types)}"
+    else:
+        print(f"Warning: the parameter {param} has no type annotations")
     if "default" in param:
         string += f" <Default>`{param['default']}`</Default>"
     string += f" {{#{name}}}"
