@@ -92,7 +92,7 @@ def definition_to_mdx(definition):
     content = ""
     name = definition['name']
     params = definition["params"]
-    content += f"## {name}\n"
+    # content += f"## {name}\n"
     content += generate_signature(definition) + "\n\n"
 
     content += process_description(definition["description"]) + "\n\n"
