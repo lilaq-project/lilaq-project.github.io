@@ -1,1 +1,44 @@
-[link](/docs/reference/plot)
+---
+title: Using style cycles
+description: This tutorial explains style cycles and shows how to use them. 
+---
+
+
+**Note that currently style cycles are in a mock-up stage since there are no user-defined types available yet. Instead we use a _huge_ hack abusing existing types.** But this is good for studying how everything should behave. 
+
+
+It is possible to create so-called style cycles that determine for example the color and mark for consecutive plots. By default, a color cycle is set up that affects most plots:
+
+```example
+#lq.diagram(
+  lq.plot(range(4), range(2, 6), label: "1"),
+  lq.plot(range(4), range(1, 5), label: "2"),
+  lq.plot(range(4), range(0, 4), label: "3"),
+)
+```
+
+The cycle can be set per-diagram and it takes an array of functions that transform content for use in a show rule:
+```typ
+#lq.diagram(
+  cycle: (
+    it => { set lq.style(fill: blue); it },
+    it => { 
+      set lq.style(fill: orange)
+      set lq.mark(align: lq.marks.x) 
+      it
+    },
+  ),
+  lq.plot(..)
+)
+```
+Currently, there are two things that can be set: `lq.style` and `lq.mark`. 
+- `lq.style` determines general color and stroke settings that also apply to bar plots etc. 
+  - `lq.style.fill` is the main color. This sets the line, mark and fill color at once. However, this setting has the lowest precedence and is overridden by all other settings if they are not `auto`. 
+  - `lq.style.stroke` is the main stroke, applied to the line of `lq.plot`, `lq.stem` etc. but also to `lq.bar`. If the stroke contains no color, the color is inherited from `lq.style.fill`
+- `lq.mark` determines all settings concerning marks
+  - `lq.mark.fill`: How to fill the mark. Normally inherited from `lq.style.fill`
+  - `lq.mark.stroke`: How to stroke the mark. Normally inherited from `lq.style.fill` (!)
+  - `lq.mark.inset`: The size of the mark. The name `inset` is of course temporary and due to the hack of abusing `grid` for marks. 
+  - `lq.mark.align`: The mark to use. This has to be one of `lq.marks` or another function that takes a single positional dictionary with the keys `fill`, `stroke`, and `size`. The name `align` is of course temporary and due to the hack of abusing `grid` for marks. 
+
+Many parameters to `lq.plot`, `lq.scatter` etc. are by default set to `auto`, e.g., `stroke`, `mark`, `mark-size`. This means that the fields are inherited from the current style. The current style can of course be overridden per-plot by setting these parameters to explicit values. 

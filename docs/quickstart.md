@@ -5,10 +5,12 @@ sidebar_position: 2
 
 In this tutorial you will learn how to use Lilaq for creating basic diagrams and plots. 
 
-We will start by importing Lilaq. 
+We will start by importing Lilaq under the canonical abbreviation `lq`.
 ```typ
 #import lilaq
 ```
+Since Lilaq is a rather flat namespace with many definitions, it is highly recommended *not* to import everything `*` from it into the global scope. 
+
 
 ## Getting started
 
@@ -42,7 +44,7 @@ A diagram consists of plots, axes, ticks, labels, legends and more. Click on any
 import Anatomy from '@site/src/components/Anatomy';
 
 <Anatomy />
-
+<!-- 
 ## Ticks
 
 Lilaq tries to automatically find a good distance and distribution for axis ticks. However, in some cases the algorithm might produce suboptimal results or a specific configuration is required. 
@@ -56,4 +58,4 @@ There are different level of tick customization, ascending both in power and com
 ### Manual tick positions
 ### Custom tick locators
 
-Lilaq comes with a few automatic tick locators, dedicated to finding appropriate tick locations e.g. for linear or logarithmic plotting. Depending on the setting of <Crossref target="diagram#xscale" /> and <Crossref target="diagram#yscale" />. However, it is also possible to write a tick locator
+Lilaq comes with a few automatic tick locators, dedicated to finding appropriate tick locations e.g. for linear or logarithmic plotting. Depending on the setting of <Crossref target="diagram#xscale" /> and <Crossref target="diagram#yscale" />. However, it is also possible to write a tick locator -->

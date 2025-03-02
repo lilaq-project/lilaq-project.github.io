@@ -8,7 +8,7 @@ export default function Home() {
       title={`${siteConfig.title} - ${siteConfig.tagline}`}
       description={`${siteConfig.tagline}`}>
 
-        Still working on it
+        We are working on it!
     </Layout>
   );
 }
