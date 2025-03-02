@@ -1,4 +1,9 @@
 release:
   label: Release
-  permalink: /hola
+  permalink: /release
   description: Release announcements
+
+talk:
+  label: Talk
+  permalink: /release
+  description: Talks and more
