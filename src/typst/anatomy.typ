@@ -26,7 +26,7 @@
     yaxis: (tick-distance: 5),
     xlim: (0, 4),
     ylim: (0, 15),
-    legend: (pos: right + bottom),
+    legend: (position: right + bottom),
     lq.scatter(
         x.zip(dx).map(array.sum),
         y.zip(dy).map(array.sum),

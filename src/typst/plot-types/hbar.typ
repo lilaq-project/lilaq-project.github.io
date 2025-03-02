@@ -2,8 +2,8 @@
 #show: template
 
 
-#let y = lq.arange(-4, 5)
-#let x = y.map(x => calc.sin(x*x/6))
+#let y = lq.arange(-4, 2)
+#let x = y.map(x => calc.exp(x*x/8))
 
 #diagram(
   lq.hbar(x, y, fill: color),

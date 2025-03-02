@@ -9,7 +9,7 @@
 
 #diagram(
   lq.boxplot(
-    (x1, x2), 
+    x1, x2, 
     stroke: color, 
     median: black
   ),
