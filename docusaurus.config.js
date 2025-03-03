@@ -11,6 +11,7 @@ import { light as typstLight, dark as typstDark } from "./src/theme/typst.js";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkTypst from './src/remark/remark-typst.js'
+// import remarkCrossrefs from './src/remark/remark-crossrefs.js'
 
 
 /** @type {import('@docusaurus/types').Config} */ 
@@ -53,7 +54,7 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/lilaq-project/lilaq-project.github.io/tree/main/',
+          // editUrl: 'https://github.com/lilaq-project/lilaq-project.github.io/tree/main/',
           beforeDefaultRemarkPlugins: [remarkTypst],
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
@@ -65,7 +66,7 @@ const config = {
             xslt: true,
           },
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/lilaq-project/lilaq-project.github.io/tree/main/',
+          // editUrl: 'https://github.com/lilaq-project/lilaq-project.github.io/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
