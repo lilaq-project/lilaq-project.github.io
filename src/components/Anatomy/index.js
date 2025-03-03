@@ -28,7 +28,9 @@ export default function Annotations() {
         <Label title="legend" />
         {/* <Label title="ticklabel" /> */}
         <Label title="tick" />
-        <Label title="subtick" href="/docs/reference/tick" />
+        <Label title="spine" />
+        <Label title="tick-label" />
+        <Label title="grid" />
         <Label title="scatter" />
         <Label title="plot" />
       </div>
