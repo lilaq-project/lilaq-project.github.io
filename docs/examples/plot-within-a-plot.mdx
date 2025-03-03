@@ -15,7 +15,7 @@ Inside the diagram, we use <Crossref target="lq.place" /> to plot a small subsec
 }
 
 #let xs = lq.linspace(-0.5, .5, num: 1000)
-#let xs2 = lq.linspace(-0.05, 0, num: 1000)
+#let xs-fine = lq.linspace(-0.05, 0, num: 1000)
 
 #show: lq.set-grid(stroke: none)
 
@@ -37,7 +37,7 @@ Inside the diagram, we use <Crossref target="lq.place" /> to plot a small subsec
       margin: 0%,
       ylim: (1.5, 1.8),
       fill: white,
-      lq.plot(xs2, mark: none, xs2.map(weierstrass)),
+      lq.plot(xs-fine, mark: none, xs-fine.map(weierstrass)),
     )
   )
 )

@@ -19,7 +19,7 @@ We could load this file via the built-in [`csv`](https://typst.app/docs/referenc
 - The `csv` function returns the data as an array of rows (being arrays themselves). However, we want to plot the columns − therefore the data needs to be transposed. 
 - The individual numeric values are parsed as strings. We need to convert them to `float` before plotting. 
 
-Both points are addressed with the function `lq.load-txt` provided by Lilaq. 
+Both points are addressed with the function <Crossref target="lq.load-txt" /> provided by Lilaq. 
 
 ```example
 >>> #let read = p => read("docs/examples/" + p)

@@ -9,7 +9,7 @@ We will start by importing Lilaq under the canonical abbreviation `lq`.
 ```typ
 #import lilaq
 ```
-Since Lilaq is a rather flat namespace with many definitions, it is highly recommended *not* to import everything `*` from it into the global scope. 
+Since Lilaq has a rather flat namespace with many definitions, it is highly recommended *not* to import everything `*` from it into the global scope. 
 
 
 ## Getting started
@@ -39,7 +39,7 @@ Note, that a legend automatically appears when the plots are labelled. Only labe
 
 ## Anatomy of a diagram
 
-A diagram consists of plots, axes, ticks, labels, legends and more. Click on any annotation to find out more about configuration and customization. 
+A diagram consists of plots, axes, ticks, labels, legends and more. Click on any annotation to find out more about parameters, usage, and customization. 
 
 import Anatomy from '@site/src/components/Anatomy';
 
