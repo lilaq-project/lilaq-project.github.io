@@ -1,6 +1,6 @@
 ---
 title: Drawing shapes
-description: How to draw primitive shapes. 
+description: Drawing primitive shapes and arbitrary content into diagrams. 
 ---
 
 

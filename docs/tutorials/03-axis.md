@@ -3,9 +3,9 @@ title: Axis configuration
 description: A tutorial for configuring and customizing the diagram axes. 
 ---
 
-
-
 In this tutorial you will learn how to configure and customize the axes of a diagram. 
+
+
 
 
 ## Scales
@@ -30,6 +30,7 @@ You can also make up your own scale with the [`scale`](../reference/scale) const
 
 
 
+
 ## Limits
 
 By default, the limits of the diagrams are computed automatically as the maxima and minima of all plots contained in a diagram. On top, so-called margins (see <Crossref target="diagram#margin" />) are applied to enhance the computed range a bit. 
@@ -47,6 +48,7 @@ You can define the limits manually through <Crossref target="diagram#xlim" /> an
 Note that 
 - no margins are applied to fixed limits and
 - it is possible to leave the upper or lower limit at `auto`. 
+
 
 
 
@@ -84,14 +86,27 @@ In the future, you will be able to write
 
 
 
+
 ## Ticks
 
 Todo: This is a long story. Let us make this a separate tutorial. 
 
 
+## The spine
+
+todo
+
+
+
+
 ## Placement and mirrors
 
 Usually, the $x$ axis is placed at the bottom and the $y$ axis is placed at the left. But what if we wanted to change that up? 
+
+todo
+
+
+
 
 ## Arrows and schoolbook styles
 

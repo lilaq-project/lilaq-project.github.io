@@ -1,6 +1,8 @@
 Mc-Zen:
   name: Mc-Zen
   url: https://github.com/Mc-Zen
+  title: Lilaq author/maintainer
+  image_url: https://github.com/Mc-Zen.png
   page: true
   socials:
     github: Mc-Zen

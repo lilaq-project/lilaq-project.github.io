@@ -23,5 +23,5 @@ For now, you have to download Lilaq manually from the [repository](https://githu
 
 ## Study
 
-We have a [**quick-start guide**](./quickstart.md) available for you to immediately get your hands dirty. 
+We have a [**quick-start guide**](./quickstart) available for you to immediately get your hands dirty. 
 

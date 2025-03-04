@@ -1,6 +1,6 @@
 ---
 title: Using style cycles
-description: This tutorial explains style cycles and shows how to use them. 
+description: Creating and using cycles to style consecutive plots. 
 ---
 
 :::warning

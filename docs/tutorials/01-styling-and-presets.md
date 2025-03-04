@@ -1,11 +1,11 @@
 ---
-title: Styling and Presets
-description: How to use show and set rules with Lilaq elements. 
+title: Styling and presets
+description: How to use show and set rules to power up Lilaq elements. 
 ---
 
 This tutorial deals with styling and configuration in general and on a broader level. The following tutorials give more insight into styling of individual parts of a diagram. 
-- [Axis tutorial](axis.md)
-- [Legend tutorial](legend.md)
+- [Axis tutorial](axis)
+- [Legend tutorial](legend)
 
 ## Elements for styling
 
