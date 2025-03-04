@@ -137,8 +137,20 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Quick-start guide',
+                to: '/docs/quickstart',
+              },
+              {
+                label: 'Plot types',
+                to: '/docs/plot-types',
+              },
+              {
+                label: 'Tutorials',
+                to: '/docs/category/tutorials',
+              },
+              {
+                label: 'Reference',
+                to: '/docs/category/reference',
               },
             ],
           },
