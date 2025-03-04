@@ -127,6 +127,7 @@ def generate_mdx(docs, filename, examples=[]):
 
     desc = docs["description"]
     module_description = f"{process_description(desc)}\n\n"
+    print(len(definitions))
     if desc != "":
         if len(definitions) > 1:
             module_description += "import TOCInline from '@theme/TOCInline';\n\n<TOCInline toc={toc} maxHeadingLevel={2} />\n\n"
@@ -150,10 +151,17 @@ def generate_mdx_files(
         # write a master file
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
             file.write(f"{process_description(desc)}")
+    
+    main_metadata = ""
+    if len(definitions) == 1:
+        desc = definitions[0]["description"].split(".")[0] + "."
+        main_metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
+
 
     for definition in definitions:
         name = definition["name"]
         metadata = f"slug: /reference/{name}\n"
+        metadata += main_metadata
         content = "---\n" + metadata + "---\n\n" + definition_to_mdx(definition)
             
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
