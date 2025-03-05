@@ -92,18 +92,48 @@ In the future, you will be able to write
 Todo: This is a long story. Let us make this a separate tutorial. 
 
 
-## The spine
-
-todo
-
-
-
 
 ## Placement and mirrors
 
-Usually, the $x$ axis is placed at the bottom and the $y$ axis is placed at the left. But what if we wanted to change that up? 
+Usually, the $x$-axis is placed at the bottom and the $y$-axis is placed at the left of a diagram. But what if we wanted to change that up? The parameter <Crossref target="axis#position" /> allows us to do just that. 
 
-todo
+```example
+#lq.diagram(
+  yaxis: (position: right),
+  width: 3cm, height: 3cm
+)
+```
+
+But now the axis on the left has vanished entirely while before, there was a copy − a so-called _mirror_ of the axis on the right side (although without the tick labels). This is because when specifying the position explicitly, the mirror is turned off by default. 
+
+We can restore the mirror axis by setting <Crossref target="mirror" /> to `true`. This parameter also gives us more fine-grained control over the nature of the mirror. By passing `(ticks: false)`, we can for example remove the ticks from the mirror. 
+
+```example
+#lq.diagram(
+  yaxis: (position: right, mirror: true),
+  xaxis: (mirror: (ticks: false)),
+  width: 3cm, height: 3cm
+)
+```
+With `(tick-labels: true)`, it is even possible to show the tick labels on the mirror axis. 
+
+Not only can axes be placed at the four sides of the diagram, they can even be moved [in-](#arrows-and-schoolbook-styles) or [outside](#additional-axes) the diagram, see the sections below. 
+
+
+
+
+## The spine
+
+The axis <Crossref target="spine" /> (the line drawn along the axis) is an element of its own. 
+```example
+#show: lq.set-spine(stroke: 1pt + red)
+#show: lq.set-tick(stroke: 0.5pt)
+
+#lq.diagram(width: 2cm, height: 3cm)
+```
+By default, <Crossref target="tick" /> inherits its stroke from the spine to make setting thickness and color easier. The spine also has parameters for arrow tips which is demonstrated in the next section. 
+
+Note that the parameters <Crossref target="axis#stroke" />, <Crossref target="axis#tip" />, and <Crossref target="axis#toe" /> are directly forwarded to the spine of the axis and can be used to override the spine settings per-axis. 
 
 
 
@@ -133,6 +163,26 @@ The previous section leads us to the following question: What if want to have ou
   xaxis: (position: 0, tip: tiptoe.stealth, filter: filter),
   yaxis: (position: 0, tip: tiptoe.stealth, filter: filter),
 )
+```
+
+Following the [styling and preset tutorial](styling-and-presets), we can wrap this up in a preset. 
+
+```example
+#import "@preview/tiptoe:0.2.0"
+
+#let schoolbook-style = it => {
+  let filter(value, distance) = value != 0 and distance >= 5pt
+  let axis-args = (position: 0, filter: filter)
+  
+  show: lq.set-tick(inset: 2pt, outset: 2pt, pad: 0.4em)
+  show: lq.set-spine(tip: tiptoe.stealth)
+  show: lq.set-diagram(xaxis: axis-args, yaxis: axis-args)
+  it
+}
+
+#show: schoolbook-style
+
+#lq.diagram()
 ```
 
 
