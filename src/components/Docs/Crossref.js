@@ -4,7 +4,7 @@ export const Crossref = ({ target }) => {
     let display = target
     if (target.includes("#")) {
         const components = target.split("#")
-        display = [(<span key="1">{components[0]}</span>), "#" + components[1]]
+        display = [(<span key="1">{components[0]}</span>), "." + components[1]]
     }
     if (target.startsWith("lq.")) {
         target = target.substring(3)
