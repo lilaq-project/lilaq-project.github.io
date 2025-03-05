@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "parse-docs": "python scripts/parse-docs.py",
-    "compile-typst-images": "python scripts/compile-typst-images.py",
+    "generate-docs": "python scripts/generate-docs.py",
+    "generate-images": "python scripts/generate-images.py",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
