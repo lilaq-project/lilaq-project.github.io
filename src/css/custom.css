@@ -94,3 +94,11 @@ h3 {
   border-radius: 12%;
   filter: none !important;
 }
+
+/* a[href]:not(:where(
+  [href^="#"],
+  [href^="javascript:" i],  
+  [href^="/"]:not([href^="//"]),
+)):after {
+  content: ' ☍';
+} */

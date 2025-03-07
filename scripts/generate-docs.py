@@ -54,7 +54,7 @@ def load_available_examples():
 
 def param2doc(param: dict) -> str:
     name, description = param["name"], param["description"].replace("\n", "\n  ")
-    string = f"### <ParamName>{name}</ParamName>"
+    string = f"#### <ParamName>{name}</ParamName>"
     if "types" in param:
         def ref_type(type: str):
             if type.startswith("lq."):
