@@ -10,7 +10,7 @@ In this tutorial you will learn how to configure and customize the axes of a dia
 
 ## Scales
 
-The scaling of an axes is crucial to how your data is presented. By default, _linear_ scaling is used,  mapping the data coordinates _proportionally_ to document coordinates. The scale can be changed with the parameters <Crossref target="diagram#xscale" /> and <Crossref target="diagram#yscale" /> for the two main axes. Other common scalings are logarithmic (`"log"`) and symmetric logarithm (`"symlog"`)
+The scaling of an axes is crucial to how data is presented. By default, _linear_ scaling is used,  mapping the data coordinates _proportionally_ to document coordinates. The scale can be changed with the parameters <Crossref target="diagram#xscale" /> and <Crossref target="diagram#yscale" /> for the two main axes (or <Crossref target="axis#scale" /> in general). Other common scalings are logarithmic (`"log"`) and symmetric logarithm (`"symlog"`). 
 ```example
 #lq.diagram(
   xlim: (1, 100),
@@ -19,7 +19,7 @@ The scaling of an axes is crucial to how your data is presented. By default, _li
   yscale: "symlog"
 )
 ```
-These strings are just short-hands to select predefined scale objects. Equivalently, you can put `xscale: lq.scale.log()`. Although it is more verbose, this way of creating a new scale gives use more control. Let us create a new symlog scale with a different threshold. 
+These strings are just shorthands to select predefined scale objects. Equivalently, you can put `xscale: lq.scale.log()`. Although it is more verbose, this second way of creating a new scale gives use more control. As an example, let us create a new symlog scale with a different threshold than the default. 
 ```example
 #lq.diagram(
   ylim: (-10, 10),
@@ -33,9 +33,9 @@ You can also make up your own scale with the [`scale`](../reference/scale) const
 
 ## Limits
 
-By default, the limits of the diagrams are computed automatically as the maxima and minima of all plots contained in a diagram. On top, so-called margins (see <Crossref target="diagram#margin" />) are applied to enhance the computed range a bit. 
+By default, the limits of the diagrams are computed automatically as the maxima and minima of all plots contained in a diagram. On top, so-called margins (see <Crossref target="diagram#margin" />) are applied to enhance the computed range by a bit. 
 
-You can define the limits manually through <Crossref target="diagram#xlim" /> and <Crossref target="diagram#ylim" />. 
+You can define the limits manually through <Crossref target="diagram#xlim" /> and <Crossref target="diagram#ylim" /> (or <Crossref target="axis#lim" /> in general). 
 ```example
 #let xs = lq.linspace(-3, 10)
 
@@ -54,7 +54,7 @@ Note that
 
 ## Axis labels
 
-No data without context! It is important to meaningfully label each axis of a diagram − for this we use <Crossref target="diagram#xlabel" /> and <Crossref target="diagram#ylabel" />. Instead of passing content to these parameters, you can also create a <Crossref target="label" /> to benefit from its additional parameters. 
+No data without context! It is important to meaningfully label each axis of a diagram − for this we use <Crossref target="diagram#xlabel" /> and <Crossref target="diagram#ylabel" /> (again <Crossref target="axis#label" /> in general). Instead of passing content to these parameters, you can also create a <Crossref target="label" /> to benefit from its additional parameters. 
 ```example
 #lq.diagram(
   xlabel: [On the $x$ axis],
@@ -76,10 +76,10 @@ Through the <Crossref target="label" /> type, we can also apply powerful customi
 
 Since Typst does not yet support user-defined types for which `set` and `show` rules can be written, Lilaq uses [elembic](https://github.com/PgBiel/elembic) as a temporary solution to work around this limitation. 
 
-In the future, you will be able to write
+In the future, you will be able to write just
 ```typ
 #show lq.label: set align(top + right)
-#set label(pad: 1em)
+#set lq.label(pad: 1em)
 ```
 
 :::
@@ -90,6 +90,23 @@ In the future, you will be able to write
 ## Ticks
 
 Todo: This is a long story. Let us make this a separate tutorial. 
+
+
+
+
+## The spine
+
+The axis <Crossref target="spine" /> (the line drawn along the axis) is an element of its own. 
+```example
+#show: lq.set-spine(stroke: 1pt + red)
+#show: lq.set-tick(stroke: 0.5pt)
+
+#lq.diagram(width: 2cm, height: 3cm)
+```
+By default, <Crossref target="tick" /> inherits its stroke from the spine to make setting thickness and color easier. The spine also has parameters for arrow tips which is demonstrated in the next section. 
+
+Note that the parameters <Crossref target="axis#stroke" />, <Crossref target="axis#tip" />, and <Crossref target="axis#toe" /> are directly forwarded to the spine of the axis and can be used to override the spine settings per-axis. 
+
 
 
 
@@ -122,27 +139,11 @@ Not only can axes be placed at the four sides of the diagram, they can even be m
 
 
 
-## The spine
-
-The axis <Crossref target="spine" /> (the line drawn along the axis) is an element of its own. 
-```example
-#show: lq.set-spine(stroke: 1pt + red)
-#show: lq.set-tick(stroke: 0.5pt)
-
-#lq.diagram(width: 2cm, height: 3cm)
-```
-By default, <Crossref target="tick" /> inherits its stroke from the spine to make setting thickness and color easier. The spine also has parameters for arrow tips which is demonstrated in the next section. 
-
-Note that the parameters <Crossref target="axis#stroke" />, <Crossref target="axis#tip" />, and <Crossref target="axis#toe" /> are directly forwarded to the spine of the axis and can be used to override the spine settings per-axis. 
-
-
-
-
 ## Arrows and schoolbook styles
 
 The previous section leads us to the following question: What if want to have our axis right in the middle, going through the origin of the coordinate system? Let us make some modifications to get a "schoolbook"-style diagram. 
 
-1. Instead of passing an `alignment` to `position`, we can also pass a data value on the _other_ axis, through which the axis should pass. 
+1. Instead of passing an `alignment` to <Crossref target="axis#position" />, we can also pass a `float`, a data value on the _other_ axis, through which the axis should pass. 
 
 2. In addition, let us add arrow tips to the axes. These are powered by the package [tiptoe](https://typst.app/universe/package/tiptoe).
 
@@ -165,7 +166,7 @@ The previous section leads us to the following question: What if want to have ou
 )
 ```
 
-Following the [styling and preset tutorial](styling-and-presets), we can wrap this up in a preset. 
+Following the [styling and preset tutorial](styling-and-presets), we can wrap this up in a reusable preset. 
 
 ```example
 #import "@preview/tiptoe:0.2.0"
@@ -189,6 +190,39 @@ Following the [styling and preset tutorial](styling-and-presets), we can wrap th
 
 ## Additional axes
 
+Sometimes, two is just not enough. In this section, you will learn how to add an arbitrary number of axes to a diagram. We differentiate between three kinds of axes:
+- The _main axes_ which are just the two default $x$-axis and $y$-axis. 
+- _Dependent axes_ which are axes that show equivalent values but in different units. An example would be a spectrum that is shown in dependence of the wavelength on one side and in terms of photon energy on the opposite side. Note that there is a fixed relation between the wavelength and the energy of a photon, so these two really describe the same data. Another example is the famous Hertzsprung-Russell diagram which commonly shows absolute magnitude and luminosity on the $y$-axis and temperature and the corresponding spectral class on the $x$-axis. 
+
+  A dependent axis is linked to the corresponding main axis ($x$ or $y$) and defines a pair of functions that transform to and from this secondary unit, see the example below. A dependent axes
+- An _independent_ or _twin axis_ shows data unrelated to the corresponding main $x$ or $y$-axis. Twin axis are used to unite two plots in one diagram when they share one common axes. 
+
+  One traditional example is a climograph that shows the average temperature and precipitation per month. Both data sets share the “month” axis but have a unique (usually) $y$ axis. 
+
+
 ### Dependent axes
 
+
 ### Independent axes (twin axes)
+
+An independent axis contains plots as children. 
+```example
+#lq.diagram(
+  yaxis: (mirror: false),
+
+  lq.yaxis(
+    position: right,
+    lq.bar(
+      fill: blue.lighten(40%),
+      (1, 2, 3),
+      (20, 30, 24)
+    )
+  ),
+
+  lq.plot(
+    (1, 2, 3),
+    (14, 16, 13)
+  ),
+)
+```
+The [climograph example](/docs/examples/climograph) shows a fully-fledged demo. 
