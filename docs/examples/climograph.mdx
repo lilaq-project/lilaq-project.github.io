@@ -18,6 +18,8 @@ A climograph of Berlin showing temperature and precipitation with [twin axes](/d
   title: [Climate of Berlin],
   ylabel: [Temperature in °C],
   xlabel: [Month],
+  legend: (position: left + top),
+  margin: (top: 20%),
 
   yaxis: (mirror: false),
   xaxis: (
@@ -25,13 +27,6 @@ A climograph of Berlin showing temperature and precipitation with [twin axes](/d
     subticks: none
   ),
 
-  lq.plot(
-    range(12), temperature,
-    label: [Temperature],
-    color: red, stroke: 1pt, mark-size: 6pt,
-    z-index: 2.1
-  ),
-  
 
   lq.yaxis(
     position: right,
@@ -43,5 +38,11 @@ A climograph of Berlin showing temperature and precipitation with [twin axes](/d
     ),
   ),
   
+
+  lq.plot(
+    range(12), temperature,
+    label: [Temperature],
+    color: red, stroke: 1pt, mark-size: 6pt,
+  )
 )
 ```
