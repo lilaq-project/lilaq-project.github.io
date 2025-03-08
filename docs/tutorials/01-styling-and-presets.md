@@ -59,8 +59,8 @@ In the following example, we change the default alignment to `top + right` for <
 
 #lq.diagram(
   title: [Title],
-  xlabel: [$x$],
-  ylabel: [$y$]
+  xlabel: $x$,
+  ylabel: $y$
 )
 ```
 

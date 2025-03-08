@@ -42,7 +42,7 @@ Pretty easy. Let's add another plot, a title, and axis labels!
   lq.plot(xs, (2, 5, 4, 2, 3), mark: "o", label: [B])
 )
 ```
-Note that a legend automatically appears when the plots are labelled. Only labelled plots are listed. You can find out more in the [**legend tutorial**](./tutorials/legend) on how to configure and customize legends. 
+Note that a legend automatically appears when the plots are labeled. Only labeled plots are listed. You can find out more in the [**legend tutorial**](./tutorials/legend) on how to configure and customize legends. 
 
 
 
