@@ -102,3 +102,16 @@ h3 {
 )):after {
   content: ' ☍';
 } */
+
+
+@media screen and (max-width: 520px) {
+  .hero__title {
+    font-size: 2.3rem;
+  }
+  .hero__subtitle {
+    font-size: 1.2rem;
+  }
+  :root {
+    --ifm-list-left-padding: 1.2rem;
+  }
+}
