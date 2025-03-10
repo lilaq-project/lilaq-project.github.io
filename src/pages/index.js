@@ -6,7 +6,8 @@ import PlotTypes from '@site/src/components/PlotTypes';
 import Anatomy from '@site/src/components/Anatomy';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
-import Description from './description.mdx';
+import Description from './_description.mdx';
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 function HomepageHeader() {
