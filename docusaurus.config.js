@@ -95,7 +95,7 @@ const config = {
         title: 'Lilaq',
         logo: {
           alt: 'Lilaq Logo',
-          src: 'img/logo2.svg',
+          src: 'img/typst-generated/logo.svg',
           className: 'logo'
         },
         items: [
