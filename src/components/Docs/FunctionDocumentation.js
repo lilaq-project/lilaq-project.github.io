@@ -12,6 +12,12 @@ export const SignatureName = ({ children }) => (
 	</span>
 );
 
+export const SignatureParam = ({ children }) => (
+	<span className={styles.signatureParam}>
+		{children}
+	</span>
+);
+
 export const Parameters = ({ children }) => (
 	<div>
 		<div className={styles.parametersHeader}>

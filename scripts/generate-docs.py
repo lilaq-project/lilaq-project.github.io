@@ -76,14 +76,18 @@ def generate_signature(definition):
     name = definition["name"]
     string = f"<Signature>\n  <code>lq."
     string += f"<SignatureName>{name}</SignatureName>"
-    def display_param(param):
+    def display_param(param, comma=True):
         name = param["name"]
         result = f"[{name}](#{name})"
         if "default" in param:
             result += f"={param['default']}"
-        return result
+        if comma:
+            result += ", "
+        return f"<SignatureParam>{result}</SignatureParam>"
     if "params" in definition:
-        string += f"({', '.join(map(display_param, definition['params']))})"
+        n = len(definition['params'])
+        params = [display_param(param, i != n - 1) for i, param in enumerate(definition['params'])]
+        string += "(" + "".join(params)  + ")"
     string += "</code>\n</Signature>"
     return string
 

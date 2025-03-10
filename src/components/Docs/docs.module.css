@@ -1,6 +1,10 @@
 .signature {
   margin: 1em;
 }
+.signature code {
+
+  overflow-x: auto;
+}
 
 /* 
 h2 {
@@ -29,6 +33,10 @@ h2 {
   font-weight: bold;
 }
 
+.signatureParam {
+  word-wrap: normal;
+}
+
 .parameters {
   padding: 0 2em;
 }
@@ -47,7 +55,7 @@ h2 {
 }
 
 h4 {
-  line-height: 1.6em;
+  line-height: 1.7em;
 }
 
 @media screen and (max-width: 530px) {
@@ -59,6 +67,13 @@ h4 {
   .param {
     padding-left: 0;
     margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .signature {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 

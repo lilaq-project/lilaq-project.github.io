@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import styles from './plot-types.module.css';
+import styles from '../PlotTypes/plot-types.module.css';
 import ImageLine from '@site/static/img/typst-generated/plot-types/line.svg'
 import ImageRect from '@site/static/img/typst-generated/plot-types/rect.svg'
 import ImageEllipse from '@site/static/img/typst-generated/plot-types/ellipse.svg'
