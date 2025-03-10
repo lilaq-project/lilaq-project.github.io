@@ -6,7 +6,7 @@ This repository hosts the documentation of [Lilaq](https://github.com/lilaq-proj
 
 - Node.js
 - Python >= 3.8
-- Typst >= 0.12
+- Typst >= 0.13
 
 
 ### Local Development
@@ -18,7 +18,7 @@ $ git clone https://github.com/lilaq-project/lilaq.github.io --recursive
 and executing the following commands. 
 
 ```
-$ npm run compile-typst-images
-$ npm run parse-docs
+$ npm run generate-images
+$ npm run generate-docs
 $ npm run start
 ```
