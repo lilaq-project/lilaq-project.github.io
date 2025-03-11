@@ -1,5 +1,5 @@
 {
-  "name": "plugin-1",
+  "name": "plugin-simple-a",
   "version": "1.0.0",
   "description": "A Docusaurus v2 plugin!",
   "main": "src/index.ts",

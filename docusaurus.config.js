@@ -204,9 +204,7 @@ const config = {
 
   plugins: [
 
-    ['plugin-1', {
-      domain: 'lilaq.org'
-    }],
+    'plugin-simple-a',
 
   ]
 
