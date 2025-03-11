@@ -202,6 +202,14 @@ const config = {
     },
   ],
 
+  plugins: [
+
+    ['plugin-1', {
+      domain: 'lilaq.org'
+    }],
+
+  ]
+
 };
 
 export default config;

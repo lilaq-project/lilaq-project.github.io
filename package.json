@@ -21,6 +21,7 @@
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
     "mdast-util-find-and-replace": "^3.0.2",
+    "plugin-1": "file:plugins/plugin-simple-a",
     "prism-react-renderer": "^2.3.0",
     "raw-loader": "^4.0.2",
     "react": "^18.0.0",

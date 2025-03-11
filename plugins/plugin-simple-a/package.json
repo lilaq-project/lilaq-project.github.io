@@ -1,0 +1,25 @@
+{
+  "name": "plugin-1",
+  "version": "1.0.0",
+  "description": "A Docusaurus v2 plugin!",
+  "main": "src/index.ts",
+  "license": "Unlicense",
+  "scripts": {
+    "build": "tsc",
+    "prettier": "prettier --write **/*.{js,jsx,ts,tsx,md,yml,json}"
+  },
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "!lib/.tsbuildinfo"
+  ],
+  "prettier": {
+    "semi": false
+  },
+  "devDependencies": {
+    "@docusaurus/types": "^2.0.0-alpha.70"
+  },
+  "dependencies": {
+    "@docusaurus/utils-validation": "^2.4.1"
+  }
+}
