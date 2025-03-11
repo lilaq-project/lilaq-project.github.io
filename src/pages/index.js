@@ -25,6 +25,17 @@ function HomepageHeader() {
             to="/docs/intro">
             Get Started
           </Link>
+          <span className={styles.githubStars}>
+
+            <iframe
+              className={styles.indexCtasGitHubButton}
+              src="https://ghbtns.com/github-btn.html?user=lilaq-project&amp;repo=lilaq&amp;type=star&amp;count=true&amp;size=large"
+              width={130}
+              height={30}
+              title="GitHub Stars"
+            />
+
+          </span>
         </div>
       </div>
       <img src={useBaseUrl('/img/typst-generated/flower.svg')} alt="Lilaq flower plot" />

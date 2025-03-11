@@ -36,6 +36,11 @@ h2 {
   margin-bottom: 1em;
 }
 
+.githubStars {
+  padding: 1em;
+  display: flex;
+}
+
 @media screen and (max-width: 1180px) {
   .heroBanner {
     padding: 2rem 4rem;
