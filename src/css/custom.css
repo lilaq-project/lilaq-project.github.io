@@ -53,9 +53,8 @@ pre {
 .navbar--github-link {
 	width: 32px;
 	height: 32px;
-	padding: 6px;
-	margin-right: 20px;
-	margin-left: 6px;
+	padding: 5px;
+	margin-right: 6px;
 	border-radius: 50%;
 	transition: background var(--ifm-transition-fast);
 }

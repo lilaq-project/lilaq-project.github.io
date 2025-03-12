@@ -190,7 +190,18 @@ const config = {
         minHeadingLevel: 2,
         maxHeadingLevel: 4,
       },
-    }),
+      algolia: {
+        appId: 'YOVHDCCGI4',
+        apiKey: 'ab61d9b9a6530d8933d035feda6e4d77',
+        indexName: 'lilaq',
+        contextualSearch: true,
+        searchParameters: {},
+        searchPagePath: 'search', // Optional: path for search page that enabled by default (`false` to disable it)
+        // Optional: whether the insights feature is enabled or not on Docsearch (`false` by default)
+        insights: false,
+      },
+
+    }), // end themeConfig
 
 
   stylesheets: [
