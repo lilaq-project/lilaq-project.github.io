@@ -22,3 +22,4 @@ yarn-error.log*
 /docs/reference/**/*.mdx
 /static/img/typst-generated/*
 __pycache__
+/_check/*
