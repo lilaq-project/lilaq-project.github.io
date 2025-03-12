@@ -65,23 +65,36 @@ function CardLayout({href, icon, title, description, image}) {
 function CardCategory({item}) {
   const href = findFirstSidebarItemLink(item);
   const categoryItemsPlural = useCategoryItemsPlural();
+  let description = item.description
   // Unexpected: categories that don't have a link have been filtered upfront
   if (!href) {
     return null;
+  }
+  try {
+
+    const children = item.items
+    let index = children.find((child) => child.label == item.label)
+    // console.log(item)
+    const doc = useDocById(index.docId);
+    // console.log(doc)
+    description = doc.description
+  } catch(e) {
+
   }
   return (
     <CardLayout
       href={href}
       icon="🗃️"
       title={item.label}
-      description={item.description ?? categoryItemsPlural(item.items.length)}
+      description={description ?? categoryItemsPlural(item.items.length)}
     />
   );
 }
 function CardLink({item}) {
   const icon = isInternalUrl(item.href) ? '📄️' : '🔗';
   const doc = useDocById(item.docId ?? undefined);
-  let image_file = item.customProps?.image
+    // console.log(item.docId)
+    let image_file = item.customProps?.image
   // let image = undefined
   // if (image_file) {
   //   image_file = "" + image_file
