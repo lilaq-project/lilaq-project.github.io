@@ -4,6 +4,9 @@ description: A tutorial for configuring and customizing the diagram axes.
 ---
 
 In this tutorial you will learn how to configure and customize the axes of a diagram. 
+The possible parameters are documented at <Crossref target="axis" />. 
+
+Axes use the Typst package [Zero](https://typst.app/universe/package/zero) for formatting numbers in a consistent way throughout a document. Please refer to its documentation for configuring how numbers are displayed. 
 
 
 
