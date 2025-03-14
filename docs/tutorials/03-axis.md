@@ -248,7 +248,7 @@ Finally, we create a temperature plot on the main axes. We use this order to ens
 ```
 The [climograph example](/docs/examples/climograph) shows a fully-fledged demo. 
 
-The number of axes that can be added to a diagram is in principal unlimited. The <Crossref target="axis#position" /> can also take a tuple `(alignment, length)` that makes it possible to move axes outside the diagram. 
+The number of axes that can be added to a diagram is in principal unlimited. The <Crossref target="axis#position" /> can also take a dictionary `(align: .., offset: ..)` that makes it possible to move axes outside the diagram. 
 
 ```example
 #lq.diagram(
@@ -256,15 +256,15 @@ The number of axes that can be added to a diagram is in principal unlimited. The
   ylim: (-1, 1),
 
   lq.yaxis(
-    position: (right, 20pt), 
+    position: (align: right, offset: 20pt), 
     functions: (x => 2*x, y => 0.5*y)
   ),
   lq.yaxis(
-    position: (right, 50pt), 
+    position: (align: right, offset: 50pt), 
     functions: (x => calc.exp(x), y => calc.ln(y))
   ),
   lq.yaxis(
-    position: (right, 80pt), 
+    position: (align: right, offset: 80pt), 
     functions: (x => (x+1)*(x+1), y => calc.sqrt(y)-1)
   ),
 )
