@@ -117,6 +117,11 @@ const config = {
             position: 'left'
           },
           {
+            label: 'Ask',
+            to: 'https://forum.typst.app/tag/lilaq',
+            position: 'right'
+          },
+          {
             "aria-label": "GitHub repository",
             href: 'https://github.com/lilaq-project/lilaq',
             position: 'right',
