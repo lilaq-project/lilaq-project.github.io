@@ -160,7 +160,7 @@ const config = {
             items: [
               {
                 label: 'Typst Forum',
-                href: 'https://forum.typst.app/',
+                href: 'https://forum.typst.app/tag/lilaq',
               },
             ],
           },
