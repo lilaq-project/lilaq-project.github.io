@@ -65,6 +65,7 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
+          beforeDefaultRemarkPlugins: [remarkTypst],
           // Remove this to remove the "edit this page" links.
           // editUrl: 'https://github.com/lilaq-project/lilaq-project.github.io/tree/main/',
           // Useful options to enforce blogging best practices

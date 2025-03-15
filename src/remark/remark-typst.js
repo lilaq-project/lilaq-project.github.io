@@ -1,17 +1,18 @@
 import { visit } from "unist-util-visit";
 import { exec } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync } from "node:fs";
+import { readFileSync, existsSync, mkdirSync } from "node:fs";
 
 const typTemplate = `
 #set page(width: auto, height: auto, margin: .5cm, fill: white)
 #import lilaq
 `;
 
+const toml = require('toml');
+let package_config = toml.parse(readFileSync("lilaq/typst.toml", "utf8"));
 
 const replacements = [
-  ["#import lilaq", "#import \"@preview/lilaq:0.1.0\" as lq", "#import \"lilaq/src/lilaq.typ\" as lq"]
-  // ["#import lilaq", "#import \"lilaq/src/lilaq.typ\" as lq", "#import \"lilaq/src/lilaq.typ\" as lq"]
+  ["#import lilaq", "#import \"@preview/lilaq:" + package_config.package.version + "\" as lq", "#import \"lilaq/src/lilaq.typ\" as lq"]
 ]
 
 function split_once(content, separator) {
