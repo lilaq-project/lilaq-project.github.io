@@ -6,7 +6,8 @@ export type SimpleAnalyticsPluginOptions = { domain?: string };
 // const optionsSchema = Joi.object<SimpleAnalyticsPluginOptions>({ domain: Joi.string().hostname() });
 
 export default function pluginSimpleAnalytics(context: LoadContext, options: PluginOptions): Plugin {
-  const isProd = process.env.NODE_ENV === 'production';
+  // const isProd = process.env.NODE_ENV === 'production';
+  const isProd = true;
 
   return {
     name: 'docusaurus-plugin-simple-analytics',
