@@ -10,7 +10,7 @@ Today we release the first official version of Lilaq.
 
 It can now be installed from the Typst package manager through
 ```typ
-#import lilaq
+#import "@preview/lilaq:0.1.0" as lq
 ```
 
 

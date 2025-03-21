@@ -55,6 +55,15 @@ It is also possible to use an `alignment` position like `left` and tweak this po
 
 When `position` is an `alignment`, <Crossref target="legend#pad" /> determines the padding to the diagram borders. 
 
+Now, let us use a combination of `position` and `dx` to move the legend to the right of the diagram but have it vertically centered (in contrast to the first example in this subsection). 
+```example
+#lq.diagram(
+  legend: (position: left + horizon, dx: 100%),
+  lq.plot((1,2,3), (1,2,3), label: [A]),
+  lq.plot((1,2,3), (2,3,4), label: [B]),
+)
+```
+
 
 
 ## Modifying the legend table
