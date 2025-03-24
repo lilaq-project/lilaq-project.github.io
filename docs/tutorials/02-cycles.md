@@ -42,8 +42,19 @@ The style cycle can be set through <Crossref target="diagram#cycle" />. The simp
 )
 ```
 
+Alternatively, an array of dictionaries can be used to specify `color`, `mark`, and `stroke` (all optional). 
+```example
+#lq.diagram(
+  cycle: (
+    color: red, mark: "x",
+    color: teal, mark: "+"
+  ),
+  lq.plot(range(4), range(2, 6), label: [1]),
+  lq.plot(range(4), range(1, 5), label: [2]),
+)
+```
+
 For full control you can pass an array of content-transforming functions:
-<!-- that transform content for use in a show rule: -->
 ```example
 #lq.diagram(
   cycle: (
