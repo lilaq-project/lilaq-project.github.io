@@ -46,8 +46,8 @@ Alternatively, an array of dictionaries can be used to specify `color`, `mark`, 
 ```example
 #lq.diagram(
   cycle: (
-    color: red, mark: "x",
-    color: teal, mark: "+"
+    (color: red, mark: "x"),
+    (color: teal, mark: "+")
   ),
   lq.plot(range(4), range(2, 6), label: [1]),
   lq.plot(range(4), range(1, 5), label: [2]),
@@ -60,7 +60,7 @@ For full control you can pass an array of content-transforming functions:
   cycle: (
     it => { 
       set lq.style(fill: red); 
-      set lq.mark(align: lq.marks.triangle) 
+      set lq.mark(align: lq.marks.s3) 
       it 
     },
     it => { 
