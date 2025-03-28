@@ -165,7 +165,8 @@ def generate_mdx_files(
         metadata = f"slug: /reference/{name}\n"
         metadata += main_metadata
         desc = definition["description"].split(".")[0] + "."
-        metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
+        if not "\\" in desc:
+            metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
 
         content = "---\n" + metadata + "---\n\n" + definition_to_mdx(definition)
             
