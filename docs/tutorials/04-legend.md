@@ -30,7 +30,7 @@ In the future, you will be able to write
 
 
 
-## Positioning outside of the diagram
+## Positioning
 
 When the plot is too crowded, it might be better to show the legend next to the diagram instead of inside it. 
 We can achieve this by passing a coordinate tuple to <Crossref target="legend#position" />. Here we place the legend at the right of the diagram (`x: 100%` plus some padding) and at the top (`y: 0%`). 

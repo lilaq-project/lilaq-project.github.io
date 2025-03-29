@@ -26,12 +26,12 @@ export default function Annotations() {
         <Label title="yaxis" href="/docs/reference/axis" />
         <Label title="xaxis" href="/docs/reference/axis" />
         <Label title="legend" />
-        {/* <Label title="ticklabel" /> */}
         <Label title="tick" />
         <Label title="spine" />
         <Label title="tick-label" />
         <Label title="grid" />
         <Label title="scatter" />
+        <Label title="errorbar" />
         <Label title="plot" />
       </div>
     </div>

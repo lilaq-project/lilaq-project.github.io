@@ -126,7 +126,7 @@ Usually, the $x$-axis is placed at the bottom and the $y$-axis is placed at the 
 
 But now the axis on the left has vanished entirely. Before, there was a copy − a so-called _mirror_ of the axis on the right side (although without the tick labels). This is because when specifying the position explicitly, the mirror is turned off by default. 
 
-We can restore the mirror axis by setting <Crossref target="mirror" /> to `true`. This parameter also gives us more fine-grained control over the nature of the mirror. By passing `(ticks: false)`, we can for example remove the ticks from the mirror. 
+We can restore the mirror axis by setting <Crossref target="axis#mirror" /> to `true`. This parameter also gives us more fine-grained control over the nature of the mirror. By passing `(ticks: false)`, we can for example remove the ticks from the mirror. 
 
 ```example
 #lq.diagram(

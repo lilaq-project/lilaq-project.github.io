@@ -4,6 +4,7 @@ import Link from '@docusaurus/Link';
 import {
   useDocById,
   findFirstSidebarItemLink,
+  useCurrentSidebarCategory
 } from '@docusaurus/plugin-content-docs/client';
 import {usePluralForm} from '@docusaurus/theme-common';
 import isInternalUrl from '@docusaurus/isInternalUrl';
@@ -70,17 +71,13 @@ function CardCategory({item}) {
   if (!href) {
     return null;
   }
-  try {
 
-    const children = item.items
-    let index = children.find((child) => child.label == item.label)
-    // console.log(item)
-    const doc = useDocById(index.docId);
-    // console.log(doc)
-    description = doc.description
-  } catch(e) {
+  // if (item.type == "category") {
+  //   console.log(item)
+  //   console.log(useCurrentSidebarCategory())
 
-  }
+  // }
+  
   return (
     <CardLayout
       href={href}

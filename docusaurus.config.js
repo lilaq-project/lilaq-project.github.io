@@ -89,7 +89,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       metadata: [
-        {name: 'keywords', content: 'plotting, diagram, typst, lilaq'},
+        {name: 'keywords', content: 'plotting, diagram, typst, lilaq, data, visualization'},
       ],
       image: 'img/social-card.jpg',
       navbar: {
