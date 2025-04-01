@@ -4,13 +4,15 @@
 #import "/lilaq/src/lilaq.typ" as lq
 #import "@preview/suiji:0.3.0"
 
-#let x = lq.linspace(.3, 3.7, num: 7)
+#let x = lq.linspace(.3, 3.7, num: 11)
 #let y = x.map(x => x*x*.8 + 2)
-#let rng = suiji.gen-rng(22)
+
+#let rng = suiji.gen-rng(31)
+
 #let (rng, dx) = suiji.uniform(rng, low: -.2, high: .2, size: x.len())
 #let (rng, dy) = suiji.uniform(rng, low: -2, high: 2, size: x.len())
 #let (rng, color) = suiji.uniform(rng, low: 1, high: 10, size: x.len())
-#let (rng, size) = suiji.uniform(rng, low: 1, high: 20, size: x.len())
+#let (rng, size) = suiji.uniform(rng, low: 1, high: 50, size: x.len())
 
 
 #scale(
@@ -22,7 +24,6 @@
     ylabel:  [$y$],
     width: 180pt,
     height: 120pt,
-    xaxis: (tick-distance: 1),
     yaxis: (tick-distance: 5),
     xlim: (0, 4),
     ylim: (0, 15),
@@ -33,6 +34,10 @@
         size: size,
         label: [Data]
     ),
-    lq.plot(x, y, mark: none, stroke: green, label: [Fit]),
+    lq.plot(x, y, mark: none, label: [Fit]),
+    lq.plot(
+      (1,), (6,),
+      yerr: 1
+    )
   )
 )

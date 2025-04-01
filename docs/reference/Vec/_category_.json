@@ -1,0 +1,8 @@
+{
+  "label": "Vec",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "A module containing helper functions for selected vector operations. "
+  }
+}

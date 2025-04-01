@@ -123,8 +123,8 @@
 }
 
 .scatter {
-  left: 54.1%;
-  top: 59.4%;
+  left: 51%;
+  top: 62.1%;
   width: 4%;
   height: 5%;
 }
@@ -141,6 +141,18 @@
 }
 
 .plot a {
+  top: -1.9em;
+}
+
+
+.errorbar {
+  left: 35.9%;
+  top: 45.1%;
+  width: 4%;
+  height: 5%;
+}
+
+.errorbar a {
   top: -1.9em;
 }
 
