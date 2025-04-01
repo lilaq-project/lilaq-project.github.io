@@ -3,11 +3,6 @@ title: Using style cycles
 description: Creating and using cycles to style consecutive plots. 
 ---
 
-:::danger[Attention!]
-
-Due to an unexpected [bug](https://github.com/lilaq-project/lilaq/issues/8), when setting style cycles, the new cycle list is _appended_ to the existing cycle list (instead of replacing it as would be expected). This bug has already been fixed on main and a new version of Lilaq will be available soon. 
-
-:::
 
 :::warning
 
