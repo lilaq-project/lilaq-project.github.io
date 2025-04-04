@@ -64,6 +64,7 @@ Other breaking changes
 - ⚠️ The default tick length has been reduced from `4pt` to `3pt`. 
 - ⚠️ `diagram.legend` no longer supports `bool` arguments. Instead, use `legend: none` to turn the legend off (or `legend: (:)` to turn it back on after it has been deactivated previously). 
 - ⚠️ The default color of `vlines` and `hlines` is now black instead of blue. 
+- ⚠️ The default `z-index` values for `axis`, `legend`, and `place` have changed. 
 
 Fixed
 - An urgent [bug](https://github.com/lilaq-project/lilaq/issues/8) with style cycle lists being appended.
