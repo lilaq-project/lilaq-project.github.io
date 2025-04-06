@@ -1,4 +1,4 @@
-#import "template.typ": *
+#import "_template.typ": *
 #show: template
 
 #let x = lq.arange(-4, 5)

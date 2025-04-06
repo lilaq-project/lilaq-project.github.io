@@ -1,4 +1,4 @@
-#import "template.typ": *
+#import "_template.typ": *
 #import "@preview/suiji:0.3.0"
 #show: template
 
