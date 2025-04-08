@@ -108,6 +108,22 @@ Lilaq features a number of built-in color sequences under `lq.color.map`. As the
 #show-sequence(lq.color.map.petroff6, "petroff6")
 ```
 
+The `wong` sequence, suggested in https://www.nature.com/articles/nmeth.1618 serves similar purposes. 
+```typ render
+#set page(width: 400pt)
+
+#let show-sequence(colors, name) = {
+  raw(name)
+  grid(
+    columns: (1fr, ) * colors.len(),
+    ..colors.map(color => rect(fill: color, width: 100%, height: 30pt))
+  )
+}
+
+#show-sequence(lq.color.map.wong, "wong")
+```
+
+
 Also available is the default Matplotlib color cycle and its 20-color pendant. 
 ```typ render
 #set page(width: 400pt)
