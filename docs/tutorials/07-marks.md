@@ -10,6 +10,7 @@ Marks serve for _mark_-ing data points. Lilaq features a set of built-in marks, 
 There are two ways to specify a mark
 - Either by fetching a mark directly from `lq.marks`, e.g., `lq.marks.star`. Some marks have additional parameters that can be set here, e.g., `lq.marks.star.with(n: 6)`. 
 - Or as a `string` with a mark name from `lq.marks`. 
+- In addition, all parameters that take a mark also accept `none` to remove the mark altogether. 
 The available names are also shown in the table below. 
 
 
