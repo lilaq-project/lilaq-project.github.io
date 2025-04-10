@@ -108,7 +108,7 @@ Lilaq features a number of built-in color sequences under `lq.color.map`. As the
 #show-sequence(lq.color.map.petroff6, "petroff6")
 ```
 
-The `wong` sequence, suggested in https://www.nature.com/articles/nmeth.1618 serves similar purposes. 
+The `okabe-ito` sequence, suggested in https://jfly.uni-koeln.de/color/ serves similar purposes. In the [Mackie.jl](https://docs.makie.org/dev/) framework, this sequence is called "wong". 
 ```typ render
 #set page(width: 400pt)
 
@@ -120,7 +120,8 @@ The `wong` sequence, suggested in https://www.nature.com/articles/nmeth.1618 ser
   )
 }
 
-#show-sequence(lq.color.map.wong, "wong")
+
+#show-sequence(lq.color.map.okabe-ito, "okabe-ito")
 ```
 
 
