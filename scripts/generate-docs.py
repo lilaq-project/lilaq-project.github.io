@@ -72,9 +72,11 @@ def param2doc(param: dict) -> str:
     string += f"\n<Param>\n  {process_description(description)}\n</Param>"
     return string
 
-def generate_signature(definition):
+def generate_signature(definition, namespace=""):
+    if not namespace.endswith(".") and namespace != "":
+        namespace += "."
     name = definition["name"]
-    string = f"<Signature>\n  <code>lq."
+    string = f"<Signature>\n  <code>lq." + namespace
     string += f"<SignatureName>{name}</SignatureName>"
     def display_param(param, comma=True):
         name = param["name"]
@@ -92,12 +94,12 @@ def generate_signature(definition):
     return string
 
 
-def definition_to_mdx(definition):
+def definition_to_mdx(definition, namespace=""):
     content = ""
     name = definition['name']
     params = definition["params"]
     # content += f"## {name}\n"
-    content += generate_signature(definition) + "\n\n"
+    content += generate_signature(definition, namespace=namespace) + "\n\n"
 
     content += process_description(definition["description"]) + "\n\n"
     # content += "## Parameters\n"
@@ -122,31 +124,32 @@ def definition_to_mdx(definition):
     return content
 
 
-def generate_mdx(docs, filename, examples=[]):
-    definitions = docs["definitions"]
+# def generate_mdx(docs, filename, examples=[]):
+#     definitions = docs["definitions"]
 
-    metadata = ""
+#     metadata = ""
 
-    metadata += f"slug: /reference/{filename}\n"
+#     metadata += f"slug: /reference/{filename}\n"
 
-    desc = docs["description"]
-    module_description = f"{process_description(desc)}\n\n"
-    print(len(definitions))
-    if desc != "":
-        if len(definitions) > 1:
-            module_description += "import TOCInline from '@theme/TOCInline';\n\n<TOCInline toc={toc} maxHeadingLevel={2} />\n\n"
-        module_description += "<hr />\n\n"
-    elif len(definitions) == 1:
-        desc = definitions[0]["description"].split(".")[0] + "."
-        metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
+#     desc = docs["description"]
+#     module_description = f"{process_description(desc)}\n\n"
+#     print(len(definitions))
+#     if desc != "":
+#         if len(definitions) > 1:
+#             module_description += "import TOCInline from '@theme/TOCInline';\n\n<TOCInline toc={toc} maxHeadingLevel={2} />\n\n"
+#         module_description += "<hr />\n\n"
+#     elif len(definitions) == 1:
+#         desc = definitions[0]["description"].split(".")[0] + "."
+#         metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
 
 
-    return "---\n" + metadata + "---\n\n" + module_description + "\n<hr />\n".join(map(definition_to_mdx, docs["definitions"]))
+#     return "---\n" + metadata + "---\n\n" + module_description + "\n<hr />\n".join(map(definition_to_mdx, docs["definitions"]))
 
 def generate_mdx_files(
     name: str,
     dir: str,
-    docs
+    docs,
+    namespace="."
 ):
     definitions = docs["definitions"]
     desc = docs["description"]
@@ -168,7 +171,7 @@ def generate_mdx_files(
         if not "\\" in desc:
             metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
 
-        content = "---\n" + metadata + "---\n\n" + definition_to_mdx(definition)
+        content = "---\n" + metadata + "---\n\n" + definition_to_mdx(definition, namespace=namespace)
             
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
             file.write(content)
@@ -177,7 +180,8 @@ def generate_mdx_files(
 def process_file(
     filename: str,
     root_out: str,
-    examples=[]
+    examples=[],
+    namespace=""
 ):
     with open(filename, "r", encoding="utf-8") as file:
         content = file.read()
@@ -186,7 +190,12 @@ def process_file(
             return
         print(filename)
 
-        generate_mdx_files(name=os.path.basename(root_out), dir=root_out, docs=docs)
+        generate_mdx_files(
+            name=os.path.basename(root_out), 
+            dir=root_out, 
+            docs=docs,
+            namespace=namespace
+        )
 
         # filename_without_ext = os.path.basename(filename).split(".")[0]
         # mdx = generate_mdx(docs, filename_without_ext, examples=examples)
@@ -196,35 +205,52 @@ def process_file(
 def main():
     examples = load_available_examples()
     root = "lilaq/src"
+
+    class DocDir:
+        def __init__(self, path, name, namespace=""):
+            self.path = path
+            self.name = name
+            self.namespace = namespace
+
     
-    paths = [
-        ("model/", "Diagram Elements"),
-        ("plot/", "Plotting"),
-        ("loading/txt.typ", ""),
-        ("logic/scale.typ", "Scale"),
-        ("math.typ", "Math"),
-        ("vec.typ", "Vec"),
-        # "ticking.typ",
+    doc_dirs = [
+        DocDir("model/", "Diagram Elements"),
+        DocDir("plot/", "Plotting"),
+        DocDir("loading/txt.typ", ""),
+        DocDir("logic/scale.typ", "Scale", namespace="scale"),
+        DocDir("math.typ", "Math",),
+        DocDir("vec.typ", "Vec", namespace="vec"),
     ]
 
     outpath = "docs/reference"
     os.makedirs(outpath, exist_ok=True)
     
-    for (path, destination) in paths:
-
-        destination_path = os.path.join(outpath, destination)
+    for doc_dir in doc_dirs:
+        path = doc_dir.path
+        destination_path = os.path.join(outpath, doc_dir.name)
         os.makedirs(destination_path, exist_ok=True)
         
         if path.endswith(".typ"):
-            process_file(os.path.join(root, path), destination_path, examples=examples)
+            process_file(
+                os.path.join(root, path), 
+                destination_path, 
+                examples=examples, 
+                namespace=doc_dir.namespace
+            )
             continue
         
         path = os.path.join(root, path)
 
         for dirpath, subdirs, filenames in os.walk(path, topdown=True):
             for filename in filenames:
-                if filename.endswith(".typ"):
-                    process_file(os.path.join(dirpath, filename), destination_path, examples=examples)
+                if not filename.endswith(".typ"): continue
+
+                process_file(
+                    os.path.join(dirpath, filename), 
+                    destination_path, 
+                    examples=examples, 
+                    namespace=doc_dir.namespace
+                )
 
 
 
