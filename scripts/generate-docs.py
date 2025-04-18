@@ -153,7 +153,7 @@ def generate_mdx_files(
 ):
     definitions = docs["definitions"]
     desc = docs["description"]
-    
+
     if len(definitions) != 1 and desc != "":
         # write a master file
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
@@ -186,8 +186,8 @@ def process_file(
     with open(filename, "r", encoding="utf-8") as file:
         content = file.read()
         docs = tidy.TypDocParser().parse(content)
-        if len(docs["definitions"]) == 0:
-            return
+        # if len(docs["definitions"]) == 0:
+        #     return
         print(filename)
 
         generate_mdx_files(
@@ -220,6 +220,7 @@ def main():
         DocDir("logic/scale.typ", "Scale", namespace="scale"),
         DocDir("math.typ", "Math",),
         DocDir("vec.typ", "Vec", namespace="vec"),
+        DocDir("style/color.typ", "Color", namespace="color"),
     ]
 
     outpath = "docs/reference"
