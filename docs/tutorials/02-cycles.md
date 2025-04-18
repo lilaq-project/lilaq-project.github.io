@@ -90,52 +90,30 @@ Many parameters of <Crossref target="plot" />, <Crossref target="scatter" /> etc
 
 ## Built-in color sequences
 
-Lilaq features a number of built-in color sequences under `lq.color.map`. As the default, Lilaq uses the color cycle `petroff10`. This is a color sequence introduced by Matthew A. Petroff in https://arxiv.org/abs/2107.02270 that is optimized for distinguishability, aesthetics, and people with color deficiencies. 
+Lilaq features a number of built-in color sequences under `lq.color.map`. As the default, Lilaq uses the color cycle `petroff10`. This is a color sequence introduced by Matthew A. Petroff in https://arxiv.org/abs/2107.02270 that is optimized for distinguishability, aesthetics, and people with color vision deficiencies (CVD). 
 
 ```typ render
-#set page(width: 400pt)
+#import "src/typst/_color-sequence.typ": *
+#show: template
 
-#let show-sequence(colors, name) = {
-  raw(name)
-  grid(
-    columns: (1fr, ) * colors.len(),
-    ..colors.map(color => rect(fill: color, width: 100%, height: 30pt))
-  )
-}
-
-#show-sequence(lq.color.map.petroff10, "petroff10")
-#show-sequence(lq.color.map.petroff8, "petroff8")
-#show-sequence(lq.color.map.petroff6, "petroff6")
+#show-sequence(lq.color.map.petroff10, "petroff10", cvd-friendly: true)
+#show-sequence(lq.color.map.petroff8, "petroff8", cvd-friendly: true)
+#show-sequence(lq.color.map.petroff6, "petroff6", cvd-friendly: true)
 ```
 
-The `okabe-ito` sequence, suggested in https://jfly.uni-koeln.de/color/ serves similar purposes. In the [Mackie.jl](https://docs.makie.org/dev/) framework, this sequence is called "wong". 
+The `okabe-ito` sequence, suggested in https://jfly.uni-koeln.de/color/ (but reordered, with black removed and yellow slightly darkened) serves similar purposes. In the [Mackie.jl](https://docs.makie.org/dev/) framework, this sequence is called "wong". 
 ```typ render
-#set page(width: 400pt)
+#import "src/typst/_color-sequence.typ": *
+#show: template
 
-#let show-sequence(colors, name) = {
-  raw(name)
-  grid(
-    columns: (1fr, ) * colors.len(),
-    ..colors.map(color => rect(fill: color, width: 100%, height: 30pt))
-  )
-}
-
-
-#show-sequence(lq.color.map.okabe-ito, "okabe-ito")
+#show-sequence(lq.color.map.okabe-ito, "okabe-ito", cvd-friendly: true)
 ```
 
 
-Also available is the default Matplotlib color cycle and its 20-color pendant. 
+Also, the default Matplotlib color cycle and its 20-color pendant are available. 
 ```typ render
-#set page(width: 400pt)
-
-#let show-sequence(colors, name) = {
-  raw(name)
-  grid(
-    columns: (1fr, ) * colors.len(),
-    ..colors.map(color => rect(fill: color, width: 100%, height: 30pt))
-  )
-}
+#import "src/typst/_color-sequence.typ": *
+#show: template
 
 #show-sequence(lq.color.map.matplotlib, "matplotlib")
 #show-sequence(lq.color.map.matplotlib20, "matplotlib20")
