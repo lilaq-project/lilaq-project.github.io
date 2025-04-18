@@ -94,31 +94,29 @@ Lilaq features a number of built-in color sequences under `lq.color.map`. As the
 
 ```typ render
 #import "src/typst/_color-sequence.typ": *
-#show: template
 
-#show-sequence(lq.color.map.petroff10, "petroff10", cvd-friendly: true)
-#show-sequence(lq.color.map.petroff8, "petroff8", cvd-friendly: true)
-#show-sequence(lq.color.map.petroff6, "petroff6", cvd-friendly: true)
+#show-sequence("petroff10", cvd-friendly: true)
+#show-sequence("petroff8", cvd-friendly: true)
+#show-sequence("petroff6", cvd-friendly: true)
 ```
 
 The `okabe-ito` sequence, suggested in https://jfly.uni-koeln.de/color/ (but reordered, with black removed and yellow slightly darkened) serves similar purposes. In the [Mackie.jl](https://docs.makie.org/dev/) framework, this sequence is called "wong". 
 ```typ render
 #import "src/typst/_color-sequence.typ": *
-#show: template
 
-#show-sequence(lq.color.map.okabe-ito, "okabe-ito", cvd-friendly: true)
+#show-sequence("okabe-ito", cvd-friendly: true)
 ```
 
 
 Also, the default Matplotlib color cycle and its 20-color pendant are available. 
 ```typ render
 #import "src/typst/_color-sequence.typ": *
-#show: template
 
-#show-sequence(lq.color.map.matplotlib, "matplotlib")
-#show-sequence(lq.color.map.matplotlib20, "matplotlib20")
+#show-sequence("matplotlib")
+#show-sequence("matplotlib20")
 ```
 
+In the [color reference](/docs/reference/color), you can find additional sequential maps that can be used for color-coding purposes such as heatmaps or scatter plots. 
 
 
 ## Generating and folding color cycles
