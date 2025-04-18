@@ -95,7 +95,7 @@ Lilaq comes with a few automatic tick locators, dedicated to finding appropriate
 
 ## Tutorials
 
-Please refer to the following resources for further guidance. In particular, the tutorial [**styling and presets**](tutorials/styling-and-presets) may save you a lot of time. 
+Please refer to the following resources for further guidance. In particular, the tutorial [**styling and themes**](tutorials/styling-and-themes) may save you a lot of time. 
 
 import useCurrentSidebarCategory from '@docusaurus/theme-common';
 import DocCardList from '@theme/DocCardList';

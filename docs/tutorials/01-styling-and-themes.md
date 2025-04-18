@@ -1,5 +1,5 @@
 ---
-title: Styling and presets
+title: Styling and themes
 description: How to use show and set rules to power up Lilaq elements. 
 ---
 
@@ -9,7 +9,7 @@ This tutorial deals with styling and configuration in general and on a broader l
 
 ## Elements for styling
 
-Many components of a diagram, such as <Crossref target="title" />, <Crossref target="legend" />, <Crossref target="label" />, <Crossref target="grid" /> and more are _element functions_. In particular, <Crossref target="diagram" /> itself is an element function, enabling powerful customization and an intuitive way of [creating presets](#how-to-create-a-preset) (see below). 
+Many components of a diagram, such as <Crossref target="title" />, <Crossref target="legend" />, <Crossref target="label" />, <Crossref target="grid" /> and more are _element functions_. In particular, <Crossref target="diagram" /> itself is an element function, enabling powerful customization and an intuitive way of [creating themes](#how-to-create-a-theme) (see below). 
 
 :::info
 Element functions in Typst are functions that can be used with `set` and `show` rules. 
@@ -66,7 +66,7 @@ In the following example, we change the default alignment to `top + right` for <
 
 
 
-## How to create a preset
+## How to create a theme
 
 If you know that all of your diagrams will use logarithmic scaling on the $x$-axis, you set this up at the start of the document instead of repeating `xscale: "log"` for each diagram:
 
@@ -76,10 +76,10 @@ If you know that all of your diagrams will use logarithmic scaling on the $x$-ax
 #lq.diagram()
 ```
 
-<!-- Even better would be to create a reusable _preset_ for similar diagrams.  -->
+<!-- Even better would be to create a reusable _theme_ for similar diagrams.  -->
 This is great, but we might have different types of diagrams in our document and would like to apply these styles only to some plots. 
 
-Let's imagine we want to draw a series of spectra, all featuring the same axis labels and a logarithmic $y$-scaling. To avoid repeating the same information over and over (and also to make future changes easier), we want to create a reusable preset. A preset will be just a function that can be used in a document-level `show` rule for transforming content. 
+Let's imagine we want to draw a series of spectra, all featuring the same axis labels and a logarithmic $y$-scaling. To avoid repeating the same information over and over (and also to make future changes easier), we want to create a reusable theme. A theme will be just a function that can be used in a document-level `show` rule for transforming content. 
 
 ```typ
 #let spectrum-plot = it => {
@@ -87,7 +87,7 @@ Let's imagine we want to draw a series of spectra, all featuring the same axis l
   it
 }
 ```
-To use the preset, we create a scope (to avoid applying the preset to all following plots) and apply the preset with a `show` rule.
+To use the theme, we create a scope (to avoid applying the theme to all following plots) and apply the theme with a `show` rule.
 ```typ
 #{
   show: spectrum-plot
@@ -95,7 +95,7 @@ To use the preset, we create a scope (to avoid applying the preset to all follow
 }
 ```
 
-Let us now fill this preset with some configuration!
+Let us now fill this theme with some configuration!
 
 ```example
 #let spectrum-plot = it => {
