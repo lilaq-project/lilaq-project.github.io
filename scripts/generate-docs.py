@@ -159,7 +159,7 @@ def generate_mdx_files(
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
             metadata = f"slug: /reference/{name.lower()}\n"
             file.write(f"---\n{metadata}---\n\n{process_description(desc)}")
-            print(f"- wrote {name}.mdx (master)")
+            # print(f"- wrote {name}.mdx (master)")
             return
 
     main_metadata = ""
@@ -176,7 +176,7 @@ def generate_mdx_files(
             
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
             file.write(content)
-            print(f"- wrote {name}.mdx")
+            # print(f"- wrote {name}.mdx")
 
     
 def process_file(
