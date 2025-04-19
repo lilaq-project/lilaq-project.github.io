@@ -154,15 +154,15 @@ def generate_mdx_files(
     definitions = docs["definitions"]
     desc = docs["description"]
 
-    if len(definitions) != 1 and desc != "":
+    if len(definitions) == 0 and desc != "":
         # write a master file
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
             metadata = f"slug: /reference/{name.lower()}\n"
             file.write(f"---\n{metadata}---\n\n{process_description(desc)}")
-    
+            print(f"- wrote {name}.mdx (master)")
+            return
+
     main_metadata = ""
-    if len(definitions) == 1:
-        pass
 
     for definition in definitions:
         name = definition["name"]
@@ -176,6 +176,7 @@ def generate_mdx_files(
             
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
             file.write(content)
+            print(f"- wrote {name}.mdx")
 
     
 def process_file(
