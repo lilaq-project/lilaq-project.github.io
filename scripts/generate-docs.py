@@ -157,7 +157,8 @@ def generate_mdx_files(
     if len(definitions) != 1 and desc != "":
         # write a master file
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
-            file.write(f"{process_description(desc)}")
+            metadata = f"slug: /reference/{name.lower()}\n"
+            file.write(f"---\n{metadata}---\n\n{process_description(desc)}")
     
     main_metadata = ""
     if len(definitions) == 1:
