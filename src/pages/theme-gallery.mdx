@@ -1,0 +1,111 @@
+# Theme gallery
+
+On this page you can find a list of all built-in themes. 
+These themes can also provide a good starting point for [creating a custom theme](docs/tutorials/styling-and-themes). 
+
+
+:::warning
+
+These themes are still in work and _might_ change a bit in the upcoming releases. 
+
+At the same time, suggestions and feedback are welcome and can be posted in the [theme discussion category](https://github.com/orgs/lilaq-project/discussions/categories/themes). 
+
+:::
+
+
+## Default
+
+<LilaqTheme>
+
+Although the default setting is not available as a _theme_ (it would just be empty), we show it here for comparison.  
+```typ render
+#lq.diagram()
+```
+
+</LilaqTheme>
+
+## Misty
+
+<LilaqTheme>
+
+```typ render
+
+#let misty = it => {
+
+  show lq.selector(lq.title): set align(left)
+  show lq.selector(lq.title): set text(1.2em)
+  show: lq.set-diagram(
+    fill: luma(91%),
+    xaxis: (subticks: none, mirror: false),
+    yaxis: (subticks: none, mirror: false)
+  )
+  show: lq.set-spine(
+    stroke: none
+  )
+  show: lq.set-grid(
+    stroke: white
+  )
+  show: lq.set-tick(
+    stroke: .7pt,
+    inset: 0pt,
+    outset: 2.5pt
+  )
+  show: lq.set-legend(
+    position: horizon + left,
+    dx: 100%,
+    pad: .4em,
+    stroke: none,
+    fill: luma(91%)
+  )
+
+  it
+}
+
+
+
+#show: misty
+
+#lq.diagram(
+title: [Title],
+lq.plot((1,2), (1,20), yerr: .5, xerr: .5, stroke: none, label: [Data]),
+)
+```
+</LilaqTheme>
+
+
+## Skyline
+
+<LilaqTheme>
+
+
+```typ render
+
+
+#let skyline = it => {
+
+  show: lq.set-diagram(
+    fill: none,
+    xaxis: (subticks: none, mirror: false),
+    yaxis: (subticks: none, mirror: false)
+  )
+  show: lq.set-grid(stroke: none)
+  show: lq.set-tick(
+    inset: 3pt,
+  )
+  show: lq.set-legend(
+    pad: .4em,
+    radius: 1pt,
+    // stroke: none,
+    fill: white.transparentize(0%)
+  )
+
+  it
+}
+
+#show: skyline
+
+#lq.diagram()
+
+```
+
+</LilaqTheme>
