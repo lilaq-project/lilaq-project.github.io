@@ -111,9 +111,14 @@ const config = {
             to: '/blog',
             position: 'left'
           },
+          // {
+          //   label: 'Cheat Sheet',
+          //   to: '/cheat-sheet',
+          //   position: 'left'
+          // },
           {
-            label: 'Cheat Sheet',
-            to: '/cheat-sheet',
+            label: 'Theme gallery',
+            to: '/theme-gallery',
             position: 'left'
           },
           {
