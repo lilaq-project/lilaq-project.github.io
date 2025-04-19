@@ -57,7 +57,6 @@ def replace_functions(source: str, lookup: dict = {}) -> str:
         if brace == "(" and source[function_end] == "[":
             more_args = match_parentheses(source[function_end:], "[]")
             index = function_end + len(more_args) + 2
-            print(more_args)
             result += lookup[name](args, more_args)
         else:
             result += lookup[name](args)
