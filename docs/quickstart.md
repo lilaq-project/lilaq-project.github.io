@@ -44,6 +44,8 @@ Pretty easy. Let's add another plot, a title, and axis labels!
 ```
 Note that a legend automatically appears when the plots are labeled. Only labeled plots are listed. You can find out more in the [**legend tutorial**](./tutorials/legend) on how to configure and customize legends. 
 
+Also check out the [**data loading tutorial**](./tutorials/data-loading) for best practices on loading data from files. 
+
 
 
 
