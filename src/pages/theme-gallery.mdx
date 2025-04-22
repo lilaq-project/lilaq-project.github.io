@@ -12,100 +12,64 @@ At the same time, suggestions and feedback are welcome and can be posted in the 
 
 :::
 
+## Usage
 
-## Default
-
-<LilaqTheme>
-
-Although the default setting is not available as a _theme_ (it would just be empty), we show it here for comparison.  
-```typ render
-#lq.diagram()
-```
-
-</LilaqTheme>
-
-## Misty
-
-<LilaqTheme>
-
-```typ render
-
-#let misty = it => {
-
-  show lq.selector(lq.title): set align(left)
-  show lq.selector(lq.title): set text(1.2em)
-  show: lq.set-diagram(
-    fill: luma(91%),
-    xaxis: (subticks: none, mirror: false),
-    yaxis: (subticks: none, mirror: false)
-  )
-  show: lq.set-spine(
-    stroke: none
-  )
-  show: lq.set-grid(
-    stroke: white
-  )
-  show: lq.set-tick(
-    stroke: .7pt,
-    inset: 0pt,
-    outset: 2.5pt
-  )
-  show: lq.set-legend(
-    position: horizon + left,
-    dx: 100%,
-    pad: .4em,
-    stroke: none,
-    fill: luma(91%)
-  )
-
-  it
-}
-
-
-
-#show: misty
-
+All built-in themes can be found in the module `lq.theme`. A theme can be applied through a `show` rule:
+```typ
+#show: lq.theme.skyline
 #lq.diagram(
-title: [Title],
-lq.plot((1,2), (1,20), yerr: .5, xerr: .5, stroke: none, label: [Data]),
+  ..
 )
 ```
+To some extent, themes can be composed because they usually only override a few settings. 
+
+## Themes 
+
+<LilaqTheme>
+Although the default setting is not available as an actual theme (it would just be empty), we show it here for comparison.  
+```typ render
+#include "src/typst/_demonstrate-theme.typ"
+```
 </LilaqTheme>
 
 
-## Skyline
-
-<LilaqTheme>
-
-
+<LilaqTheme name="misty">
 ```typ render
-
-
-#let skyline = it => {
-
-  show: lq.set-diagram(
-    fill: none,
-    xaxis: (subticks: none, mirror: false),
-    yaxis: (subticks: none, mirror: false)
-  )
-  show: lq.set-grid(stroke: none)
-  show: lq.set-tick(
-    inset: 3pt,
-  )
-  show: lq.set-legend(
-    pad: .4em,
-    radius: 1pt,
-    // stroke: none,
-    fill: white.transparentize(0%)
-  )
-
-  it
-}
-
-#show: skyline
-
-#lq.diagram()
-
+#show: lq.theme.misty
+#include "src/typst/_demonstrate-theme.typ"
 ```
+</LilaqTheme>
 
+
+<LilaqTheme name="ocean">
+```typ render
+#show: lq.theme.ocean
+#include "src/typst/_demonstrate-theme.typ"
+```
+</LilaqTheme>
+
+
+<LilaqTheme name="skyline">
+```typ render
+#show: lq.theme.skyline
+#include "src/typst/_demonstrate-theme.typ"
+```
+</LilaqTheme>
+
+
+<LilaqTheme name="schoolbook">
+```typ render
+#show: lq.theme.schoolbook
+#include "src/typst/_demonstrate-theme.typ"
+```
+</LilaqTheme>
+
+
+<LilaqTheme name="moon">
+```typ render
+#set text(white)
+#show lq.selector(lq.diagram): box.with(fill: rgb("#242424"), inset: 1em)
+#show: lq.theme.moon
+#include "src/typst/_demonstrate-theme.typ"
+```
 </LilaqTheme>

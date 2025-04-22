@@ -18,6 +18,11 @@ export const SignatureParam = ({ children }) => (
 	</span>
 );
 
+
+export const SourceLink = ({ href }) => (
+	<span><a href={href} className={styles.sourceLink}>(source)</a></span>
+);
+
 export const Parameters = ({ children }) => (
 	<div>
 		<div className={styles.parametersHeader}>

@@ -37,6 +37,12 @@ h2 {
   word-wrap: normal;
 }
 
+.sourceLink {
+  float: right;
+  color: var(--ifm-color-primary-faintest);
+  text-indent: initial;
+}
+
 .parameters {
   padding: 0 2em;
 }
