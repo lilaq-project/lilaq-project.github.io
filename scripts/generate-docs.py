@@ -3,6 +3,12 @@ import os
 import tidy
 import typ2md
 import re
+import requests
+
+def verify_url(url):
+    response = requests.get(url)
+    assert response.status_code == 200, f"Bad url: {url}"
+
 
 def process_description(description: str, replace_crossrefs=True) -> str:
     md = typ2md.typ_to_md(description)
@@ -72,7 +78,7 @@ def param2doc(param: dict) -> str:
     string += f"\n<Param>\n  {process_description(description)}\n</Param>"
     return string
 
-def generate_signature(definition, namespace=""):
+def generate_signature(definition, namespace="", source_path=""):
     if not namespace.endswith(".") and namespace != "":
         namespace += "."
     name = definition["name"]
@@ -90,16 +96,23 @@ def generate_signature(definition, namespace=""):
         n = len(definition['params'])
         params = [display_param(param, i != n - 1) for i, param in enumerate(definition['params'])]
         string += "(" + "".join(params)  + ")"
+
+    url = "https://github.com/lilaq-project/lilaq/tree/main/src/" + source_path
+    url = url.replace("\\", "/")
+    verify_url(url)
+    print(source_path)
+    string += f"<SourceLink href=\"{url}\" />"
+
     string += "</code>\n</Signature>"
     return string
 
 
-def definition_to_mdx(definition, namespace=""):
+def definition_to_mdx(definition, namespace="", source_path=""):
     content = ""
     name = definition['name']
     params = definition["params"]
     # content += f"## {name}\n"
-    content += generate_signature(definition, namespace=namespace) + "\n\n"
+    content += generate_signature(definition, namespace=namespace, source_path=source_path) + "\n\n"
 
     content += process_description(definition["description"]) + "\n\n"
     # content += "## Parameters\n"
@@ -149,7 +162,8 @@ def generate_mdx_files(
     name: str,
     dir: str,
     docs,
-    namespace="."
+    namespace=".",
+    source_path=""
 ):
     definitions = docs["definitions"]
     desc = docs["description"]
@@ -172,7 +186,7 @@ def generate_mdx_files(
         if not "\\" in desc:
             metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
 
-        content = "---\n" + metadata + "---\n\n" + definition_to_mdx(definition, namespace=namespace)
+        content = "---\n" + metadata + "---\n\n" + definition_to_mdx(definition, namespace=namespace, source_path=source_path)
             
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
             file.write(content)
@@ -180,28 +194,29 @@ def generate_mdx_files(
 
     
 def process_file(
-    filename: str,
-    root_out: str,
+    source_root: str,
+    source_path: str,
+    dest_root: str,
     examples=[],
     namespace=""
 ):
-    with open(filename, "r", encoding="utf-8") as file:
+    with open(os.path.join(source_root, source_path), "r", encoding="utf-8") as file:
         content = file.read()
         docs = tidy.TypDocParser().parse(content)
         # if len(docs["definitions"]) == 0:
         #     return
-        print(filename)
 
         generate_mdx_files(
-            name=os.path.basename(root_out), 
-            dir=root_out, 
+            name=os.path.basename(dest_root), 
+            dir=dest_root, 
             docs=docs,
-            namespace=namespace
+            namespace=namespace,
+            source_path=source_path
         )
 
         # filename_without_ext = os.path.basename(filename).split(".")[0]
         # mdx = generate_mdx(docs, filename_without_ext, examples=examples)
-        # with open(os.path.join(root_out, filename_without_ext + ".mdx"), "w", encoding="utf-8") as file:
+        # with open(os.path.join(dest_root, filename_without_ext + ".mdx"), "w", encoding="utf-8") as file:
         #     file.write(mdx)
 
 def main():
@@ -235,8 +250,9 @@ def main():
         
         if path.endswith(".typ"):
             process_file(
-                os.path.join(root, path), 
-                destination_path, 
+                source_root=root,
+                source_path=path,
+                dest_root=destination_path, 
                 examples=examples, 
                 namespace=doc_dir.namespace
             )
@@ -247,10 +263,13 @@ def main():
         for dirpath, subdirs, filenames in os.walk(path, topdown=True):
             for filename in filenames:
                 if not filename.endswith(".typ"): continue
-
                 process_file(
-                    os.path.join(dirpath, filename), 
-                    destination_path, 
+                    source_root=root,
+                    source_path=os.path.relpath(
+                        os.path.join(dirpath, filename),
+                        start=root
+                    ), 
+                    dest_root=destination_path, 
                     examples=examples, 
                     namespace=doc_dir.namespace
                 )
