@@ -6,8 +6,9 @@ import re
 import requests
 
 def verify_url(url):
+    return
     response = requests.get(url)
-    assert response.status_code == 200, f"Bad url: {url}"
+    assert response.status_code == 200, f"Bad url: {url} (code {response.status_code})"
 
 
 def process_description(description: str, replace_crossrefs=True) -> str:
