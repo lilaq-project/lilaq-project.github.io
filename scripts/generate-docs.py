@@ -75,7 +75,7 @@ def param2doc(param: dict) -> str:
         print(f"Warning: the parameter {param} has no type annotations")
     if "default" in param:
         string += f" <Default>`{param['default']}`</Default>"
-    string += f" {{#{name}}}"
+    string += f" {{#{name.replace('..', '')}}}"
     string += f"\n<Param>\n  {process_description(description)}\n</Param>"
     return string
 
