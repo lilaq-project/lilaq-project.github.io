@@ -79,7 +79,7 @@ If you know that all of your diagrams will use logarithmic scaling on the $x$-ax
 <!-- Even better would be to create a reusable _theme_ for similar diagrams.  -->
 This is great, but we might have different types of diagrams in our document and would like to apply these styles only to some plots. 
 
-Let's imagine we want to draw a series of spectra, all featuring the same axis labels and a logarithmic $y$-scaling. To avoid repeating the same information over and over (and also to make future changes easier), we want to create a reusable theme. A theme will be just a function that can be used in a document-level `show` rule for transforming content. 
+Let's imagine we want to draw a series of spectra, all featuring the same axis labels and a logarithmic $y$-scaling. To avoid repeating the same information over and over (and also to make future changes easier), we want to create a reusable preset/theme. This will be just a function that can be used in a document-level `show` rule for transforming content. 
 
 ```typ
 #let spectrum-plot = it => {
