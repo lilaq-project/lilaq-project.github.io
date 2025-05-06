@@ -75,7 +75,7 @@ def param2doc(param: dict) -> str:
         print(f"Warning: the parameter {param} has no type annotations")
     if "default" in param:
         string += f" <Default>`{param['default']}`</Default>"
-    string += f" {{#{name.replace('..', '')}}}"
+    string += f" {{#{name.strip('.')}}}"
     string += f"\n<Param>\n  {process_description(description)}\n</Param>"
     return string
 
@@ -87,7 +87,7 @@ def generate_signature(definition, namespace="", source_path=""):
     string += f"<SignatureName>{name}</SignatureName>"
     def display_param(param, comma=True):
         name = param["name"]
-        result = f"[{name}](#{name})"
+        result = f"[{name}](#{name.strip('.')})"
         if "default" in param:
             result += f"={param['default']}"
         if comma:
