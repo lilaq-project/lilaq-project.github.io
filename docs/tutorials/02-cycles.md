@@ -49,7 +49,7 @@ Alternatively, an array of dictionaries can be used to specify `color`, `mark`, 
 )
 ```
 
-For full control you can pass an array of content-transforming functions:
+For full control we can pass an array of content-transforming functions:
 ```example
 #lq.diagram(
   cycle: (

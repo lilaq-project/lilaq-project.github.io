@@ -7,6 +7,10 @@ This tutorial deals with styling and configuration in general and on a broader l
 - [Axis tutorial](axis)
 - [Legend tutorial](legend)
 
+At the end of this tutorial we will be looking into how to create a reusable theme or preset for diagrams. Lilaq ships a few predefined themes, they can be viewed at [Themes](/themes)
+
+
+
 ## Elements for styling
 
 Many components of a diagram, such as <Crossref target="title" />, <Crossref target="legend" />, <Crossref target="label" />, <Crossref target="grid" /> and more are _element functions_. In particular, <Crossref target="diagram" /> itself is an element function, enabling powerful customization and an intuitive way of [creating themes](#how-to-create-a-theme) (see below). 
@@ -66,9 +70,9 @@ In the following example, we change the default alignment to `top + right` for <
 
 
 
-## How to create a theme
+## Creating a custom preset or theme
 
-If you know that all of your diagrams will use logarithmic scaling on the $x$-axis, you set this up at the start of the document instead of repeating `xscale: "log"` for each diagram:
+Suppose that all of our diagrams will use logarithmic scaling on the $x$-axis. We could set this up at the start of the document instead of repeating `xscale: "log"` for each diagram:
 
 ```typ
 #show: lq.set-diagram(xscale: "log")
@@ -77,7 +81,7 @@ If you know that all of your diagrams will use logarithmic scaling on the $x$-ax
 ```
 
 <!-- Even better would be to create a reusable _theme_ for similar diagrams.  -->
-This is great, but we might have different types of diagrams in our document and would like to apply these styles only to some plots. 
+This is great, but we might have different types of diagrams in our document and would like to apply these styles only to some plots. This is where presets/themes come into play. 
 
 Let's imagine we want to draw a series of spectra, all featuring the same axis labels and a logarithmic $y$-scaling. To avoid repeating the same information over and over (and also to make future changes easier), we want to create a reusable preset/theme. This will be just a function that can be used in a document-level `show` rule for transforming content. 
 
@@ -121,3 +125,5 @@ Let us now fill this theme with some configuration!
   )
 }
 ```
+
+This is exactly how the [built-in themes](/themes) shipped with Lilaq are constructed. 

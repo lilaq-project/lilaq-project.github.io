@@ -117,7 +117,7 @@ const config = {
           //   position: 'left'
           // },
           {
-            label: 'Theme gallery',
+            label: 'Themes',
             to: '/themes',
             position: 'left'
           },
