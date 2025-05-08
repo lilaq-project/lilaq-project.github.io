@@ -80,3 +80,17 @@ For demonstration, let us use this technique to arrange the legend entries in tw
   lq.plot((1,2,3), (2,3,4), label: [B]),
 )
 ```
+
+
+## Fully custom entries
+
+The <Crossref target="diagram#legend" /> also accepts a <Crossref target="legend" /> instance to which you can pass legend entries manually. In this case, all automatically created legend entries are discarded.  
+```example
+#lq.diagram(
+  legend: lq.legend(
+    [a], [A],
+    [b], [B],
+  )
+)
+
+```
