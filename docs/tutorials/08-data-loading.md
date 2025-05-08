@@ -50,7 +50,7 @@ Now we use destructuring syntax to access the four wanted attributes (note that 
 
 ## Multiple data sets
 
-Let us look at a more complicated example with two data sets in one file, each one providing (fictional) temporal information about the wind strength in a specific city. In addition, the height above sea level (which we want to display in the title) is stored per city in the JSON file. 
+Let us look at a more complicated example with two data sets in one file, each one providing (fictional) time-dependent information about the wind strength in a specific city. In addition, the height above sea level (which we want to display in the title) is stored per city in the JSON file. 
 
 
 import WindJSON from '!!raw-loader!./data/wind.json';
@@ -81,3 +81,4 @@ Iterating over the entries in the data set, we now generate a diagram for each c
   h(4mm)
 }
 ```
+As you can see, with JSON files we can conveniently store and load data with a rich structure, naturally accessing the respective fields. 
