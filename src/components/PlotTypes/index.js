@@ -8,6 +8,7 @@ import ImageHBar from '@site/static/img/typst-generated/plot-types/hbar.svg'
 import ImageStem from '@site/static/img/typst-generated/plot-types/stem.svg'
 import ImageHStem from '@site/static/img/typst-generated/plot-types/hstem.svg'
 import ImageBoxplot from '@site/static/img/typst-generated/plot-types/boxplot.svg'
+import ImageHBoxplot from '@site/static/img/typst-generated/plot-types/hboxplot.svg'
 import ImageColormesh from '@site/static/img/typst-generated/plot-types/colormesh.svg'
 import ImageContour from '@site/static/img/typst-generated/plot-types/contour.svg'
 import ImageQuiver from '@site/static/img/typst-generated/plot-types/quiver.svg'
@@ -76,6 +77,14 @@ const PlotList = [
       </>
     ),
     Svg: ImageBoxplot,
+  },
+  {
+    title: 'hboxplot',
+    description: (
+      <>
+      </>
+    ),
+    Svg: ImageHBoxplot,
   },
   {
     title: 'colormesh',
