@@ -6,8 +6,8 @@ description: How to use show and set rules to power up Lilaq elements.
 This tutorial deals with styling and configuration in general and on a broader level. The following tutorials give more insight into styling of individual parts of a diagram. 
 - [Axis tutorial](axis)
 - [Legend tutorial](legend)
-
-At the end of this tutorial we will be looking into how to create a reusable theme or preset for diagrams. Lilaq ships a few predefined themes, they can be viewed at [Themes](/themes)
+  
+At the end of this tutorial we will be looking into how to create a reusable theme or preset for diagrams. Lilaq ships a few predefined [themes](/themes). 
 
 
 

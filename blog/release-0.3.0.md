@@ -25,6 +25,7 @@ Additions
 - A set of [predefined themes](/themes) is now available!
 - Added the qualitative color sequence `lq.color.map.okabe-ito` according to https://jfly.uni-koeln.de/color/.
 - Added a range of sequential and diverging [color maps](/docs/reference/color) that are _scientific_, i.e., perceptually uniform, perceptually ordered, and color-vision deficiency (CVD) friendly, see . 
+- A new plot type <Crossref target="hboxplot" /> as horizontal pendant to the existing <Crossref target="boxplot" />. 
 - An <Crossref target="axis#inverted" /> property to quickly swap min/max limits. 
 - A tick locator for symlog axes.  
 
@@ -32,6 +33,7 @@ Additions
 Breaking changes
 - ⚠️ The parameter `line` of <Crossref target="hlines" />  and <Crossref target="vlines" />  has been renamed to `stroke` to bring the signature in line with the other plotting functions. 
 - ⚠️ The <Crossref target="symlog#threshold" /> is now by default 1 (instead of 2). 
+- ⚠️ The color sequences `matplotlib10` and `matplotlib20` have been removed. 
 
 
 
@@ -52,3 +54,4 @@ Documentation
 - Added a tutorial on [data loading](https://lilaq.org/docs/tutorials/data-loading). 
 - Mention the usage of `std.pad` together with <Crossref target="lq.place" />. 
 - Mention the possibility of masking values with <Crossref target="colormesh" />.
+- Articles in the reference section now contain a link that brings you to the source of the definition on GitHub. 
