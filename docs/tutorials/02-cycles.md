@@ -107,15 +107,6 @@ The `okabe-ito` sequence, suggested in https://jfly.uni-koeln.de/color/ (but reo
 #show-sequence("okabe-ito", cvd-friendly: true)
 ```
 
-
-Also, the default Matplotlib color cycle and its 20-color pendant are available. 
-```typ render
-#import "src/typst/_color-sequence.typ": *
-
-#show-sequence("matplotlib")
-#show-sequence("matplotlib20")
-```
-
 In the [color reference](/docs/reference/color), you can find additional sequential maps that can be used for color-coding purposes such as heatmaps or scatter plots. 
 
 
