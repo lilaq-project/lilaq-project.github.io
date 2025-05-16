@@ -1,6 +1,6 @@
 #import "_template.typ": *
 #show: template
-#import "@preview/tiptoe:0.3.0"
+#import "@preview/tiptoe:0.3.1"
 
 #diagram(
   margin: (x: 30%, y: 40%),
