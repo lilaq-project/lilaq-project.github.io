@@ -51,10 +51,10 @@ This section deals with _how locations for ticks are determined_.
 By default, Lilaq tries to automatically find a good distance and distribution for axis ticks. However, in some cases the algorithm might produce suboptimal results or a specific configuration is required. 
 
 There are different levels of control, ascending both in power and complexity. 
-- [automatic tick locations](#automatic-tick-locations)
-- [semi-automatic control](#semi-automatic-control)
-- [manual tick locations](#manual-tick-locations)
-- custom tick locators
+- [Automatic tick locations](#automatic-tick-locations)
+- [Semi-automatic control](#semi-automatic-control)
+- [Manual tick locations](#manual-tick-locations)
+- [Custom tick locators](#custom-tick-locators)
 
 ### Automatic tick locations
 
@@ -64,6 +64,7 @@ Lilaq comes with a few automatic tick locators, dedicated to finding appropriate
 
 If you find the automatically generated ticks too loose or dense, you don't need to skip to manual ticks right away. Through <Crossref target="axis#tick-args" /> you can talk to the current tick locator if you know the appropriate language:
 - All automatic tick locators have a `density` setting that can be used qualitatively to increase or decrease the number of ticks. The default value is `100%`. Since the possible automatic tick distances are discrete (multiples of 1, 2, and 5), values like `105%` will often have no impact. 
+
   ```example
   #show: lq.set-diagram(
     xaxis: (tick-args: (density: 150%))
@@ -71,7 +72,9 @@ If you find the automatically generated ticks too loose or dense, you don't need
 
   #lq.diagram()
   ```
+
 - The linear tick locator features a useful `tick-distance` parameter that can be used to force a precise distance between consecutive ticks. This parameter is sufficiently important that it's available directly under <Crossref target="axis#tick-distance" /> as a shorthand for `(tick-args: (tick-distance: ..))`.
+
   ```example
   #lq.diagram(
     xaxis: (tick-distance: 0.25)
@@ -134,4 +137,64 @@ The computed tick locations are passed internally to the <Crossref target="grid"
 
 ## Formatting ticks
 
-..
+Just like with the tick locator, Lilaq selects a tick formatter matching the axis scale. The built-in formatters are
+- `lq.format-ticks-linear`,
+- `lq.format-ticks-log`,
+- `lq.format-ticks-symlog`,
+- `lq.format-ticks-manual` (which is selected automatically when manual locations together with labels are passed to <Crossref target="axis#ticks" />). 
+
+The tick formatter can be changed with <Crossref target="axis#format-ticks" />. Let us write a custom formatter. 
+
+### Custom tick formatting
+A tick formatter is just a function which receives the ticks computed by the tick locator (and a few optional arguments) and that returns an array of tick labels. 
+
+The most naive formatter takes the tick locations and just converts them to a string. 
+```typ
+#lq.diagram(
+  yaxis: (
+    format-ticks: (ticks, ..) => ticks.map(str)
+  ),
+)
+```
+However, due to rounding issues, a simple conversion can lead to awkward tick labels like `0.60000000000001` instead of `0.6` which is why the default formatter are much smarter than that. Instead of writing a formatter from scratch, it can be beneficial to _call an existing one_. 
+```example
+#let k-formatter(ticks, ..args) = {
+  let result = lq.format-ticks-linear(ticks, ..args)
+  ticks.zip(result.labels).map(((tick, label)) => {
+    label + if tick != 0 { $k$ }
+  })
+}
+
+#lq.diagram(
+  xlim: (-5, 5),
+  xaxis: (format-ticks: k-formatter)
+)
+```
+Note that a tick formatter can either return an array of labels or a dictionary with the keys:
+- `labels` containing an array of the tick labels,
+- `exponent` specifying and axis exponent,
+- and `offset` for axis offsets. 
+The latter two are optional. The linear tick formatter returns such a dictionary while the other formatters just return an array. 
+
+
+### Displaying subtick labels
+Usually subticks don't need labels but in case you still need them, it is easy to set up <Crossref target="axis#format-subticks" />:
+```example
+// #show: lq.elembic.show_(
+//   lq.tick-label.with(sub: true), 
+//   it => { set text(.6em); it }
+// )
+
+#let axis-args = (
+  subticks: 1, 
+  format-subticks: lq.format-ticks-linear
+)
+
+#show: lq.set-diagram(
+  xaxis: axis-args,
+  yaxis: axis-args
+)
+
+#lq.diagram(xlim: (0, 2))
+```
+Here we also use a conditional `show` rule on subticks to reduce the text size. 

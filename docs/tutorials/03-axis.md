@@ -92,7 +92,7 @@ In the future, you will be able to write just
 
 ## Ticks
 
-Todo: This is a long story. Let us make this a separate tutorial. 
+You can learn about axis ticks in the dedicated [tick tutorial](ticks). 
 
 
 
@@ -155,7 +155,7 @@ The previous section leads us to the following question: What if want to have ou
 4. Finally, the tick marks on the axis should be centered. We can achieve this by applying a "`set`" rule on <Crossref target="tick" />. 
 
 ```example
-#import "@preview/tiptoe:0.3.0"
+#import "@preview/tiptoe:0.3.1"
 
 #show: lq.set-tick(inset: 2pt, outset: 2pt, pad: 0.4em)
 

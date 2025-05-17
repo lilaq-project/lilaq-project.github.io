@@ -62,7 +62,7 @@ Note that you can always override the cycle style by passing explicit arguments 
 
 ## Diagram axes
 
-Although usually on the side, the axes carry part of the most important information that a diagram bears − from ticks over axis labels to scales. The [**axis tutorial**](tutorials/axis) guides you through a series of steps to set up and adapt the diagram axes to your needs.  
+Although usually on the side, the axes carry part of the most important information that a diagram bears − from ticks over axis labels to scales. The [**axis tutorial**](tutorials/axis) and [**ticks tutorial**](tutorials/ticks) guide you through a series of steps to set up and adapt the diagram axes to your needs.  
 
 
 
@@ -74,23 +74,6 @@ A diagram consists of plots, axes, ticks, labels, legends and more. Click on any
 import Anatomy from '@site/src/components/Anatomy';
 
 <Anatomy />
-
-
-<!-- 
-## Ticks
-
-Lilaq tries to automatically find a good distance and distribution for axis ticks. However, in some cases the algorithm might produce suboptimal results or a specific configuration is required. 
-
-There are different level of tick customization, ascending both in power and complexity
-- [options like `tick-distance`](#tick-distance)
-- [manual tick positions](#manual-tick-positions)
-- custom tick locators
-
-### Tick-distance
-### Manual tick positions
-### Custom tick locators
-
-Lilaq comes with a few automatic tick locators, dedicated to finding appropriate tick locations e.g. for linear or logarithmic plotting. Depending on the setting of <Crossref target="diagram#xscale" /> and <Crossref target="diagram#yscale" />. However, it is also possible to write a tick locator -->
 
 
 
