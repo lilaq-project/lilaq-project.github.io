@@ -6,7 +6,6 @@
       
   lq.diagram(
     let xs = lq.linspace(-2, 2, num: 20),
-    cycle: lq.color.map.okabe-ito,
     // legend: (position: left, dx: 100%),
     ..range(10).map(i => 
       lq.plot(xs, xs.map(x => x*x*x - x*i))
