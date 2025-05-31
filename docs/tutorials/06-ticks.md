@@ -80,7 +80,7 @@ If you find the automatically generated ticks too loose or dense, you don't need
     xaxis: (tick-distance: 0.25)
   ) 
   ```
-  
+- The linear tick locator also has a `unit` parameter that can be used to change the base unit relative to which the tick distance is computed. A common use case are scales that mark multiples of $\pi$ as [demonstrated in this example](/docs/examples/multiple-of-pi-scale). 
 
 ### Manual tick locations
 When all else fails, or you need to mark some irregularly distributed ticks, or want to specify string labels, you can also give a manual list of tick locations. Note that in general, this approach is discouraged because the ticks won't be updated according to the data. 
@@ -170,6 +170,15 @@ However, due to rounding issues, a simple conversion can lead to awkward tick la
   xaxis: (format-ticks: k-formatter)
 )
 ```
+This case actually has built-in support with the default formatter through the `suffix` parameter:
+```typ
+#lq.diagram(
+  xaxis: (
+    format-ticks: lq.format-ticks-linear.with(suffix: $k$)
+  )
+)
+```
+
 Note that a tick formatter can either return an array of labels or a dictionary with the keys:
 - `labels` containing an array of the tick labels,
 - `exponent` specifying and axis exponent,
@@ -180,10 +189,10 @@ The latter two are optional. The linear tick formatter returns such a dictionary
 ### Displaying subtick labels
 Usually subticks don't need labels but in case you still need them, it is easy to set up <Crossref target="axis#format-subticks" />:
 ```example
-// #show: lq.elembic.show_(
-//   lq.tick-label.with(sub: true), 
-//   it => { set text(.6em); it }
-// )
+#show: lq.elembic.show_(
+  lq.tick-label.with(sub: true), 
+  it => { set text(.6em); it }
+)
 
 #let axis-args = (
   subticks: 1, 
