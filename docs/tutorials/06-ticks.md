@@ -189,7 +189,7 @@ The latter two are optional. The linear tick formatter returns such a dictionary
 ### Displaying subtick labels
 Usually subticks don't need labels but in case you still need them, it is easy to set up <Crossref target="axis#format-subticks" />:
 ```example
-#show: lq.elembic.show_(
+#show: lq.show_(
   lq.tick-label.with(sub: true), 
   it => { set text(.6em); it }
 )
