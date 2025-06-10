@@ -80,7 +80,7 @@ If you find the automatically generated ticks too loose or dense, you don't need
     xaxis: (tick-distance: 0.25)
   ) 
   ```
-- The linear tick locator also has a `unit` parameter that can be used to change the base unit relative to which the tick distance is computed. A common use case are scales that mark multiples of $\pi$ as [demonstrated in this example](/docs/examples/multiple-of-pi-scale). 
+- The linear tick locator also has a `unit` parameter that can be used to change the base unit relative to which the tick distance is computed. A common use case are scales that mark multiples of $\pi$ as [demonstrated in this example](/docs/examples/multiples-of-pi-scale). 
 
 ### Manual tick locations
 When all else fails, or you need to mark some irregularly distributed ticks, or want to specify string labels, you can also give a manual list of tick locations. Note that in general, this approach is discouraged because the ticks won't be updated according to the data. 
