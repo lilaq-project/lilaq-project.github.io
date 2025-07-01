@@ -73,7 +73,7 @@ Since the legend entries are arranged in a [table](https://typst.app/docs/refere
 For demonstration, let us use this technique to arrange the legend entries in two columns. Each entry consists of a preview image and the label, so we need to set the number of table columns to 4. 
 
 ```example
-#show lq.selector(lq.legend): set table(columns: 4)
+#show lq.selector(lq.legend): set grid(columns: 4)
 
 #lq.diagram(
   lq.plot((1,2,3), (1,2,3), label: [A]),
