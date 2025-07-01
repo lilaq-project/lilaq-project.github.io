@@ -7,11 +7,11 @@ date: 2025-07-09
 
 
 With version 0.4.0, we finally get 
-- [color bars](https://lilaq.org/docs/reference/colorbar), 
-- [plot smoothing](https://lilaq.org/docs/reference/plot#smooth), 
-- a [tutorial on ticks](https://lilaq.org/docs/tutorials/ticks), 
-- [$\pi$-based scales](https://lilaq.org/docs/examples/multiples-of-pi-scale), 
-- [individual addressing of the $x$ and $y$ grid](https://lilaq.org/docs/reference/grid)
+- [color bars](/docs/reference/colorbar), 
+- [plot smoothing](/docs/reference/plot#smooth), 
+- a [tutorial on ticks](/docs/tutorials/ticks), 
+- [$\pi$-based scales](/docs/examples/multiples-of-pi-scale), 
+- [individual addressing of the $x$ and $y$ grid](/docs/reference/grid)
 
 and a lot more.
 
