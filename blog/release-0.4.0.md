@@ -22,7 +22,7 @@ and a lot more.
 ## Changelog
 
 Additions 
-- Lilaq now (official) has color bars that can be used to create a legend for colored plots like <Crossref target="scatter" /> or <Crossref target="colormesh" />, 
+- Lilaq now (officially) has color bars that can be used to create a legend for colored plots like <Crossref target="scatter" /> or <Crossref target="colormesh" />, 
 - The function <Crossref target="plot" /> now supports smoothing through <Crossref target="plot#smooth" /> (thanks to @Netzwerk2). 
 - There is now a formatter for <Crossref target="symlog" /> axes. 
 - The linear tick locator now features a `unit` parameter making it easy to set up scales based on multiples of $\pi$ or other real numbers. In addition, the linear tick formatter is now equipped with a `suffix` parameter and reacts to the `unit` of the linear tick locator. 
@@ -35,8 +35,8 @@ Additions
 Breaking changes
 - ⚠️ The parameter <Crossref target="tick#shorten-sub" /> now takes a ratio between `0%` and `100%` instead of a float between `0` and `1` and its behavior is inverted: Setting it to `70%` for example shortens the sub-ticks _by_ 70% and not _to_ 70%. 
 - ⚠️ The parameter <Crossref target="grid#sub" /> is now named instead of positional. 
-- ⚠️ When a function is passed to <Crossref target="quiver#color" />, it is passed both the coordinates and directions as `(x, y, u, v)` instead of just the coordinates. 
-- ⚠️ The legend now uses a `grid` instead of a `table` to lay out its items, so you need to replace any `show lq.selector(lq.legend): set table(..)` with `show lq.selector(lq.legend): set grid(..)`
+- ⚠️ When a function is passed to <Crossref target="quiver#color" />, it is given both the coordinates and directions as `(x, y, u, v)` instead of just the coordinates. 
+- ⚠️ The legend now uses a `grid` instead of a `table` to lay out its items, so you need to replace any `show lq.selector(lq.legend): set table(..)` with `show lq.selector(lq.legend): set grid(..)`. 
 
 Improvements
 - The diagram bounds are updated accordingly for content placed with <Crossref target="lq.place" />. 
