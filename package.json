@@ -5,6 +5,9 @@
   "scripts": {
     "generate-docs": "python scripts/generate-docs.py",
     "generate-images": "python scripts/generate-images.py",
+    "prepare-release": "python scripts/prepare-release.py",
+    "bump-version": "python scripts/bump-version.py",
+    "format-release-notes": "python scripts/format-release-notes.py",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
