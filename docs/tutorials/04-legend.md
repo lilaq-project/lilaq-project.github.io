@@ -66,11 +66,11 @@ Now, let us use a combination of `position` and `dx` to move the legend to the r
 
 
 
-## Modifying the legend table
+## Modifying the legend grid
 
-Since the legend entries are arranged in a [table](https://typst.app/docs/reference/model/table/), many parameters of the legend can be adjusted through `set` rules on `table`. 
+Since the legend entries are arranged in a [grid](https://typst.app/docs/reference/layout/grid/), many parameters of the legend can be adjusted through `set` rules on `grid`. 
 
-For demonstration, let us use this technique to arrange the legend entries in two columns. Each entry consists of a preview image and the label, so we need to set the number of table columns to 4. 
+For demonstration, let us use this technique to arrange the legend entries in two columns. Each entry consists of a preview image and the label, so we need to set the number of grid columns to 4. 
 
 ```example
 #show lq.selector(lq.legend): set grid(columns: 4)
