@@ -15,5 +15,8 @@ if __name__ == "__main__":
     content = re.sub("\\[(\\w*)#(\\w*)\\]", "[\\1.\\2]", content)
     content = content.replace("](/", "](https://lilaq.org/")
     content = content.replace("<!-- truncate -->", "")
-    print(content)
     assert "Crossref" not in content, "Something with the link converison failed"
+
+    
+    with open(f"external-release-notes-{version}", "w", encoding="utf-8") as file:
+        file.write(content)
