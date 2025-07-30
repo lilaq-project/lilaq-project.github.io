@@ -214,6 +214,9 @@ const config = {
         insights: false,
       },
 
+      colorMode: {
+        respectPrefersColorScheme: true,
+      },
     }), // end themeConfig
 
 
