@@ -100,7 +100,7 @@ Lilaq features a number of built-in color sequences under `lq.color.map`. As the
 #show-sequence("petroff6", cvd-friendly: true)
 ```
 
-The `okabe-ito` sequence, suggested in https://jfly.uni-koeln.de/color/ (but reordered, with black removed and yellow slightly darkened) serves similar purposes. In the [Mackie.jl](https://docs.makie.org/dev/) framework, this sequence is called "wong". 
+The `okabe-ito` sequence, suggested in https://jfly.uni-koeln.de/color/ (but reordered, with black removed and yellow slightly darkened) serves similar purposes. In the [Makie.jl](https://docs.makie.org/dev/) framework, this sequence is called "wong". 
 ```typ render
 #import "src/typst/_color-sequence.typ": *
 

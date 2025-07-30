@@ -44,6 +44,7 @@ Now we use destructuring syntax to access the four wanted attributes (note that 
 #lq.diagram(
   xlabel: [age (years)],
   ylabel: [height (cm)],
+  
   lq.scatter(age, height, size: a, color: b)
 )
 ```
