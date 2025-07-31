@@ -25,7 +25,7 @@ Inside the diagram, we use <Crossref target="lq.place" /> to plot a small subsec
   ylim: (0, 2),
   margin: (x: 2%),
 
-  lq.plot(xs, mark: none, xs.map(weierstrass)),
+  lq.plot(xs, weierstrass, mark: none),
 
   lq.rect(-0.05, 1.5, width: .05, height: .3),
 
@@ -37,7 +37,7 @@ Inside the diagram, we use <Crossref target="lq.place" /> to plot a small subsec
       margin: 0%,
       ylim: (1.5, 1.8),
       fill: white,
-      lq.plot(xs-fine, mark: none, xs-fine.map(weierstrass)),
+      lq.plot(xs-fine, weierstrass, mark: none),
     )
   )
 )

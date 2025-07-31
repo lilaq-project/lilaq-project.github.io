@@ -26,7 +26,7 @@ In order to create our first visualization, we use [`diagram`](./reference/diagr
 
 ```typ example
 #lq.diagram(
-  lq.plot((0, 1, 2, 3, 4), (5, 4, 2, 1, 2))
+  lq.plot((0, 1, 2, 3, 4), (3, 5, 4, 2, 3))
 )
 ```
 Pretty easy. Let's add another plot, a title, and axis labels!
@@ -38,10 +38,15 @@ Pretty easy. Let's add another plot, a title, and axis labels!
   xlabel: $x$, 
   ylabel: $y$,
 
-  lq.plot(xs, (5, 4, 2, 1, 2), mark: "s", label: [A]),
-  lq.plot(xs, (2, 5, 4, 2, 3), mark: "o", label: [B])
+  lq.plot(xs, (3, 5, 4, 2, 3), mark: "s", label: [A]),
+  lq.plot(
+    xs, x => 2*calc.cos(x) + 3, 
+    mark: "o", label: [B]
+  )
 )
 ```
+In the second plot we use that instead of an array we can also pass in a function for `y` to be evaluated for each $x$-value. We could have also generated the $y$-coordinates ourselves: `xs.map(x => 2*calc.cos(x) + 3)`. 
+
 Note that a legend automatically appears when the plots are labeled. Only labeled plots are listed. You can find out more in the [**legend tutorial**](./tutorials/legend) on how to configure and customize legends. 
 
 Also check out the [**data loading tutorial**](./tutorials/data-loading) for best practices on loading data from files. 
