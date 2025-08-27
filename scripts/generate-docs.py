@@ -80,8 +80,6 @@ def param2doc(param: dict) -> str:
     return string
 
 def generate_signature(definition, namespace="", source_path=""):
-    if not namespace.endswith(".") and namespace != "":
-        namespace += "."
     name = definition["name"]
     string = f"<Signature>\n  <code>lq." + namespace
     string += f"<SignatureName>{name}</SignatureName>"
@@ -163,16 +161,19 @@ def generate_mdx_files(
     name: str,
     dir: str,
     docs,
-    namespace=".",
+    namespace="",
     source_path=""
 ):
+    if not namespace.endswith(".") and namespace != "":
+        namespace += "."
+
     definitions = docs["definitions"]
     desc = docs["description"]
 
     if len(definitions) == 0 and desc != "":
         # write a master file
         with open(os.path.join(dir, name + ".mdx"), "w", encoding="utf-8") as file:
-            metadata = f"slug: /reference/{name.lower()}\n"
+            metadata = f"slug: /reference/{namespace}{name.lower()}\n"
             file.write(f"---\n{metadata}---\n\n{process_description(desc)}")
             # print(f"- wrote {name}.mdx (master)")
             return
@@ -181,7 +182,7 @@ def generate_mdx_files(
 
     for definition in definitions:
         name = definition["name"]
-        metadata = f"slug: /reference/{name}\n"
+        metadata = f"slug: /reference/{namespace}{name}\n"
         metadata += main_metadata
         desc = definition["description"].split(".")[0] + "."
         if not "\\" in desc:
@@ -232,10 +233,12 @@ def main():
 
     
     doc_dirs = [
-        DocDir("model/", "Diagram Elements"),
+        DocDir("model/", "Diagram elements"),
         DocDir("plot/", "Plotting"),
         DocDir("loading/txt.typ", ""),
         DocDir("logic/scale.typ", "Scale", namespace="scale"),
+        DocDir("logic/tick-locate.typ", "Tick locators", namespace="tick-locate"),
+        DocDir("logic/tick-format.typ", "Tick formatters", namespace="tick-format"),
         DocDir("math.typ", "Math",),
         DocDir("vec.typ", "Vec", namespace="vec"),
         DocDir("style/color.typ", "Color", namespace="color"),
