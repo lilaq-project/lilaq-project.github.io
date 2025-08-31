@@ -83,6 +83,7 @@ const plugin = () => {
    *      ```
    * 
    * - Lines starting with `>>>` are hidden but executed in examples.
+   * - Lines starting with `<<<` are not executed but shown in examples.
    * 
    */
   const transformer = async (ast) => {
@@ -126,6 +127,8 @@ const plugin = () => {
       }
       node.value = node.value.split("\n").filter((line) => !line.trimStart().startsWith(">>>")).join("\n");
       code = code.replaceAll(">>>", "");
+      code = code.split("\n").filter((line) => !line.trimStart().startsWith("<<<")).join("\n");
+      node.value = node.value.replaceAll("<<<", "");
 
       if(!(node.meta?.includes("render") || node.meta?.includes("example"))) { return; }
 
