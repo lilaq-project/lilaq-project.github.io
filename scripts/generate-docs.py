@@ -238,7 +238,7 @@ def main():
         DocDir("loading/txt.typ", ""),
         DocDir("logic/scale.typ", "Scale", namespace="scale"),
         DocDir("logic/tick-locate.typ", "Tick locators", namespace="tick-locate"),
-        DocDir("logic/tick-format.typ", "Tick formatters", namespace="tick-format"),
+        DocDir("logic/tick-format.typ", "Tick formatting", namespace="tick-format"),
         DocDir("math.typ", "Math",),
         DocDir("vec.typ", "Vec", namespace="vec"),
         DocDir("style/color.typ", "Color", namespace="color"),
