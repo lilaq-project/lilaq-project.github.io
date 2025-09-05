@@ -1,6 +1,6 @@
 ---
 title: Legend customization
-description: Demos on changing the appearance of the legend. 
+description: How to change the appearance of the legend. 
 ---
 
 
