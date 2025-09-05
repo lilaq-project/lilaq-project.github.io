@@ -6,20 +6,39 @@ sidebar_custom_props:
 
 A reusable "schoolbook"-style diagram theme with arrow tips on the axis spines as well as centered and filtered ticks. 
 
+This is also available as a [theme](/themes). 
+
 ```example
 #import "@preview/tiptoe:0.3.1"
+#import "@preview/elembic:1.1.0" as e
 
 #let schoolbook-style = it => {
   let filter(value, distance) = value != 0 and distance >= 5pt
   let axis-args = (position: 0, filter: filter)
   
-  show: lq.set-tick(inset: 2pt, outset: 2pt, pad: 0.4em)
+  show: lq.set-tick(inset: 1.5pt, outset: 1.5pt, pad: 0.4em)
   show: lq.set-spine(tip: tiptoe.stealth)
+  show: lq.set-grid(stroke: none)
+
   show: lq.set-diagram(xaxis: axis-args, yaxis: axis-args)
+
+  show: lq.set-label(pad: none, angle: 0deg)
+  show: e.show_(
+    lq.label.with(kind: "y"),
+    it => place(bottom + right, dy: -100% - .0em, dx: -.5em, it)
+  )
+  show: e.show_(
+    lq.label.with(kind: "x"),
+    it => place(left + top, dx: 100% + .0em, dy: .4em, it)
+  )
+  
   it
 }
 
 #show: schoolbook-style
 
-#lq.diagram()
+#lq.diagram(
+  xlabel: $x$,
+  ylabel: $y$
+)
 ```
