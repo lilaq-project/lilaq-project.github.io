@@ -8,7 +8,7 @@ date: 2025-08-31
 With version 0.5.0, we are introducing several major improvements including:
 - [datetime support](/docs/tutorials/time-series) for time series plotting,
 - [relative sizing](/docs/reference/diagram#width) for diagrams,
-- and significant performance improvements through integration with [Komet](https://github.com/Mc-Zen/komet).
+- and significant performance improvements through integration with the package [Komet](https://github.com/Mc-Zen/komet).
 
 <!-- truncate -->
 
@@ -20,6 +20,7 @@ Additions
 - The parameter <Crossref target="bar#offset" /> now accepts `array` arguments for variable offsets.
 - In addition to coordinate arrays, functions `x => f(x)` can now be used as $y$ arguments in <Crossref target="plot" />, <Crossref target="bar" />, <Crossref target="stem" />, and <Crossref target="fill-between" /> (thanks to [@xkevio](https://github.com/xkevio)).
 - Column headers in text files can now be used as converter names in <Crossref target="load-txt" /> (thanks to [@timfi](https://github.com/timfi)).
+- Added parameter <Crossref target="colormesh#excess" /> to allow masking all values that are out-of-bounds.
 
 Improvements
 - **Major Performance Boost**: 
@@ -28,6 +29,7 @@ Improvements
 - <Crossref target="tick-locate.linear" /> now supports constrained tick distances like `tick-distance: (min: 1)`.
 - ⚠️ The default for <Crossref target="label#angle" /> is now `auto` which results in 0° for x-labels and -90° for y-labels. With this change, the angle can now be changed with a conditional show rule (before, this was not possible since the -90° was hard-coded into the y-label). 
 - ⚠️ Improved the schoolbook [theme](/themes). 
+- Updated elembic from version 1.1.0 to [1.1.1](https://github.com/PgBiel/elembic/releases/tag/v1.1.1). 
 
 Fixed
 - Corrected colormesh positioning in zoomed-in views.
