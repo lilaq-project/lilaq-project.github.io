@@ -2,7 +2,7 @@
 title: "Release: Lilaq 0.5.0"
 authors: [Mc-Zen]
 tags: [release]
-date: 2025-08-31
+date: 2025-09-17
 ---
 
 With version 0.5.0, we are introducing several major improvements including:
