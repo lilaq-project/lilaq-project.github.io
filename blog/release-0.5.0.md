@@ -30,6 +30,7 @@ Improvements
 - ⚠️ The default for <Crossref target="label#angle" /> is now `auto` which results in 0° for x-labels and -90° for y-labels. With this change, the angle can now be changed with a conditional show rule (before, this was not possible since the -90° was hard-coded into the y-label). 
 - ⚠️ Improved the schoolbook [theme](/themes). 
 - Updated elembic from version 1.1.0 to [1.1.1](https://github.com/PgBiel/elembic/releases/tag/v1.1.1). 
+- Updated Zero from version 0.4.0 to [0.5.0](https://github.com/Mc-Zen/zero/releases/tag/v0.5.0). 
 
 Fixed
 - Corrected colormesh positioning in zoomed-in views.
