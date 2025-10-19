@@ -95,7 +95,7 @@ To preview your changes locally, follow these steps:
    npm run generate-images
    ```
 
-2. Generate the documentation reference from the Tyst source files:
+2. Generate the documentation reference from the Typst source files:
    ```sh
    npm run generate-docs
    ```
