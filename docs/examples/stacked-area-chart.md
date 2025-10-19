@@ -4,8 +4,7 @@ sidebar_custom_props:
   tags: [fill]
 ---
 
-This example shows how related series can be compounded,
-with a function which uses <Crossref target="fill-between" /> to create a stacked area chart.
+This example shows how related series can be compounded into a stacked area chart using <Crossref target="fill-between" />.
 
 ```example
 #let stacked-area(x, ..y) = {
@@ -33,4 +32,4 @@ with a function which uses <Crossref target="fill-between" /> to create a stacke
 ```
 
 Stacked area charts are useful for showing the relationship between categories of the same type in one chart,
-but beware that including too many series can damage perceptual accuracy.
+but beware that including too many series can harm readability.
