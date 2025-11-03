@@ -93,8 +93,14 @@ def typ_to_md(source: str) -> str:
             url = "/docs/" + url
         return f"[{content}]({url})"
 
+    def replace_details(it: str):
+        indentation = ""
+        if it.startswith("\n"):
+            indentation = " " * (len(it) - len(it.lstrip()) - 1)
+        return f"<details>\n{indentation}<summary>Example</summary>{it}</details>"
+    
     source = replace_functions(source, {
-        "details": lambda it: f"<details>{it}</details>",
+        "details": replace_details,
         "summary": lambda it: f"<summary>{it}</summary>",
         "link": replace_link
     })
