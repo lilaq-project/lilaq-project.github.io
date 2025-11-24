@@ -138,10 +138,10 @@ The computed tick locations are passed internally to the <Crossref target="grid"
 ## Formatting ticks
 
 Just like with the tick locator, Lilaq selects a tick formatter matching the axis scale. The built-in formatters are
-- `lq.format-ticks-linear`,
-- `lq.format-ticks-log`,
-- `lq.format-ticks-symlog`,
-- `lq.format-ticks-manual` (which is selected automatically when manual locations together with labels are passed to <Crossref target="axis#ticks" />). 
+- `lq.tick-format.linear`,
+- `lq.tick-format.log`,
+- `lq.tick-format.symlog`,
+- `lq.tick-format.manual` (which is selected automatically when manual locations together with labels are passed to <Crossref target="axis#ticks" />). 
 
 The tick formatter can be changed with <Crossref target="axis#format-ticks" />. Let us write a custom formatter. 
 
@@ -156,10 +156,10 @@ The most naive formatter takes the tick locations and just converts them to a st
   ),
 )
 ```
-However, due to rounding issues, a simple conversion can lead to awkward tick labels like `0.60000000000001` instead of `0.6` which is why the default formatter are much smarter than that. Instead of writing a formatter from scratch, it can be beneficial to _call an existing one_. 
+However, due to rounding issues, a simple conversion can lead to awkward tick labels like `0.60000000000001` instead of `0.6` which is why the default formatters are much smarter than that. Instead of writing a formatter from scratch, it can be beneficial to _call an existing one_. 
 ```example
 #let k-formatter(ticks, ..args) = {
-  let result = lq.format-ticks-linear(ticks, ..args)
+  let result = lq.tick-format.linear(ticks, ..args)
   ticks.zip(result.labels).map(((tick, label)) => {
     label + if tick != 0 { $k$ }
   })
@@ -174,7 +174,7 @@ This case actually has built-in support with the default formatter through the `
 ```typ
 #lq.diagram(
   xaxis: (
-    format-ticks: lq.format-ticks-linear.with(suffix: $k$)
+    format-ticks: lq.tick-format.linear.with(suffix: $k$)
   )
 )
 ```
@@ -196,7 +196,7 @@ Usually subticks don't need labels but in case you still need them, it is easy t
 
 #let axis-args = (
   subticks: 1, 
-  format-subticks: lq.format-ticks-linear
+  format-subticks: lq.tick-format.linear
 )
 
 #show: lq.set-diagram(

@@ -11,8 +11,8 @@ Moreover, we configure a suffix `$pi$` to add to all ticks except with the value
 #lq.diagram(
   xlim: (-2*calc.pi, 2*calc.pi),
   xaxis: (
-    locate-ticks: lq.locate-ticks-linear.with(unit: calc.pi),
-    format-ticks: lq.format-ticks-linear.with(suffix: $pi$)
+    locate-ticks: lq.tick-locate.linear.with(unit: calc.pi),
+    format-ticks: lq.tick-format.linear.with(suffix: $pi$)
   )
 )
 ```
