@@ -1,6 +1,7 @@
 .signature {
   margin: 1em;
 }
+
 .signature code {
 
   overflow-x: auto;
@@ -96,4 +97,11 @@ h4 {
 
 .crossRef>span {
   color: var(--ifm-color-primary-faint);
+}
+
+
+.typstRef:after {
+  content: '☍';
+  color: var(--ifm-color-primary-fainter);
+  padding-left: .1em;
 }

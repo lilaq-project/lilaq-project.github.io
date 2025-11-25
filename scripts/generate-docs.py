@@ -59,6 +59,40 @@ def load_available_examples():
 
     return examples
 
+typst_builtins = {
+    "array": "foundations/array",
+    "auto": "foundations/auto",
+    "bool": "foundations/bool",
+    "bytes": "foundations/bytes",
+    "arguments": "foundations/arguments",
+    "content": "foundations/content",
+    "datetime": "foundations/datetime",
+    "decimal": "foundations/decimal",
+    "dictionary": "foundations/dictionary",
+    "duration": "foundations/duration",
+    "float": "foundations/float",
+    "regex": "foundations/regex",
+    "function": "foundations/function",
+    "int": "foundations/int",
+    "none": "foundations/none",
+    "str": "foundations/str",
+    "symbol": "foundations/symbol",
+    "type": "foundations/type",
+    "version": "foundations/version",
+    "stroke": "visualize/stroke",
+    "color": "visualize/color",
+    "gradient": "visualize/gradient",
+    "tiling": "visualize/tiling",
+    "image": "visualize/image",
+    "alignment": "layout/alignment",
+    "angle": "layout/angle",
+    "direction": "layout/direction",
+    "fraction": "layout/fraction",
+    "length": "layout/length",
+    "ratio": "layout/ratio",
+    "relative": "layout/relative",
+}
+
 def param2doc(param: dict) -> str:
     name, description = param["name"], param["description"].replace("\n", "\n  ")
     string = f"#### <ParamName>{name}</ParamName>"
@@ -66,8 +100,11 @@ def param2doc(param: dict) -> str:
         def ref_type(type: str):
             if type.startswith("lq."):
                 return f'<Crossref target="{type}" />'
+            elif type in typst_builtins:
+                return f'<Typstref target="https://typst.app/docs/reference/{typst_builtins[type]}" />'
             else:
                 return f"`{type}`"
+            
             
         types = [f"{ref_type(t)}" for t in param["types"]]
         string += f" : {' | '.join(types)}"

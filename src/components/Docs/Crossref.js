@@ -1,5 +1,6 @@
 import styles from './docs.module.css';
 
+// Cross-reference to a definition in the Lilaq framework
 export const Crossref = ({ target }) => {
     let display = target
     if (target.includes("#")) {

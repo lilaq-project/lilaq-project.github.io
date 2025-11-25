@@ -14,6 +14,7 @@
   --ifm-color-primary-lighter: #7653d0;
   --ifm-color-primary-lightest: #8e71d8;
   --ifm-color-primary-faint: #9783c9;
+  --ifm-color-primary-fainter: #b2a5d5;
   --ifm-color-primary-faintest: #cec7df;
   --ifm-code-font-size: 95%;
   --ifm-code-preview-background: #e4e5ea;
@@ -33,6 +34,7 @@
   --ifm-color-primary-lighter: #f8f8fe;
   --ifm-color-primary-lightest: #ffffff;
   --ifm-color-primary-faint: #8c81a7;
+  --ifm-color-primary-fainter: #716a84;
   --ifm-color-primary-faintest: #575362;
   /* --ifm-code-background: #252525 !important; */
   --ifm-code-preview-background: #343434;
