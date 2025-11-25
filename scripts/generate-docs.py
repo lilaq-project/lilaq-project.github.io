@@ -9,6 +9,7 @@ def verify_url(url):
     return
     response = requests.get(url)
     assert response.status_code == 200, f"Bad url: {url} (code {response.status_code})"
+    print(f"Good url {url}")
 
 
 def process_description(description: str, replace_crossrefs=True) -> str:
@@ -92,6 +93,9 @@ typst_builtins = {
     "ratio": "layout/ratio",
     "relative": "layout/relative",
 }
+
+for link in typst_builtins.values():
+    verify_url("https://typst.app/docs/reference/" + link)
 
 def param2doc(param: dict) -> str:
     name, description = param["name"], param["description"].replace("\n", "\n  ")
