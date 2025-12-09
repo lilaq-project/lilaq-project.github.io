@@ -30,7 +30,7 @@ h2 {
 }
 
 .signatureName {
-  color: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-primary-darker);
   font-weight: bold;
 }
 
