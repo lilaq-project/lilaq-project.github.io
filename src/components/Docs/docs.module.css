@@ -40,7 +40,7 @@ h2 {
 
 .sourceLink {
   float: right;
-  color: var(--ifm-color-primary-faintest);
+  color: var(--color-primary-faintest);
   text-indent: initial;
 }
 
@@ -96,12 +96,12 @@ h4 {
 
 
 .crossRef>span {
-  color: var(--ifm-color-primary-faint);
+  color: var(--color-primary-faint);
 }
 
 
 .typstRef:after {
   content: '☍';
-  color: var(--ifm-color-primary-fainter);
+  color: var(--color-primary-fainter);
   padding-left: .1em;
 }

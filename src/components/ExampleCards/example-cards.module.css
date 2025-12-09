@@ -10,7 +10,7 @@
   width: 100px;
   /* background-color: white; */
   box-shadow: 0pt 0pt 5pt 0pt rgba(0, 0, 0, 0.313);
-  box-shadow: 0pt 0pt 5pt 0pt var(--ifm-color-shadow);
+  box-shadow: 0pt 0pt 5pt 0pt var(--color-shadow);
 }
 
 .plotTypeLink {
