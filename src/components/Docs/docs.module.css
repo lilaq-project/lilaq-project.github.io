@@ -40,7 +40,7 @@ h2 {
 
 .sourceLink {
   float: right;
-  color: var(--color-primary-faintest);
+  color: var(--color-primary-fainter);
   text-indent: initial;
 }
 
