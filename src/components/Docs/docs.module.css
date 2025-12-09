@@ -24,7 +24,7 @@ h2 {
 .signature code {
   display: block;
   padding: 1em;
-  color: #959595;
+  color: var(--color-gray);
   padding-left: 3em;
   text-indent: -2em;
 }
@@ -90,7 +90,7 @@ h4 {
 
 
 .default {
-  color: gray;
+  color: var(--color-gray);
   float: right;
 }
 
