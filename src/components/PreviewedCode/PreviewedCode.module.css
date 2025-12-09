@@ -7,7 +7,7 @@
 }
 
 .preview {
-  background: var(--ifm-code-preview-background);
+  background: var(--code-preview-background);
   border-radius: 6px;
   padding: 12px 16px;
   flex-basis: fit-content;
@@ -23,7 +23,7 @@
   overflow-x: auto;
   min-width: 300px;
   flex-grow: 1;
-  box-shadow: 1pt 1pt 6pt var(--ifm-color-shadow);
+  box-shadow: 1pt 1pt 6pt var(--color-shadow);
 }
 
 

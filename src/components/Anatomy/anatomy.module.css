@@ -48,7 +48,7 @@
 }
 
 .annotation a code span {
-  color: var(--ifm-color-primary-faint);
+  color: var(--color-primary-faint);
 }
 
 .title {
