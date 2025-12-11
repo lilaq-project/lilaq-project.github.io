@@ -100,8 +100,9 @@ h4 {
 }
 
 
-.typstRef:after {
+.typstRef code:after {
   content: '☍';
   color: var(--color-primary-fainter);
   padding-left: .1em;
+  text-decoration: none !important;
 }

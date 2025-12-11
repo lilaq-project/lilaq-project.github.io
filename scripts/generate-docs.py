@@ -105,7 +105,7 @@ def param2doc(param: dict) -> str:
             if type.startswith("lq."):
                 return f'<Crossref target="{type}" />'
             elif type in typst_builtins:
-                return f'<Typstref target="https://typst.app/docs/reference/{typst_builtins[type]}" />'
+                return f'<Typstref target="https://typst.app/docs/reference/{typst_builtins[type]}">`{type}`</Typstref>'
             else:
                 return f"`{type}`"
             
@@ -277,6 +277,7 @@ def main():
         DocDir("model/", "Diagram elements"),
         DocDir("plot/", "Plotting"),
         DocDir("loading/txt.typ", ""),
+        DocDir("layout.typ", ""),
         DocDir("logic/scale.typ", "Scale", namespace="scale"),
         DocDir("logic/tick-locate.typ", "Tick locators", namespace="tick-locate"),
         DocDir("logic/tick-format.typ", "Tick formatting", namespace="tick-format"),
