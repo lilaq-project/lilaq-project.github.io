@@ -219,12 +219,11 @@ def generate_mdx_files(
             # print(f"- wrote {name}.mdx (master)")
             return
 
-    main_metadata = ""
 
     for definition in definitions:
         name = definition["name"]
-        metadata = f"slug: /reference/{namespace}{name}\n"
-        metadata += main_metadata
+        iden = namespace + name if namespace.strip(".") != name else name
+        metadata = f"slug: /reference/{iden}\n"
         desc = definition["description"].split(".")[0] + "."
         if not "\\" in desc:
             metadata += f'description: "{process_description(desc, replace_crossrefs=False)}"\n'
