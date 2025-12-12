@@ -29,7 +29,7 @@ These strings are just shorthands to select predefined scale objects. Equivalent
   yscale: lq.scale.symlog(threshold: 10)
 )
 ```
-You can also make up your own scale with the [`scale`](../reference/scale.scale) constructor. 
+You can also make up your own scale with the [`scale`](../reference/scale) constructor. 
 
 
 
