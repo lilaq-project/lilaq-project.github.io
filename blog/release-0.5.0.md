@@ -6,7 +6,7 @@ date: 2025-09-17
 ---
 
 With version 0.5.0, we are introducing several major improvements including:
-- [datetime support](/docs/tutorials/time-series) for time series plotting,
+- [datetime support](/docs/tutorials/datetime) for time series plotting,
 - [relative sizing](/docs/reference/diagram#width) for diagrams,
 - and significant performance improvements through integration with the package [Komet](https://github.com/Mc-Zen/komet).
 

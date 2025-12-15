@@ -238,7 +238,23 @@ const config = {
 
     'plugin-simple-a',
 
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            to: '/docs/tutorials/datetime',
+            from: '/docs/tutorials/time-series',
+          },
+          {
+            to: '/docs/tutorials/styling',
+            from: '/docs/tutorials/styling-and-themes',
+          },
+        ],
+      },
+    ],
   ]
+
 
 };
 

@@ -170,7 +170,7 @@ The previous section leads us to the following question: What if want to have ou
 )
 ```
 
-Following the [styling and theme tutorial](styling-and-themes), we can wrap this up in a reusable theme. This is demonstrated in the [schoolbook style example](/docs/examples/schoolbook-style). 
+Following the [styling and theme tutorial](styling), we can wrap this up in a reusable theme. This is demonstrated in the [schoolbook style example](/docs/examples/schoolbook-style). 
 
 
 

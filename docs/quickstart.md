@@ -47,9 +47,9 @@ Pretty easy. Let's add another plot, a title, and axis labels!
 ```
 In the second plot we use that instead of an array we can also pass in a function for `y` to be evaluated for each $x$-value. We could have also generated the $y$-coordinates ourselves: `xs.map(x => 2*calc.cos(x) + 3)`. 
 
-Note that a legend automatically appears when the plots are labeled. Only labeled plots are listed. You can find out more in the [**legend tutorial**](./tutorials/legend) on how to configure and customize legends. 
+Note that a legend automatically appears when the plots are labeled. Only labeled plots are listed. You can find out more in the [**legend tutorial**](tutorials/legend) on how to configure and customize legends. 
 
-Also check out the [**data loading tutorial**](./tutorials/data-loading) for best practices on loading data from files. 
+Also check out the [**data loading tutorial**](tutorials/data-loading) for best practices on loading data from files. 
 
 
 
@@ -67,7 +67,8 @@ Note that you can always override the cycle style by passing explicit arguments 
 
 ## Diagram axes
 
-Although usually on the side, the axes carry part of the most important information that a diagram bears − from ticks over axis labels to scales. The [**axis tutorial**](tutorials/axis) and [**ticks tutorial**](tutorials/ticks) guide you through a series of steps to set up and adapt the diagram axes to your needs.  
+Although usually on the side, the axes carry part of the most important information that a diagram bears − from ticks over axis labels to the scaling of the data. The [**axis tutorial**](tutorials/axis) and [**ticks tutorial**](tutorials/ticks) guide you through a series of steps to set up and adapt the diagram axes to your needs.  
+
 
 
 
@@ -85,7 +86,7 @@ import Anatomy from '@site/src/components/Anatomy';
 
 ## Tutorials
 
-Please refer to the following resources for further guidance. In particular, the tutorial [**styling and themes**](tutorials/styling-and-themes) may save you a lot of time. 
+Please refer to the following resources for further guidance. In particular, the tutorial [**styling and themes**](tutorials/styling) may save you a lot of time. 
 
 import useCurrentSidebarCategory from '@docusaurus/theme-common';
 import DocCardList from '@theme/DocCardList';
