@@ -1,6 +1,7 @@
 ---
-title: Time series
+title: Datetime support
 description: Plotting dates and times through datetime values. 
+sidebar_position: 6
 ---
 
 Lilaq has built-in support for plotting time series with [`datetime`](https://typst.app/docs/reference/foundations/datetime/) values. In addition to arrays of float values, most plotting functions also accept an array of datetimes as coordinate inputs. 

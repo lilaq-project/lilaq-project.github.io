@@ -1,6 +1,7 @@
 ---
 title: Using style cycles
 description: Creating and using cycles to style consecutive plots. 
+sidebar_position: 2
 ---
 
 

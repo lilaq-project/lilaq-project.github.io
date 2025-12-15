@@ -1,6 +1,7 @@
 ---
 title: Data loading
 description: Best practices for loading data from external files. 
+sidebar_position: 9
 ---
 
 import CodeBlock from '@theme/CodeBlock';

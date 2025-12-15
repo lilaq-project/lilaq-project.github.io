@@ -1,6 +1,7 @@
 ---
 title: Styling and themes
 description: How to use show and set rules to power up Lilaq elements. 
+sidebar_position: 1
 ---
 
 This tutorial deals with styling and configuration in general and on a broader level. The following tutorials give more insight into styling of individual parts of a diagram. 

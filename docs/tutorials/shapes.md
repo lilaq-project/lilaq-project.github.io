@@ -1,6 +1,7 @@
 ---
 title: Drawing shapes
 description: Drawing primitive shapes and arbitrary content into diagrams. 
+sidebar_position: 10
 ---
 
 

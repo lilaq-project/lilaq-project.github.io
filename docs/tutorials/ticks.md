@@ -1,6 +1,7 @@
 ---
-title: Working with ticks
+title: Tick configuration
 description: Styling and configuring axis ticks. 
+sidebar_position: 4
 ---
 
 In this tutorial, we will learn techniques to generate, configure, manipulate, and also remove ticks on an axis. 

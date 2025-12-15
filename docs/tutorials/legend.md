@@ -1,6 +1,7 @@
 ---
 title: Legend customization
 description: How to change the appearance of the legend. 
+sidebar_position: 7
 ---
 
 
