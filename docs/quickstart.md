@@ -71,6 +71,10 @@ Although usually on the side, the axes carry part of the most important informat
 
 
 
+## Datetime support
+
+Lilaq provides built-in support for date and time data. Most plotting functions accept Typst `datetime` instances as coordinates and dedicated tick locators and formatters provide suitable and automatic adaptations of the diagram axes. For more information check out the [**datetime tutorial**](tutorials/datetime).
+
 
 
 ## Anatomy of a diagram
