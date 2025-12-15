@@ -25,11 +25,13 @@ Since custom element functions (in the future so-called _types_) are not yet ava
 ```typ
 #set lq.diagram(width: 10cm)
 #show lq.diagram: set text(0.8em)
+#show lq.label.where(kind: "x"): set text(red)
 ```
 for now, we need to write:
 ```typ
 #show: lq.set-diagram(width: 10cm)
 #show lq.selector(lq.diagram): set text(0.8em)
+#show: lq.show_(lq.label.with(kind: "x"), it => { set text(red); it })
 ```
 :::
 
