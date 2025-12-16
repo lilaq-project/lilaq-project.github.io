@@ -213,6 +213,20 @@ In the following example, we have a velocity $v$ along the bottom $x$-axis and t
 
 Another demonstration can be found in the [dual-axis example](/docs/examples/dual-axis). 
 
+If the transformation is highly nonlinear, a different tick locator and formatter may be necessary. For an exponential conversion, the easiest way is setting <Crossref target="axis#scale" /> to `"log"`. This does not actually influence the transformation of the data coordinates but sets the according (sub-)tick locators and formatters. 
+```example
+#lq.diagram(
+  xlim: (1, 7),
+  xaxis: (position: bottom),
+  yaxis: none,
+  lq.xaxis(
+    position: top,
+    scale: "log",
+    functions: (x => calc.pow(10, x), x => calc.log(x)),
+  )
+)
+```
+
 
 
 
