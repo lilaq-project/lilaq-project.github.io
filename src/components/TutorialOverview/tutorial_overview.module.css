@@ -1,0 +1,27 @@
+.grid1 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.grid1 div {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.grid1 a {
+  padding: .2em .5em;
+}
+
+.grid1 div > a {
+  margin: 0.3em;
+  background: var(--code-preview-background);
+}
+
+
+@media screen and (max-width: 570px) {
+  .grid1 {
+    display: block;
+  }
+
+}

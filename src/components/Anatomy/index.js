@@ -16,8 +16,6 @@ export default function Annotations() {
     <div className={styles.anatomyWrapper}>
       <div className={styles.anatomy}>
 
-        {/* <Anatomy /> */}
-
         <img src={useBaseUrl('/img/typst-generated/anatomy.svg')} alt="Anatomy of a Lilaq plot" />
 
         <Label title="title" />

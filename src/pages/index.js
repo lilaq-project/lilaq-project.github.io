@@ -5,6 +5,7 @@ import Layout from '@theme/Layout';
 import PlotTypes from '@site/src/components/PlotTypes';
 import Anatomy from '@site/src/components/Anatomy';
 import Heading from '@theme/Heading';
+import TutorialOverview from '@site/src/components/TutorialOverview';
 import styles from './index.module.css';
 import Description from './_description.mdx';
 
@@ -56,6 +57,10 @@ export default function Home() {
 
         <h2>Plot types</h2>
         <PlotTypes />
+
+        <h2>Tutorials</h2>
+        <TutorialOverview />
+        
         
         <h2>Anatomy of a diagram</h2>
         <Anatomy />
