@@ -6,50 +6,79 @@ date: 2026-01-01
 ---
 
 
+Lilaq 0.6.0 introduces native diagram grids, new violin plot types, and improved colormesh image support. Note: diagram bounds now more strictly respect tick label bounds, and the bar width default has changed — please review the breaking changes below before upgrading.
+
 <!-- truncate -->
+
 
 ## Changelog
 
-Additions
-- A new layout function. ....
-- violin plots ...
-- The new option `diagram.aspect` allows for setting up a fixed aspect ratio between data x and y-coordinates − either by adjusting the diagram dimensions or the diagram margins. 
-- The parameters `bar.width` and `hbar.width` now allow `ratio` values which are measured between consecutive bar positions and `duration` values when using datetime values as coordinates. 
-- Added a new tick formatter `tick-format.fraction` for displaying automatic fractions.
-- Added a parameter `tick-format.linear.pad` to disable padding ticks with zeros to the same precision. 
-- The utility function `vec.jitter` makes adding randomized offsets to an array of numerical values easy. 
-- The plot type `colormesh` can now take a pre-rendered image as input. Through the parameters `min`, `max`, and `map`, the colormesh instance can behave just as if it drew the mesh itself − including when colorbars are generated for the mesh.
-- The new parameter `colormesh.align` controls how the mesh rectangles should be aligned at the x and y coordinates. 
-- Added the possibility to specify edges of the mesh instead of points by passing x and y coordinate arrays which are one larger than the respective dimensions of the two-dimensional z array.
-- Added support for em-lengths in `diagram.width` and `diagram.height`. 
-- Added the option `fill-between.smooth`, just like `plot.smooth`. 
-- plot.tip/toe ...
-- bounds mode ...
-- `minmax.margin` option ...
+
+### Breaking changes
+- **Diagram bounds** now strictly respect tick label bounds. This new default may change diagram layouts; restore the previous behavior with:
+
+  ```typ
+  #show: lq.set-diagram(bounds: "relaxed")
+  ```
+
+- The default for **`bar.width`** and **`hbar.width`** changed from `0.8` to `80%`. This improves bar visibility on datetime axes or widely spaced positions; unit-distance data is unaffected.
+
+- **`vec.transform`** now takes individual arguments instead of a tuple. See the Utility section for details.
+
+### Diagram
+- Added native diagram grids via `show` rules with `lq.layout`.
+- Added `diagram.aspect` to set up a fixed aspect ratio between data x-and y-coordinates (by adjusting dimensions or margins).
+- Added `diagram.bounds` with modes: `"strict"`, `"relaxed"`, and `"data-area"`.
+- Added support for em-lengths in `diagram.width` and `diagram.height`.
+- Fixed inverted colorbars on PDF export.
+- Fixed spacing when labels are larger than the diagram.
 
 
 
-Improvements
-- ⚠️ The default for `bar.width` and `hbar.width` is now `80%` instead of `0.8`, making bars also visible for datetime axis or when consecutive bar positions are far apart. With bar plots where the bars have unit distance like `(1, 2, 3, 4)`, this effectively changes nothing. 
-- ⚠️ The function `vec.transform` now takes individual arguments instead of a tuple. The usage is thus now `lq.vec.transform(a, b, (a, b) => ..)` instead of
-`lq.vec.transform(a, b, ((a, b)) => ..)`. 
-- Changed default of `hbar.align` from `center` to `horizon`. The former `center` is still allowed. 
-
-Fixes
-- Integer arguments to `bar.width` and `hbar.width`. 
-- Issues with rounding of `tick-distance` with the linear tick locator. 
-- Fixes an issue with inverted colorbars on PDF export. 
-- Fixed several plots for empty coordinate array inputs. 
-- Fixed formatting of linear ticks with suffix. In partifular, the "0" and minus sign of negative ticks were previously not passed to `zero.num`. This can be important for consistency when text and math fonts don't match.
-- Fixed rotation of the polygon mark when `rotate.reflow` is set to true through a set rule. 
-- Fixed scaling of colormeshes when `scale.reflow` is set to true through a set rule. 
-- Fixed spacing with labels that are longer or wider than the diagram. 
-
-Dependencies
-- Bumped Tiptoe from 0.3.1 to 0.4.0. 
-- Bumped Komet from 0.1.0 to 0.2.0. 
+### Plots
+- Added `violin` and `hviolin` plot types.
+- Colormesh
+  - Now accepts pre-rendered images as input. When `min`, `max`, and `map` are provided the colormesh behaves as if it rendered the mesh itself (including colorbars).
+  - Added `colormesh.align` to control mesh rectangle alignment with x/y coordinates.
+  - Now accepts edge arrays for x and y (length n+1) to specify mesh edges instead of point centers.
+- Bar plots
+  - Now, `bar.width` and `hbar.width` accept `ratio` (relative to consecutive bar positions) and `duration` (for datetime coordinates).
+  - ⚠️ Default `bar.width`/`hbar.width` changed from `0.8` to `80%` to improve visibility on datetime or sparse axes; unit-spaced data unchanged.
+  - Changed `hbar.align` default from `center` to `horizon` (both values are supported).
+  - Fixed integer handling for `bar.width` and `hbar.width`.
+- Added `fill-between.smooth`, similar to `plot.smooth`.
+- Added `plot.tip` and `plot.toe` to place [Tiptoe](https://typst.app/universe/package/tiptoe) arrow marks at the start and end of lines.
+- Fixed behavior for empty coordinate arrays.
+- Fixed colormesh scaling when `scale.reflow` is set to true via set rules.
+- Fixed polygon rotation when `rotate.reflow` is set to true via set rules.
 
 
-Documentation
-- Fixed various typos. 
-- Type annotations of Typst built-in types now link to their respective documentations from the Typst website. 
+### Ticks
+- Added `tick-format.fraction` for automatic fraction formatting.
+- Added `tick-format.linear.pad` to disable zero-padding when formatting linear ticks.
+- Fixed formatting of linear ticks with suffix. In particular, the "0" and minus sign of negative ticks were previously not passed to `zero.num`. This can be important for consistency when text and math fonts don't match.
+- Fixed rounding issues for `tick-distance` when using the linear locator.
+
+### Utility
+- Added `vec.jitter` to apply randomized offsets to numeric arrays.
+- Added the `minmax.margin` option.
+- ⚠️ Note: **`vec.transform`** now takes individual arguments rather than a tuple. Use:
+
+  `lq.vec.transform(a, b, (a, b) => ...)`
+
+  instead of the previous:
+
+  `lq.vec.transform(a, b, ((a, b)) => ...)`.
+
+
+
+### Dependencies
+- Zero: 0.5.0 → 0.6.0
+- Komet: 0.1.0 → 0.2.0
+- Tiptoe: 0.3.1 → 0.4.0
+
+
+
+### Documentation
+- Fixed typos and improved clarity across the docs.
+- Typst built-in type annotations now link to the corresponding pages on the Typst website. 
