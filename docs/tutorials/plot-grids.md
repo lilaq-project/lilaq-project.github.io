@@ -46,7 +46,7 @@ The show rule with `lq.layout` integrates seamlessly with all features provided 
 
 ## Strict or relaxed bounds?
 
-Lilaq has two (actually three) strategies for computing the bounding box of a diagram that can be selected through the <Crossref target="diagram#bounds" /> parameter: `"relaxed"` and `"strict"`. In strict mode, the full bounding box of the diagram is computed including all ticks. In the relaxed mode, however, tick labels of an $x$-axis are allowed to stick out a little at the right and left sides of a diagram (and tick labels of a $y$-axis at the top and bottom). Like this, the spines can line up with the main text body, even when the first and last tick sit on the far edges of an axis. Oftentimes, this can give a cleaner look in a document. 
+Lilaq has two (actually three) strategies for computing the bounding box of a diagram that can be selected through the <Crossref target="diagram#bounds" /> parameter: `"relaxed"` and `"strict"` (and `"data-area"`). In strict mode, the full bounding box of the diagram is computed including all ticks. In the relaxed mode, however, tick labels of an $x$-axis are allowed to hang into the page or container margins at the right and left sides of a diagram (and tick labels of a $y$-axis at the top and bottom). Like this, the spines can line up with the main text body, even when the first and last tick sit on the far edges of an axis. Sometimes, this can give a cleaner look in a document. 
 
 This is best demonstrated with an example. 
 ```example
@@ -63,7 +63,7 @@ This is best demonstrated with an example.
 
 #lorem(14)
 
-#lq.diagram(bounds: "strict")
+#lq.diagram(bounds: "relaxed")
 
 #lorem(14)
 ```
