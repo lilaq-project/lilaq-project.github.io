@@ -18,7 +18,7 @@ import remarkTypst from './src/remark/remark-typst.js'
 const config = {
   title: 'Lilaq',
   tagline: 'Advanced data visualization in Typst',
-  favicon: 'img/favicon.ico',
+  favicon: 'favicon.ico',
   titleDelimiter: "−",
 
   staticDirectories: ['static'],
