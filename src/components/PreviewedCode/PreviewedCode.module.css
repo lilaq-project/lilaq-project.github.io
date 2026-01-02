@@ -17,7 +17,7 @@
   justify-content: center;
 }
 
-.wrapper>div:nth-child(1) {
+.code {
   margin: 0;
   display: flex;
   overflow-x: auto;
@@ -27,17 +27,22 @@
 }
 
 
-
-.wrapper>div:nth-child(1)>div:nth-child(1) {
+.code>div:nth-child(1) {
   flex: 1;
+  margin-bottom: 0pt;
+}
+
+.code>div:nth-child(1)>div:nth-child(1) {
+  flex: 1;
+  height: 100%
 }
 
 
 
-.wrapper>div:nth-child(1)>div:nth-child(1) pre{
+
+.code>div:nth-child(1)>div:nth-child(1) pre {
   height: 100%;
 }
-
 
 
 [data-theme='dark'] .wrapper img {

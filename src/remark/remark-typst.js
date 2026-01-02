@@ -98,6 +98,8 @@ const plugin = () => {
         title = parse_options(node.meta).title;
       }
 
+      let reverse_order = (node.meta?.includes("reverse-order"))
+      
 
 
       if (node.lang === "example") {
@@ -164,16 +166,23 @@ const plugin = () => {
           url: "@site/" + path,
         };
       } else {
+        let children = [
+          node,
+          {
+            type: "image",
+            url: "@site/" + path,
+          },
+        ]
+
+        if (reverse_order) {
+          children.reverse()
+        }
+
         parent.children[index] = {
           type: "mdxJsxFlowElement",
           name: "PreviewedCode",
-          children: [
-            node,
-            {
-              type: "image",
-              url: "@site/" + path,
-            },
-          ],
+          children: children,
+          reverse_order: reverse_order
         };
       }
     });
