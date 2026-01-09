@@ -120,7 +120,7 @@ You can also write your own tick locator. The day may come when there will be a 
 
 ### Subticks
 
-Subticks work similarly to regular ticks. Each built-in tick locator has a corresponding subtick-locator that is suited to fill the gaps. Subticks can be controlled through <Crossref target="axis.subticks" />. Here you can for instance remove subticks by setting `subticks: none` or you can specify the number of subticks between two consecutive major ticks. 
+Subticks work similarly to regular ticks. Each built-in tick locator has a corresponding subtick-locator that is suited to fill the gaps. Subticks can be controlled through <Crossref target="axis#subticks" />. Here you can for instance remove subticks by setting `subticks: none` or you can specify the number of subticks between two consecutive major ticks. 
 ```example
 #show: lq.set-diagram(
   xaxis: (subticks: 1),
