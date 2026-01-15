@@ -19,6 +19,7 @@ export default function Annotations() {
         <img src={useBaseUrl('/img/typst-generated/anatomy.svg')} alt="Anatomy of a Lilaq plot" />
 
         <Label title="title" />
+        <Label title="diagram" />
         <Label title="ylabel" href="/docs/reference/label" />
         <Label title="xlabel" href="/docs/reference/label" />
         <Label title="yaxis" href="/docs/reference/axis" />

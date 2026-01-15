@@ -208,6 +208,21 @@
 
 
 
+.diagram {
+  left: 2.7%;
+  top: 8%;
+  width: 5%;
+  height: 0%;
+  border: none;
+}
+
+.diagram a {
+  left: 2.5em;
+  top: -2.3em;
+}
+
+
+
 @media screen and (max-width: 520px) {
   .annotation {
     border-radius: 3pt;
