@@ -29,7 +29,7 @@ In order to create our first visualization, we use [`diagram`](./reference/diagr
   lq.plot((0, 1, 2, 3, 4), (3, 5, 4, 2, 3))
 )
 ```
-Pretty easy. Let's add another plot, a title, and axis labels!
+Pretty easy. Let's add second plot, a title, and axis labels to our diagram!
 ```typ example
 #let xs = (0, 1, 2, 3, 4)
 
@@ -45,7 +45,7 @@ Pretty easy. Let's add another plot, a title, and axis labels!
   )
 )
 ```
-In the second plot we use that instead of an array we can also pass in a function for `y` to be evaluated for each $x$-value. We could have also generated the $y$-coordinates ourselves: `xs.map(x => 2*calc.cos(x) + 3)`. 
+In the second plot we use that instead of an array we can also pass in a function for <Crossref target="plot#y" /> to be evaluated for each $x$-value. We could have also generated the $y$-coordinates ourselves: `xs.map(x => 2*calc.cos(x) + 3)`. 
 
 Note that a legend automatically appears when the plots are labeled. Only labeled plots are listed. You can find out more in the [**legend tutorial**](tutorials/legend) on how to configure and customize legends. 
 
@@ -60,6 +60,8 @@ You may have noticed that in the previous example, our two plots had different c
 
 :::info
 Note that you can always override the cycle style by passing explicit arguments to the plot functions. Here for example we could write `lq.plot(.., color: green)` to force a different plot color. 
+
+However, by changing the current cycle instead you can benefit from an idiomatic separation of data and styling and usually less code to write. 
 :::
 
 
