@@ -1,5 +1,5 @@
 #import "/lilaq/src/lilaq.typ" as lq
-#import "@preview/suiji:0.3.0"
+#import "@preview/suiji:0.5.1"
 
 #let color = color.mix((purple, 40%), (blue, 60%))
 
