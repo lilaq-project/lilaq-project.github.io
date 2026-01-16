@@ -14,7 +14,7 @@ We start by generating some data
 ```
 and making a noisy version of it by adding pseudo-random noise to the $x$-values. 
 ```typ
-#import "@preview/suiji:0.3.0"
+#import "@preview/suiji:0.5.1"
 #let rng = suiji.gen-rng(33)
 
 #let (rng, noise) = suiji.normal(
@@ -31,7 +31,7 @@ For this we use the Typst package [suiji](https://typst.app/universe/package/sui
 ```
 First we plot the "ideal" sine wave, then we use <Crossref target="scatter" /> to plot the "noisy" data with varying colors. 
 ```example
->>> #import "@preview/suiji:0.3.0"
+>>> #import "@preview/suiji:0.5.1"
 >>> #let rng = suiji.gen-rng(33)
 >>> #let xs = lq.linspace(0, 4 * calc.pi)
 >>> #let ys = xs.map(calc.sin)
