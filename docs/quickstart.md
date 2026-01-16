@@ -15,6 +15,9 @@ We will start by importing Lilaq under the canonical abbreviation `lq`.
 ```typ
 #import lilaq
 ```
+This way, the Typst compiler automatically downloads and installs the package. 
+You can also download Lilaq manually from the [repository](https://github.com/lilaq-project/lilaq) and import a local version. 
+
 Since Lilaq has a rather flat namespace with many definitions, it is highly recommended *not* to import everything `*` into the global scope. 
 
 
