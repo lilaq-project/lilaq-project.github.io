@@ -15,7 +15,7 @@ At the end of this tutorial we will learn how to create a reusable theme/preset.
 
 ## Elements for styling
 
-Many components of a diagram, such as <Crossref target="title" />, <Crossref target="legend" />, <Crossref target="label" />, <Crossref target="grid" /> and more are _element functions_. In particular, <Crossref target="diagram" /> itself is an element function, enabling powerful customization and an intuitive way of [creating themes](#creating-a-custom-preset-or-theme) (see below). 
+Many components of a diagram, such as <Crossref target="title" />, <Crossref target="legend" />, <Crossref target="label" />, <Crossref target="grid" /> and more are _element functions_. In particular, <Crossref target="diagram" /> itself is an element function, enabling powerful customization and an intuitive way of [creating themes](#creating-a-custom-theme) (see below). 
 
 :::info
 Element functions in Typst are functions that can be used with `set` and `show` rules. 
