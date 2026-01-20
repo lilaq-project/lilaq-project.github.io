@@ -1,14 +1,15 @@
 ---
 title: Styling and themes
-description: How to use show and set rules to power up Lilaq elements. 
+description: How to use show and set rules to configure Lilaq elements. 
 sidebar_position: 1
 ---
 
 This tutorial deals with styling and configuration in general and on a broader level. The following tutorials give more insight into styling of individual parts of a diagram. 
 - [Axis tutorial](axis)
+- [Tick tutorial](ticks)
 - [Legend tutorial](legend)
   
-At the end of this tutorial we will be looking into how to create a reusable theme or preset for diagrams. Lilaq ships a few predefined [themes](/themes). 
+At the end of this tutorial we will learn how to create a reusable theme/preset. Lilaq also ships a few predefined [themes](/themes). 
 
 
 
@@ -37,8 +38,8 @@ for now, we need to write:
 
 In the following, we will configure different aspects of a diagram by means of illustrative examples. 
 
-## Setting the text size
 
+## Setting the text size
 
 It is common to use a slightly smaller font size for diagrams compared to the main text, especially in two-column formats. Below, we use a `show`-`set`-rule to configure the text size for all diagrams. 
 
@@ -73,9 +74,9 @@ In the following example, we change the default alignment to `top + right` for <
 
 
 
-## Creating a custom preset or theme
+## Creating a custom theme
 
-Suppose that all of our diagrams will use logarithmic scaling on the $x$-axis. We could set this up at the start of the document instead of repeating `xscale: "log"` for each diagram:
+Suppose that all of our diagrams will use logarithmic scaling on the $x$-axis. Instead of repeating `xscale: "log"` for each diagram, we could configure this at the start of the document:
 
 ```typ
 #show: lq.set-diagram(xscale: "log")
@@ -83,14 +84,14 @@ Suppose that all of our diagrams will use logarithmic scaling on the $x$-axis. W
 #lq.diagram()
 ```
 
-<!-- Even better would be to create a reusable _theme_ for similar diagrams.  -->
-This is great, but we might have different types of diagrams in our document and would like to apply these styles only to some plots. This is where presets/themes come into play. 
+This is great, but we might have different types of diagrams in our document and would like to apply these styles only to some plots. This is where themes/preset come into play. 
 
 Let's imagine we want to draw a series of spectra, all featuring the same axis labels and a logarithmic $y$-scaling. To avoid repeating the same information over and over (and also to make future changes easier), we want to create a reusable preset/theme. This will be just a function that can be used in a document-level `show` rule for transforming content. 
 
 ```typ
 #let spectrum-plot = it => {
-  // <- insert set and show rules here
+  show: lq.set-diagram(xscale: "log")
+  // <- insert more set and show rules here
   it
 }
 ```
@@ -108,9 +109,9 @@ Let us now fill this theme with some configuration!
 #let spectrum-plot = it => {
   show: lq.set-diagram(
     title: [Spectrum], 
-    yscale: "log",
     ylabel: [Intensity],
     xlabel: [Wavelength],
+    yscale: "log",
     xaxis: (subticks: none)
   )
   show: lq.set-tick(
