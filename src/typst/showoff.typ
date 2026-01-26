@@ -1,5 +1,5 @@
 #import "/lilaq/src/lilaq.typ" as lq
-#import "@preview/suiji:0.3.0"
+#import "@preview/suiji:0.5.1"
 
 #set page(margin: .5cm, width: auto, height: auto)
 
