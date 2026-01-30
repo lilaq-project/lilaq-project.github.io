@@ -1,21 +1,24 @@
 import React from "react";
-import clsx from "clsx";
 
 import classes from "./PreviewedCode.module.css";
 
-export default function PreviewedCode({ children }) {
-    if (children.length == 2) {
-        return (
-            <div className={clsx(classes.wrapper)}>
-                {children[0]}
-                <div className={clsx(classes.preview)}>
-                    {children[1]}
-                </div>
-            </div>
-        );
-    }
+
+export function Code({ children }) {
+    return (<div className={classes.code}>
+        {children}
+    </div>);
+}
+
+export function Preview({ children }) {
+    return (<div className={classes.preview}>
+        {children}
+    </div>);
+}
+
+
+export function PreviewWrapper({ children }) {
     return (
-        <div className={clsx(classes.wrapper)}>
+        <div className={classes.wrapper}>
             {children}
         </div>
     );

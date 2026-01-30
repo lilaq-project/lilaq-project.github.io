@@ -12,6 +12,8 @@ import ImageHBoxplot from '@site/static/img/typst-generated/plot-types/hboxplot.
 import ImageColormesh from '@site/static/img/typst-generated/plot-types/colormesh.svg'
 import ImageContour from '@site/static/img/typst-generated/plot-types/contour.svg'
 import ImageQuiver from '@site/static/img/typst-generated/plot-types/quiver.svg'
+import ImageViolin from '@site/static/img/typst-generated/plot-types/violin.svg'
+import ImageHViolin from '@site/static/img/typst-generated/plot-types/hviolin.svg'
 
 const PlotList = [
   {
@@ -109,6 +111,22 @@ const PlotList = [
       </>
     ),
     Svg: ImageQuiver,
+  },
+  {
+    title: 'violin',
+    description: (
+      <>
+      </>
+    ),
+    Svg: ImageViolin,
+  },
+  {
+    title: 'hviolin',
+    description: (
+      <>
+      </>
+    ),
+    Svg: ImageHViolin,
   },
 ];
 
