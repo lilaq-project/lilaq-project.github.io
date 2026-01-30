@@ -2,29 +2,23 @@ import React from "react";
 
 import classes from "./PreviewedCode.module.css";
 
-export default function PreviewedCode({ children }) {
-    if (children.length == 2) {
 
-        let reversed_order = children[1].type.name == "MDXPre"
+export function Code({ children }) {
+    return (<div className={classes.code}>
+        {children}
+    </div>);
+}
 
-        let cls = [classes.code, classes.preview]
-        if (reversed_order) {
-            cls.reverse()
-        }
+export function Preview({ children }) {
+    return (<div className={classes.preview}>
+        {children}
+    </div>);
+}
 
-        return (
-            <div className={classes.wrapper}>
-                <div className={cls[0]}>
-                    {children[0]}
-                </div>
-                <div className={cls[1]}>
-                    {children[1]}
-                </div>
-            </div>
-        );
-    }
+
+export function PreviewWrapper({ children }) {
     return (
-        <div className={clsx(classes.wrapper)}>
+        <div className={classes.wrapper}>
             {children}
         </div>
     );

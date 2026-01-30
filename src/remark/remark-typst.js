@@ -160,18 +160,26 @@ const plugin = () => {
         );
       }
 
+      let image = {
+        type: "image",
+        url: "@site/" + path,
+      }
+      
+
       if (node.meta?.includes("render")) {
-        parent.children[index] = {
-          type: "image",
-          url: "@site/" + path,
-        };
+        parent.children[index] = image
       } else {
         let children = [
-          node,
           {
-            type: "image",
-            url: "@site/" + path,
+            type: "mdxJsxFlowElement",
+            name: "Code",
+            children: [node],
           },
+          {
+            type: "mdxJsxFlowElement",
+            name: "Preview",
+            children: [image],
+          }
         ]
 
         if (reverse_order) {
@@ -180,9 +188,8 @@ const plugin = () => {
 
         parent.children[index] = {
           type: "mdxJsxFlowElement",
-          name: "PreviewedCode",
+          name: "PreviewWrapper",
           children: children,
-          reverse_order: reverse_order
         };
       }
     });
