@@ -9,7 +9,7 @@ import { LilaqTheme } from '@site/src/components/LilaqTheme';
 
 export default {
   ...MDXComponents,
-  PreviewedCode,
+  Code,
   Preview,
   PreviewWrapper,
   Parameters,
