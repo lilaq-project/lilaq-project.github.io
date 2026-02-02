@@ -12,7 +12,7 @@ export default function NotFoundContent({className}) {
           <Heading as="h1" className="hero__title">
             <Translate
               id="theme.NotFound.title"
-              description="asdasdThe title of the 404 page">
+              description="The title of the 404 page">
               Page Not Found
             </Translate>
           </Heading>
