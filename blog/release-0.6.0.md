@@ -55,7 +55,7 @@ Lilaq 0.6.0 introduces native diagram grids, new violin plot types, and improved
 - Added <Crossref target="fill-between#smooth" />, similar to <Crossref target="plot#smooth" />.
 - Added support for datetime coordinates with <Crossref target="place" />, <Crossref target="rect" />, <Crossref target="ellipse" />, and <Crossref target="line" />. 
 - Added <Crossref target="plot#tip" /> and <Crossref target="plot#toe" /> to place [Tiptoe](https://typst.app/universe/package/tiptoe) arrow marks at the start and end of lines.
-- Fixed behavior for empty coordinate arrays.
+- Fixed behavior for empty coordinate arrays with most plotting functions.
 - Fixed colormesh scaling when `scale.reflow` is set to true via set rules.
 - Fixed polygon rotation when `rotate.reflow` is set to true via set rules.
 - Fixed <Crossref target="rect" /> and <Crossref target="ellipse" /> content and gradient fills when the dimensions are negative. 
@@ -82,12 +82,12 @@ Lilaq 0.6.0 introduces native diagram grids, new violin plot types, and improved
 
 
 ### Dependencies
-- Zero: 0.5.0 → 0.6.0
+- Zero: 0.5.0 → 0.6.1
 - Komet: 0.1.0 → 0.2.0
 - Tiptoe: 0.3.1 → 0.4.0
 
 
 
 ### Documentation
-- Fixed typos and improved clarity across the docs.
+- Fixed typos and improved clarity across the entire documentation.
 - Typst built-in type annotations now link to the corresponding pages on the Typst website. 
