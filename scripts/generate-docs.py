@@ -128,7 +128,7 @@ def generate_signature(definition, namespace="", source_path=""):
         name = param["name"]
         result = f"[{name}](#{name.strip('.')})"
         if "default" in param:
-            result += f"={param['default']}"
+            result += f": {param['default']}"
         if comma:
             result += ", "
         return f"<SignatureParam>{result}</SignatureParam>"
