@@ -25,7 +25,7 @@ Lilaq 0.6.0 introduces native diagram grids, new violin plot types, and improved
 
 - **<Crossref target="vec.transform" />** now takes individual arguments instead of a tuple. See the Utility section for details.
 
-- **<Crossref target="axis#mirror" />** now reacts differently when set to `auto`. Before, axis mirrors where removed automatically when <Crossref target="axis#position" /> was changed. Now, they are removed automatically when either a secondary axis is added or <Crossref target="axis#position" /> is set to a data or screen coordinate. 
+- **<Crossref target="axis#mirror" />** now reacts differently when set to `auto`. Before, axis mirrors where removed automatically when <Crossref target="axis#position" /> was changed. Now, they are removed automatically when either a secondary axis is added or <Crossref target="axis#position" /> is set to a data or screen coordinate. The change significantly reduces the necessary amount of configuration. 
 
 
 
