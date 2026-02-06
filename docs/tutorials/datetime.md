@@ -18,8 +18,9 @@ Lilaq has built-in support for plotting time series with [`datetime`](https://ty
       datetime(year: 2025, month: 5, day: 14),
       datetime(year: 2025, month: 7, day: 8),
       datetime(year: 2025, month: 8, day: 27),
+      datetime(year: 2026, month: 2, day: 6),
     ),
-    (254, 265, 295, 301, 330)
+    (254, 265, 295, 301, 330, 395)
   )
 )
 ```
