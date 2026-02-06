@@ -8,6 +8,7 @@
 #let (rng, x2) = suiji.uniform(rng, low: 0, high: 10, size: 10)
 
 #diagram(
+  margin: (x: 15%),
   lq.boxplot(
     x1, x2, 
     stroke: color, 
