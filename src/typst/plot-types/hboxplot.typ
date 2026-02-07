@@ -1,5 +1,5 @@
 #import "_template.typ": *
-#import "@preview/suiji:0.3.0"
+#import "@preview/suiji:0.5.1"
 #show: template
 
 

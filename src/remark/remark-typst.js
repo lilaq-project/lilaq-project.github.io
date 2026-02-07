@@ -98,6 +98,8 @@ const plugin = () => {
         title = parse_options(node.meta).title;
       }
 
+      let reverse_order = (node.meta?.includes("reverse-order"))
+      
 
 
       if (node.lang === "example") {
@@ -158,22 +160,36 @@ const plugin = () => {
         );
       }
 
+      let image = {
+        type: "image",
+        url: "@site/" + path,
+      }
+      
+
       if (node.meta?.includes("render")) {
-        parent.children[index] = {
-          type: "image",
-          url: "@site/" + path,
-        };
+        parent.children[index] = image
       } else {
+        let children = [
+          {
+            type: "mdxJsxFlowElement",
+            name: "Code",
+            children: [node],
+          },
+          {
+            type: "mdxJsxFlowElement",
+            name: "Preview",
+            children: [image],
+          }
+        ]
+
+        if (reverse_order) {
+          children.reverse()
+        }
+
         parent.children[index] = {
           type: "mdxJsxFlowElement",
-          name: "PreviewedCode",
-          children: [
-            node,
-            {
-              type: "image",
-              url: "@site/" + path,
-            },
-          ],
+          name: "PreviewWrapper",
+          children: children,
         };
       }
     });

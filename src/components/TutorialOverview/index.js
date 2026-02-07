@@ -19,6 +19,7 @@ export default function TutorialOverview() {
             <i>Essential</i>
             <Link to="docs/tutorials/styling">Styling</Link>
             <Link to="docs/tutorials/cycles">Plot Cycles</Link>
+            <Link to="docs/tutorials/plot-grids">Plot Grids</Link>
         </div>
         <div>
             <i>Configuration</i>
