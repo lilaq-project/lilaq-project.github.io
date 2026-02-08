@@ -6,7 +6,10 @@ date: 2026-02-08
 ---
 
 
-Lilaq 0.6.0 introduces native [diagram grids](/docs/tutorials/plot-grids) and violin plot types, as well as improved colormesh image and datetime support. Diagram bounds now respect tick-label bounds more strictly and the bar width default has changed − please review the breaking changes below before upgrading.
+Exciting news! Lilaq 0.6.0 introduces ultra-flexible support for [plot grids](/docs/tutorials/plot-grids), also known as subplots. 
+
+On the front of plotting functions, we added the new twins <Crossref target="violin" /> and <Crossref target="hviolin" /> and a new tick formatter for displaying fractions. Moreover, we significantly improved date/time support and introduced functionality for fixing the aspect ratio between $x$ and $y$ data coordinates. 
+
 
 <!-- truncate -->
 
@@ -32,7 +35,7 @@ Lilaq 0.6.0 introduces native [diagram grids](/docs/tutorials/plot-grids) and vi
 
 ### Diagram
 - Added native diagram grids via `show` rules with <Crossref target="lq.layout" />.
-- Added <Crossref target="diagram#aspect" /> to set up a fixed aspect ratio between data x-and y-coordinates (by adjusting dimensions or margins).
+- Added <Crossref target="diagram#aspect-ratio" /> to set up a fixed aspect ratio between data x-and y-coordinates (by adjusting dimensions or margins).
 - Added <Crossref target="diagram#bounds" /> with modes: `"strict"`, `"relaxed"`, and `"data-area"`.
 - Added support for em-lengths in <Crossref target="diagram#width" /> and <Crossref target="diagram#height" />.
 - Improved the smartness of <Crossref target="axis#mirror" />. 

@@ -70,7 +70,7 @@ This is best demonstrated with an example.
 
 ## Complex example
 
-A variety of these features are demonstrated in the example below. The grid cells are weakly filled to highlight the distribution of space. 
+A variety of these features are demonstrated in the example below. The grid cells are weakly filled to highlight the distribution of available space. 
 ```example
 #set page(height: auto, width: 10cm)
 
