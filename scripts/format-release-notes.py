@@ -12,11 +12,11 @@ if __name__ == "__main__":
         content = file.read()
     
     content = re.sub("<Crossref target=\"([\\w#\\.\\-]*)\" />", "[`\\1`](https://lilaq.org/docs/reference/\\1)", content)
-    content = re.sub("\\[`(\\w*)#(\\w*)`\\]", "[`\\1.\\2`]", content)
+    content = re.sub("\\[`([\\w\\-_\\d]*)#([\\w\\-_\\d]*)`\\]", "[`\\1.\\2`]", content)
     content = content.replace("](/", "](https://lilaq.org/")
     content = content.replace("<!-- truncate -->", "")
     assert "Crossref" not in content, "Something with the link converison failed"
 
     
-    with open(f"external-release-notes-{version}", "w", encoding="utf-8") as file:
+    with open(f"external-release-notes-{version}.md", "w", encoding="utf-8") as file:
         file.write(content)
