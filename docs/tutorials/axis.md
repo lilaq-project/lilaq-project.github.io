@@ -7,6 +7,39 @@ sidebar_position: 3
 In this tutorial you will learn how to configure and customize the axes of a diagram. 
 The possible parameters are documented at <Crossref target="axis" />. 
 
+
+Visually, an axis consists of a _spine_ along the axis direction, a collection of _ticks_ (and _subticks_) with _tick labels_ and an _axis_ label. Optionally, there can be an exponent. 
+```typ render
+#import "@preview/tiptoe:0.4.0"
+#let line = lq.line.with(tip: tiptoe.straight, stroke: red + .5pt, clip: false)
+#set text(1.2em)
+
+#lq.diagram(
+  yaxis: none,
+  xaxis: (mirror: none, exponent: 1),
+  xlim: (10, 50),
+  ylim: (-.1, 1),
+  grid: none,
+  height: 1cm,
+  width: 7cm,
+  lq.place(16.5, .7, align: right, text(red)[_ticks_]),
+  line((17, .6), (20,0.1)),
+  line((17, .6), (30,0.1)),
+  lq.place(39, .7, align: right, text(red)[_subticks_]),
+  line((39.5, .6), (42,0)),
+  line((39.5, .6), (44,0)),
+  lq.place(60, .7, text(red)[_exponent_]),
+  line((62, .4), (59,-.1)),
+  lq.place(38, -1.5, align: left, text(red)[_axis label_]),
+  line((37, -1.5), (31,-1.3)),
+  lq.place(23, -1.5, text(red)[_tick label_]),
+  line((23, -1.2), (21,-.8)),
+  lq.place(12, -1.5, text(red)[_spine_]),
+  line((12, -1.2), (15,-.1)),
+  xlabel: $x$
+)
+```
+
 Axes use the Typst package [Zero](https://typst.app/universe/package/zero) for formatting numbers in a consistent way throughout a document. Please refer to its documentation for configuring how numbers are displayed. 
 
 
@@ -113,6 +146,45 @@ Note that the parameters <Crossref target="axis#stroke" />, <Crossref target="ax
 
 
 
+## Exponents and offsets
+
+When tick labels get too long, Lilaq factors out a common power of (usually) 10 and places an _exponent_ at the end of the spine. 
+```example
+#lq.diagram(
+>>>  height: 20pt, 
+>>>  yaxis: none,
+  xlim: (0, 10000)
+)
+```
+This exponent can also be set manually through <Crossref target="axis#exponent" />. 
+```example
+#lq.diagram(
+>>>  height: 20pt, 
+>>>  yaxis: none,
+  xlim: (0, 10000),
+  xaxis: (exponent: 3)
+)
+```
+The <Crossref target="axis#auto-exponent-threshold" /> determines when automatic exponents kick in (when `exponent: auto`). Setting the exponent to `0` disables it altogether:
+```example
+#lq.diagram(
+>>>  height: 20pt, 
+>>>  yaxis: none,
+  xlim: (0, 10000),
+  xaxis: (exponent: 0)
+)
+```
+
+When the tick numbers are very large, but the difference between consecutive ticks is still very small, Lilaq shortens the labels by introducing an _offset_:
+```example
+#lq.diagram(
+>>>  height: 20pt, 
+>>>  yaxis: none,
+  xlim: (134200, 134201),
+)
+```
+This offset can be manually chosen or set to 0 with  <Crossref target="axis#offset" />. The offset field can also be used to display a manual offset text without actually influencing the data. In order to do this, pass a value of type `content`. 
+
 
 ## Placement and mirrors
 
@@ -125,14 +197,25 @@ Usually, the $x$-axis is placed at the bottom and the $y$-axis is placed at the 
 )
 ```
 
-But now the axis on the left has vanished entirely. Before, there was a copy − a so-called _mirror_ of the axis on the right side (although without the tick labels). This is because when specifying the position explicitly, the mirror is turned off by default. 
+<!-- But now the axis on the left has vanished entirely. Before, there was a copy − a so-called _mirror_ of the axis on the right side (although without the tick labels). This is because when specifying the position explicitly, the mirror is turned off by default.  -->
 
-We can restore the mirror axis by setting <Crossref target="axis#mirror" /> to `true`. This parameter also gives us more fine-grained control over the nature of the mirror. By passing `(ticks: false)`, we can for example remove the ticks from the mirror. 
-
+On the opposite side of each axis, a so-called _mirror_ of the axis is shown − although (by default) without the tick labels. The mirrors can be deactivated and configured through <Crossref target="axis#mirror" />. 
 ```example
+#show: lq.set-diagram(
+  xaxis: (mirror: false),
+  yaxis: (mirror: false),
+)
 #lq.diagram(
-  yaxis: (position: right, mirror: true),
+  width: 3cm, height: 3cm
+)
+```
+By passing `(ticks: false)`, we can also just remove the ticks from the mirror. 
+```example
+#show: lq.set-diagram(
   xaxis: (mirror: (ticks: false)),
+  yaxis: (mirror: (ticks: false)),
+)
+#lq.diagram(
   width: 3cm, height: 3cm
 )
 ```
@@ -188,13 +271,12 @@ A dependent axis is linked to the corresponding main axis ($x$ or $y$) and defin
 
 An example would be a spectrum that is shown in dependence of the wavelength on one side and in terms of photon energy on the opposite side. Note that there is a fixed relation between the wavelength and the energy of a photon, so these two really describe the same data. Another example is the famous Hertzsprung-Russell diagram which commonly shows absolute magnitude and luminosity on the $y$-axis and temperature and the corresponding spectral class on the $x$-axis. 
 
-In the following example, we have a velocity $v$ along the bottom $x$-axis and the corresponding kinetic energy which scales quadratically with $v$ on a secondary axis at the top. First, we remove the mirror of the main $x$-axis (see section on [placement and mirrors](#placement-and-mirrors) above). Then we add a second <Crossref target="axis" /> at `position: top`. Through <Crossref target="axis#functions" />, we give the transformation from velocity to energy and its inverse. 
+In the following example, we have a velocity $v$ along the bottom $x$-axis and the corresponding kinetic energy which scales quadratically with $v$ on a secondary axis at the top. For this, we add a second <Crossref target="axis" /> at `position: top`. Through <Crossref target="axis#functions" />, we give the transformation from velocity to energy and its inverse. 
 
 ```example
 #let m = 1 // Let's assume mass of 1
 
 #lq.diagram(
-  xaxis: (mirror: false),
   xlabel: $v$,
   xlim: (0, 10),
 
@@ -217,7 +299,6 @@ If the transformation is highly nonlinear, a different tick locator and formatte
 ```example
 #lq.diagram(
   xlim: (1, 7),
-  xaxis: (position: bottom),
   yaxis: none,
   lq.xaxis(
     position: top,
@@ -241,7 +322,6 @@ Finally, we create a temperature plot on the main axes. We use this order to ens
 
 ```example
 #lq.diagram(
-  yaxis: (mirror: false),
   ylabel: [Temperature],
 
   lq.yaxis(
@@ -269,6 +349,7 @@ The number of axes that can be added to a diagram is in principal unlimited. The
 #lq.diagram(
   xscale: lq.scale.log(base: 2),
   ylim: (-1, 1),
+  yaxis: (mirror: true),
 
   lq.yaxis(
     position: (align: right, offset: 20pt), 

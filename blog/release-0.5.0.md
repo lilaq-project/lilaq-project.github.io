@@ -32,7 +32,7 @@ Improvements
 - Updated elembic from version 1.1.0 to [1.1.1](https://github.com/PgBiel/elembic/releases/tag/v1.1.1). 
 - Updated Zero from version 0.4.0 to [0.5.0](https://github.com/Mc-Zen/zero/releases/tag/v0.5.0). 
 
-Fixed
+Fixes
 - Corrected colormesh positioning in zoomed-in views.
 - Fixed label space computation when using show rules.
 - Resolved issues with subtick labels and axis attachments.

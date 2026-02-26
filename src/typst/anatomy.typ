@@ -2,7 +2,7 @@
 #set page(margin: 1cm, width: auto, height: auto)
 
 #import "/lilaq/src/lilaq.typ" as lq
-#import "@preview/suiji:0.3.0"
+#import "@preview/suiji:0.5.1"
 
 #let x = lq.linspace(.3, 3.7, num: 11)
 #let y = x.map(x => x*x*.8 + 2)

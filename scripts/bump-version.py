@@ -19,7 +19,7 @@ if __name__ == "__main__":
     assert re.match(R"\d+\.\d\.+\d+$", new_version) != None, f"The version \"{new_version}\" seems invalid"
     
 
-    os.system(f"npm version {new_version}")
+    # os.system(f"npm version {new_version}")
 
     with open("lilaq/typst.toml", "rb") as file:
         current_version = tomllib.load(file)["package"]["version"]
