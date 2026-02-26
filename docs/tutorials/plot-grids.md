@@ -35,6 +35,33 @@ To create a grid of subplots, just use the built-in Typst function [`grid`](http
 Normally and without this special show rule, the diagram's data areas do not align when the size of their titles, axis labels, tick labels etc. are not the same. In the example above, the ticks of the upper right diagram are all single-digit (0, 2, 4) while the one below has a two-digit number (10) that takes up more space. The function <Crossref target="lq.layout" /> compensates the spacing for each row and column, leading to a perfect diagram grid. 
 
 
+## Per-row and per-column rules
+
+Through grid cell selectors, it is easy to apply uniform styling rules to all diagrams in a row or column. In the following example, this is demonstrated with a series of diagrams, all featuring the same $y$-limits. It is only necessary to show tick labels for the first diagram, so we first hide labels on _all_ diagrams and then _reactivate_ them just for the first column. 
+```example reverse-order
+#show: lq.layout
+
+#show: lq.set-diagram(
+  width: 3cm, height: 2cm,
+  yaxis: (format-ticks: none),
+  ylim: (0, 1), 
+  xlim: (0, 3),
+  xaxis: (filter: (tick, pos) => tick < 3) // filter overlapping ticks
+)
+
+// Reactivate $y$-tick-labels for the first column
+#show grid.cell.where(x: 0): it => {
+  show: lq.set-diagram(yaxis: (format-ticks: auto), ylabel: [velocity])
+  it
+}
+
+#grid(
+  columns: 3,
+  row-gutter: 1em,
+  ..(lq.diagram(),) * 6,
+)
+```
+
 
 ## Integration with Typst grid
 
