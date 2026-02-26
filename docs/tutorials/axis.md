@@ -7,6 +7,39 @@ sidebar_position: 3
 In this tutorial you will learn how to configure and customize the axes of a diagram. 
 The possible parameters are documented at <Crossref target="axis" />. 
 
+
+Visually, an axis consists of a _spine_ along the axis direction, a collection of _ticks_ (and _subticks_) with _tick labels_ and an _axis_ label. Optionally, there can be an exponent. 
+```typ render
+#import "@preview/tiptoe:0.4.0"
+#let line = lq.line.with(tip: tiptoe.straight, stroke: red + .5pt, clip: false)
+#set text(1.2em)
+
+#lq.diagram(
+  yaxis: none,
+  xaxis: (mirror: none, exponent: 1),
+  xlim: (10, 50),
+  ylim: (-.1, 1),
+  grid: none,
+  height: 1cm,
+  width: 7cm,
+  lq.place(16.5, .7, align: right, text(red)[_ticks_]),
+  line((17, .6), (20,0.1)),
+  line((17, .6), (30,0.1)),
+  lq.place(39, .7, align: right, text(red)[_subticks_]),
+  line((39.5, .6), (42,0)),
+  line((39.5, .6), (44,0)),
+  lq.place(60, .7, text(red)[_exponent_]),
+  line((62, .4), (59,-.1)),
+  lq.place(38, -1.5, align: left, text(red)[_axis label_]),
+  line((37, -1.5), (31,-1.3)),
+  lq.place(23, -1.5, text(red)[_tick label_]),
+  line((23, -1.2), (21,-.8)),
+  lq.place(12, -1.5, text(red)[_spine_]),
+  line((12, -1.2), (15,-.1)),
+  xlabel: $x$
+)
+```
+
 Axes use the Typst package [Zero](https://typst.app/universe/package/zero) for formatting numbers in a consistent way throughout a document. Please refer to its documentation for configuring how numbers are displayed. 
 
 
@@ -112,6 +145,45 @@ By default, <Crossref target="tick" /> inherits its stroke from the spine to mak
 Note that the parameters <Crossref target="axis#stroke" />, <Crossref target="axis#tip" />, and <Crossref target="axis#toe" /> are directly forwarded to the spine of the axis and can be used to override the spine settings per-axis. 
 
 
+
+## Exponents and offsets
+
+When tick labels get too long, Lilaq factors out a common power of (usually) 10 and places an _exponent_ at the end of the spine. 
+```example
+#lq.diagram(
+>>>  height: 20pt, 
+>>>  yaxis: none,
+  xlim: (0, 10000)
+)
+```
+This exponent can also be set manually through <Crossref target="axis#exponent" />. 
+```example
+#lq.diagram(
+>>>  height: 20pt, 
+>>>  yaxis: none,
+  xlim: (0, 10000),
+  xaxis: (exponent: 3)
+)
+```
+The <Crossref target="axis#auto-exponent-threshold" /> determines when automatic exponents kick in (when `exponent: auto`). Setting the exponent to `0` disables it altogether:
+```example
+#lq.diagram(
+>>>  height: 20pt, 
+>>>  yaxis: none,
+  xlim: (0, 10000),
+  xaxis: (exponent: 0)
+)
+```
+
+When the tick numbers are very large, but the difference between consecutive ticks is still very small, Lilaq shortens the labels by introducing an _offset_:
+```example
+#lq.diagram(
+>>>  height: 20pt, 
+>>>  yaxis: none,
+  xlim: (134200, 134201),
+)
+```
+This offset can be manually chosen or set to 0 with  <Crossref target="axis#offset" />. The offset field can also be used to display a manual offset text without actually influencing the data. In order to do this, pass a value of type `content`. 
 
 
 ## Placement and mirrors
