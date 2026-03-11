@@ -74,8 +74,10 @@ On the front of plotting functions, we added the new twins <Crossref target="vio
 - Fixed formatting of linear ticks with suffix. In particular, the "0" and minus sign of negative ticks were previously not passed to `zero.num`. This can be important for consistency when text and math fonts don't match.
 - Fixed rounding issues for <Crossref target="axis#tick-distance" /> when using the linear locator.
 - Fixed an issue where the wrong subtick locator was selected when the log locator resolves to linear ticks. 
+- Fixed automatic offsets and raised the threshold for automatic offsets to kick in. 
 
 ### Utility
+- Added <Crossref target="logspace" /> for creating logspaced value arrays. 
 - Added <Crossref target="vec.jitter" /> to apply randomized offsets to numeric arrays.
 - Added the <Crossref target="minmax#margin" /> option.
 - ⚠️ **<Crossref target="vec.transform" />** now takes individual arguments rather than a tuple. Use:
