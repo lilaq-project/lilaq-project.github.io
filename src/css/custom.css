@@ -110,6 +110,11 @@ h3 {
 } */
 
 
+.theme-announcement-bar {
+  background-color: hsl(from var(--color-primary-fainter) h calc(s - 0) l) !important;
+  color: var(--ifm-font-color-base) !important;
+}
+
 @media screen and (max-width: 520px) {
   .hero__title {
     font-size: 2.3rem;
