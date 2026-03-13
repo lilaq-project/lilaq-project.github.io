@@ -42,7 +42,7 @@ On the front of plotting functions, we added the new twins <Crossref target="vio
 - When axis limits are set to `datetime` values, the scale now switches to a datetime scale if <Crossref target="axis#scale" /> is set to `auto`. 
 - Fixed inverted colorbars in PDF export.
 - Fixed spacing when labels are larger than the diagram.
-
+- When exporting to HTML, diagrams are wrapped in `html.frame`. 
 
 
 ### Plots
