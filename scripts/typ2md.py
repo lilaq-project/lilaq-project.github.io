@@ -98,9 +98,13 @@ def typ_to_md(source: str) -> str:
         if it.startswith("\n"):
             indentation = " " * (len(it) - len(it.lstrip()) - 1)
         return f"<details>\n{indentation}<summary>Example</summary>{it}</details>"
+
+    def replace_tip(it: str):
+        return f":::tip\n\n{it}\n\n:::\n\n"
     
     source = replace_functions(source, {
         "details": replace_details,
+        "tip": replace_tip,
         "summary": lambda it: f"<summary>{it}</summary>",
         "link": replace_link
     })
