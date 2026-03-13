@@ -4,7 +4,8 @@
  */
 
 .heroBanner {
-  padding: 2rem 10rem;
+  /* padding: 2rem 10rem; */
+  padding: 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -13,6 +14,9 @@
   justify-content: center;
   column-gap: 2em;
   row-gap: 2em;
+  max-width: 100%;
+  width: 800pt;
+  margin: 0 auto;
 }
 
 .heroBanner div {
