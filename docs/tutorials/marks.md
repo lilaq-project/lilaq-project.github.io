@@ -70,7 +70,7 @@ The following marks are available under `lq.marks`.
 
 The triangle marks `^`, `v`, `<`, and `>` as well as `p5`, `p6`, `p7`, and `p8` are specializations of the `polygon` mark which features the parameters `n` and `angle`. 
 
-The same holds for the star marks `s3`, `s4`, `s5`, and `s6` which are specializations of the `star`. Aside from the parameters `n` and `angle`, this mark also features the parameter `inset` that determines how far the inner points are pulled to the center.
+The same holds for the star marks `s3`, `s4`, `s5`, and `s6` which are specializations of the `star`. Aside from the parameters `n` and `angle`, these marks also features the parameter `inset` that determines how far the inner points are pulled towards the center.
 
 The asterisks `a3`, `a4`, `a5`, and `a6` are specializations of the `asterisk` mark which is just `star.with(inset: 100%)`. The `+` mark is an alias for `a4`. 
 
