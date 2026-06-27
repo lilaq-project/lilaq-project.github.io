@@ -72,6 +72,20 @@ For full control we can pass an array of content-transforming functions:
 Here, we set properties of `lq.style` and `lq.mark` to define a custom style cycle. These are explained more in-depth in the following section. 
 
 
+## Ignoring the cycle for one plot
+
+Individual plots can be excluded from the style cycle by setting `use-cycle` to false. This pauses the cycle and continues it with the next plot that uses it.
+```example
+#lq.diagram(
+  lq.plot(range(4), range(2, 6), label: [1]),
+  lq.plot(range(4), range(1, 5), label: [2], use-cycle: false),
+  lq.plot(range(4), range(0, 4), label: [3]),
+)
+```
+
+
+On the contrary, plots like <Crossref target="hlines" /> that do not take part in the style cycle by default can be exposed to the style cycle by setting `use-cycle` to true. 
+
 
 ## Style properties
 
