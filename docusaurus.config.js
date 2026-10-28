@@ -192,6 +192,25 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/lilaq-project/lilaq',
               },
+              {
+                html: `
+                  <a href="https://www.simpleanalytics.com?utm_source=example.com&utm_content=badge" referrerpolicy="origin" target="_blank">
+                    <picture>
+                      <source
+                        srcset="https://simpleanalyticsbadges.com/example.com?mode=dark&counter=false&background=%23444b57&text=%23ebedf0&logo=%238f8f8f"
+                        media="(prefers-color-scheme: dark)"
+                      />
+                      <img
+                        src="https://simpleanalyticsbadges.com/example.com?mode=light&counter=false&background=%23444b57&text=%23ebedf0&logo=%238f8f8f"                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        crossorigin="anonymous"
+                        style="height: 2em;"
+                      />
+                    </picture>
+                  </a>
+                `
+              },
+              
             ],
           },
         ],
