@@ -243,8 +243,8 @@ const config = {
       },
           
       announcementBar: {
-        id: "release-announcement",
-        content: 'Lilaq 0.6.0 is out 🎉 Check out the <a rel="noopener noreferrer" href="/blog/release-0.6.0">changes and new features</a>',
+        id: "release-announcement-0.7.0",
+        content: 'Lilaq 0.7.0 is out 🎉 Check out the <a rel="noopener noreferrer" href="/blog/release-0.7.0">changes and new features</a>',
         isCloseable: true,
       },
     }), // end themeConfig
