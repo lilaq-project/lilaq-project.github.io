@@ -60,6 +60,10 @@ Lilaq 0.7.0 upgrades contour plots and adds  presentation-friendly plot reveals 
 - Improved performance for plots with `mark: none` by skipping mark placement entirely.
 
 
+### Themes
+- The schoolbook theme now uses the new axis option <Crossref target="axis#include-zero" /> to ensure that the origin is included in the plot. 
+
+
 ### Utility
 - Added <Crossref target="geomspace" /> for geometric progressions with linear sample counts.
 
