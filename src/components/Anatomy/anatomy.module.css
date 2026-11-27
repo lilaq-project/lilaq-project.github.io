@@ -122,15 +122,26 @@
   top: -1.9em;
 }
 
+.legend-icon {
+  left: 69.9%;
+  top: 67.4%;
+  width: 10.5%;
+  height: 6.9%;
+}
+
+.legend-icon a {
+  bottom: -1.7em;
+}
+
 .scatter {
-  left: 51%;
-  top: 62.1%;
+  left: 70.8%;
+  top: 41.7%;
   width: 4%;
   height: 5%;
 }
 
 .scatter a {
-  bottom: -1.9em;
+  top: -1.9em;
 }
 
 .plot {

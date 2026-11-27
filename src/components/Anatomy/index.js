@@ -25,6 +25,7 @@ export default function Annotations() {
         <Label title="yaxis" href="/docs/reference/axis" />
         <Label title="xaxis" href="/docs/reference/axis" />
         <Label title="legend" />
+        <Label title="legend-icon" />
         <Label title="tick" />
         <Label title="spine" />
         <Label title="tick-label" />
