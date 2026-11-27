@@ -5,7 +5,7 @@ tags: [release]
 date: 2026-11-21
 ---
 
-Lilaq 0.7.0 upgrades contour plots and adds  presentation-friendly plot reveals as well as error bars for the scatter function and a new plot routine to simplify plotting functions. It also improves color handling, control over the legend, and compatibility with Typst 0.15.
+Lilaq 0.7.0 upgrades contour plots and adds  presentation-friendly plot reveals as well as a new type legend-icon, error bars for the scatter function and a new plot routine to simplify plotting functions. It also improves color handling, control over the legend, and compatibility with Typst 0.15.
 
 
 
@@ -34,6 +34,7 @@ Lilaq 0.7.0 upgrades contour plots and adds  presentation-friendly plot reveals 
 ### Diagram
 - Added <Crossref target="diagram#reveal" /> for presentation tools: reveal a fixed number of plots or reveal plots conditionally with a function.
 - Added an option `use-cycle` (e.g. <Crossref target="plot#use-cycle" />) to most plot types, allowing plots to opt in or out of participation in the diagram style cycle.
+- Added a new type <Crossref target="legend-icon" /> to expose control over the size of legend icons.
 - Added <Crossref target="legend#columns" /> and <Crossref target="legend#ordering" /> for arranging legend entries in multiple columns and choosing left-to-right or top-to-bottom order.
 - Default spine, tick, grid, and legend colors are now derived from the surrounding text and page colors, improving theme behavior.
 - Added support for setting <Crossref target="tick#stroke" /> to `none` to hide tick marks.
