@@ -84,10 +84,29 @@ In addition, let us arrange the legend entries in two columns.
 )
 ```
 
+## Customization of legend icons
+
+The appearance of legend icons is controlled through the type <Crossref target="legend-icon" />.
+Currently, only the size of a legend icon can be configured as demonstrated in its documentation.
+
+However, it is also possible to write `show` rules that replace the appearance of an icon associated with a specific plot label.
+```example
+#show: lq.show_(lq.legend-icon.with(label: [A]), it => line(
+  stroke: gradient.linear(red, blue, green).sharp(3),
+  length: 100%,
+))
+
+#lq.diagram(
+  lq.plot((1, 2, 3), (1, 2, 3), color: red, label: [A]),
+  lq.plot((1, 2, 3), (2, 3, 4), color: blue),
+  lq.plot((1, 2, 3), (3, 4, 5), color: green),
+  lq.plot((1, 2, 3), (7, 6, 5), label: [B]),
+)
+```
 
 ## Fully custom entries
 
-The <Crossref target="diagram#legend" /> also accepts a <Crossref target="legend" /> instance to which you can pass legend entries manually. In this case, all automatically created legend entries are discarded.  
+The parameter <Crossref target="diagram#legend" /> also accepts a <Crossref target="legend" /> instance to which you can pass legend entries manually. In this case, all automatically created legend entries are discarded.  
 ```example
 #lq.diagram(
   legend: lq.legend(
